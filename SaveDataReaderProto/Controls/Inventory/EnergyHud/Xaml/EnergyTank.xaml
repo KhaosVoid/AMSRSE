@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:eHud="clr-namespace:SaveDataReaderProto.Controls.Inventory.EnergyHud">
+    <Style TargetType="{x:Type eHud:EnergyTank}">
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type eHud:EnergyTank}">
+                    <Rectangle x:Name="rect" Margin="{TemplateBinding Margin}" Stroke="#FF74498B" StrokeThickness="2" Fill="#FF000000" Width="12" Height="20" />
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasEnergy" Value="True">
+                            <Setter TargetName="rect" Property="Fill" Value="#FFD88DDF" />
+                            <Setter TargetName="rect" Property="Stroke" Value="#FF74498B" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

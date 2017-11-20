@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#region Collectibles-->
+    <ImageSource x:Key="Images.Collectables.Energy">/SaveDataReaderProto;component/Images/Collectables/energy.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.AeionEnergy">/SaveDataReaderProto;component/Images/Collectables/aeionEnergy.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.Missiles">/SaveDataReaderProto;component/Images/Collectables/missiles.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.SuperMissiles">/SaveDataReaderProto;component/Images/Collectables/superMissiles.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.PowerBombs">/SaveDataReaderProto;component/Images/Collectables/powerBombs.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.TotalMetroids">/SaveDataReaderProto;component/Images/Collectables/totalMetroids.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.MetroidsKilled">/SaveDataReaderProto;component/Images/Collectables/metroidsKilled.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.MetroidDNA">/SaveDataReaderProto;component/Images/Collectables/metroidDNA.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.BabyMetroid">/SaveDataReaderProto;component/Images/Collectables/babyMetroid.png</ImageSource>
+    <!--#endregion Collectibles-->
+
+    <!--#region UI-->
+    <ImageSource x:Key="Images.UI.MSRButton-Normal">/SaveDataReaderProto;component/Images/UI/msrButton-normal.png</ImageSource>
+    <ImageSource x:Key="Images.UI.MSRButton-Active">/SaveDataReaderProto;component/Images/UI/msrButton-active.png</ImageSource>
+    <!--#endregion UI-->
+    
+    <!--#region Upgrades-->
+    <!--#region Abilities-->
+    <ImageSource x:Key="Images.Upgrades.Abilities.ScanPulse-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/scanPulse-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.ScanPulse-Selected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/scanPulse-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.LightningArmor-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/lightningArmor-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.LightningArmor-Selected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/lightningArmor-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.BeamBurst-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/beamBurst-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.BeamBurst-Selected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/beamBurst-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.PhaseDrift-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/phaseDrift-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.PhaseDrift-Selected">/SaveDataReaderProto;component/Images/Upgrades/Abilities/phaseDrift-selected.png</ImageSource>
+    <!--#endregion Abilities-->
+    
+    <!--#region Equipment-->
+    <ImageSource x:Key="Images.Upgrades.Equipment.MorphBall-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/morphBall-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.MorphBall-Selected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/morphBall-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpiderBall-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/spiderBall-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpiderBall-Selected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/spiderBall-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpringBall-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/springBall-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpringBall-Selected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/springBall-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.HighJumpBoots-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/highJumpBoots-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.HighJumpBoots-Selected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/highJumpBoots-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpaceJump-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/spaceJump-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpaceJump-Selected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/spaceJump-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.ScrewAttack-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/screwAttack-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.ScrewAttack-Selected">/SaveDataReaderProto;component/Images/Upgrades/Equipment/screwAttack-selected.png</ImageSource>
+    <!--#endregion Equipment-->
+    
+    <!--#region MorphBall Weapons-->
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.Bomb-Unselected">/SaveDataReaderProto;component/Images/Upgrades/MorphBall Weapons/bomb-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.Bomb-Selected">/SaveDataReaderProto;component/Images/Upgrades/MorphBall Weapons/bomb-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.PowerBomb-Unselected">/SaveDataReaderProto;component/Images/Upgrades/MorphBall Weapons/powerBomb-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.PowerBomb-Selected">/SaveDataReaderProto;component/Images/Upgrades/MorphBall Weapons/powerBomb-selected.png</ImageSource>
+    <!--#endregion MorphBall Weapons-->
+    
+    <!--#region Suits-->
+    <ImageSource x:Key="Images.Upgrades.Suits.VariaSuit-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Suits/variaSuit-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.VariaSuit-Selected">/SaveDataReaderProto;component/Images/Upgrades/Suits/variaSuit-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.GravitySuit-Unselected">/SaveDataReaderProto;component/Images/Upgrades/Suits/gravitySuit-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.GravitySuit-Selected">/SaveDataReaderProto;component/Images/Upgrades/Suits/gravitySuit-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.PowerSuit">/SaveDataReaderProto;component/Images/Upgrades/Suits/samus-powerSuit.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.VariaSuit">/SaveDataReaderProto;component/Images/Upgrades/Suits/samus-variaSuit.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.GravitySuit">/SaveDataReaderProto;component/Images/Upgrades/Suits/samus-gravitySuit.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.FusionSuit">/SaveDataReaderProto;component/Images/Upgrades/Suits/samus-fusionSuit.png</ImageSource>
+    <!--#endregion Suits-->
+    <!--#endregion Upgrades-->
+
+    <!--#region Weapons-->
+    <!--#region Beams-->
+    <ImageSource x:Key="Images.Weapons.Beams.PowerBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/powerBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.PowerBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/powerBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.ChargeBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/chargeBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.ChargeBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/chargeBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.IceBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/iceBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.IceBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/iceBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.WaveBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/waveBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.WaveBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/waveBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.GrappleBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/grappleBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.GrappleBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/grappleBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.SpazerBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/spazerBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.SpazerBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/spazerBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.PlasmaBeam-Unselected">/SaveDataReaderProto;component/Images/Weapons/Beams/plasmaBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.PlasmaBeam-Selected">/SaveDataReaderProto;component/Images/Weapons/Beams/plasmaBeam-selected.png</ImageSource>
+    <!--#endregion Beams-->
+    
+    <!--#region Missiles-->
+    <ImageSource x:Key="Images.Weapons.Missiles.Missile-Unselected">/SaveDataReaderProto;component/Images/Weapons/Missiles/missile-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Missiles.Missile-Selected">/SaveDataReaderProto;component/Images/Weapons/Missiles/missile-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Missiles.SuperMissile-Unselected">/SaveDataReaderProto;component/Images/Weapons/Missiles/superMissile-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Missiles.SuperMissile-Selected">/SaveDataReaderProto;component/Images/Weapons/Missiles/superMissile-selected.png</ImageSource>
+    <!--#endregion Missiles-->
+    <!--#endregion Weapons-->
+</ResourceDictionary>

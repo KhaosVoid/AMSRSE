@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:sdiv="clr-namespace:MSRSaveEditor.Controls.Views.SaveDataInfoView"
+                    xmlns:cb="clr-namespace:MSRSaveEditor.Controls.ColorBlended"
+                    xmlns:fx="clr-namespace:MSRSaveEditor.Effects">
+    <Style TargetType="{x:Type sdiv:SaveDataInfoView}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type sdiv:SaveDataInfoView}">
+                    <Grid>
+                        <Grid x:Name="background" Background="Black">
+                            <Grid.Effect>
+                                <fx:MultiplyEffect Input="{StaticResource TXTR-ColorInput}" />
+                            </Grid.Effect>
+                            <Canvas Background="{StaticResource TXTR-Background}">
+                                <Canvas.Effect>
+                                    <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                </Canvas.Effect>
+                            </Canvas>
+                            <Canvas x:Name="backgroundSpinner"
+                                Background="{StaticResource TXTR-BackgroundSpinner}"
+                                RenderTransformOrigin="0.5, 0.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="backgroundSpinnerRotation" />
+                                </Canvas.RenderTransform>
+                                <Canvas.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard Timeline.DesiredFrameRate="30">
+                                                <DoubleAnimation
+                                                Storyboard.TargetProperty="(Canvas.RenderTransform).(RotateTransform.Angle)"
+                                                To="360"  Duration="0:0:10" RepeatBehavior="Forever" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Canvas.Triggers>
+                                <Canvas.Effect>
+                                    <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                </Canvas.Effect>
+                            </Canvas>
+                            <Canvas x:Name="samus"
+                                    Background="{StaticResource TXTR-SamusGravity}">
+                                <Canvas.Effect>
+                                    <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                </Canvas.Effect>
+                            </Canvas>
+                            <WrapPanel Orientation="Horizontal" ItemWidth="34" ItemHeight="32" HorizontalAlignment="Right" Width="68">
+                                <Canvas x:Name="bomb"
+                                        Background="{StaticResource TXTR-Bomb}">
+                                    <Canvas.Effect>
+                                        <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                    </Canvas.Effect>
+                                </Canvas>
+                                <Canvas x:Name="powerBomb"
+                                        Background="{StaticResource TXTR-PowerBomb}">
+                                    <Canvas.Effect>
+                                        <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                    </Canvas.Effect>
+                                </Canvas>
+                                <!--<cb:ColorBlendedButton />-->
+                            </WrapPanel>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="24" />
+                            </Grid.RowDefinitions>
+                            
+                            
+                            <Rectangle Grid.Row="2" Fill="#4F51B6E6" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

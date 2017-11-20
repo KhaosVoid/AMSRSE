@@ -1,0 +1,18 @@
+﻿<Window x:Class="MSRSaveEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mv="clr-namespace:MSRSaveEditor.Controls.Views.MainView"
+        xmlns:sdv="clr-namespace:MSRSaveEditor.Controls.Views.SaveDataView"
+        xmlns:sdiv="clr-namespace:MSRSaveEditor.Controls.Views.SaveDataInfoView"
+        xmlns:local="clr-namespace:MSRSaveEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <mv:MainView>
+        <mv:MainView.View>
+            <!--<sdv:SaveDataView />-->
+            <sdiv:SaveDataInfoView />
+        </mv:MainView.View>
+    </mv:MainView>
+</Window>

@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--#region TXTR-ColorTransparentInput-->
+    <ImageBrush x:Key="TXTR-ColorTransparentInput">
+        <ImageBrush.ImageSource>
+            <DrawingImage>
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="Transparent">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,1,1" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+        </ImageBrush.ImageSource>
+    </ImageBrush>
+    <!--#endregion TXTR-ColorTransparentInput-->
+    
+    <!--#region TXTR-ColorInput -->
+    <ImageBrush x:Key="TXTR-ColorInput">
+        <ImageBrush.ImageSource>
+            <DrawingImage>
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="#FF51B6E6">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,1,1" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+        </ImageBrush.ImageSource>
+    </ImageBrush>
+    <!--#endregion TXTR-ColorInput-->
+    
+    <!--#region Misc-->
+    <ImageBrush x:Key="TXTR-MetroidLogo" ImageSource="/MSRSaveEditor;component/Images/Misc/metroidLogo.png" Stretch="None" />
+    <ImageBrush x:Key="TXTR-Background" ImageSource="/MSRSaveEditor;component/Images/Misc/background.png" Stretch="None" />
+    <ImageBrush
+        x:Key="TXTR-BackgroundSpinner"
+        ImageSource="/MSRSaveEditor;component/Images/Misc/backgroundSpinner.png"
+        Stretch="None"
+        RenderOptions.CachingHint="Cache"
+        RenderOptions.BitmapScalingMode="LowQuality"/>
+    <!--#endregion Misc-->
+    
+    <!--#region Samus Suits Inventory-->
+    <ImageBrush x:Key="TXTR-SamusGravity" ImageSource="/MSRSaveEditor;component/Images/Inventory/samus-gravitySuit.png" Stretch="None" />
+    <!--#endregion Samus Suits Inventory-->
+    
+    <!--#region Samus Suit Component Icons-->
+    <ImageBrush x:Key="TXTR-Bomb" ImageSource="/MSRSaveEditor;component/Images/Inventory/bomb.png" Stretch="None" />
+    <ImageBrush x:Key="TXTR-PowerBomb" ImageSource="/MSRSaveEditor;component/Images/Inventory/powerBomb.png" Stretch="None" />
+    <!--#endregion Samus Suit Component Icons-->
+    
+</ResourceDictionary>

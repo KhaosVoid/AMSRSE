@@ -1,0 +1,99 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:col="clr-namespace:SaveDataReaderProto.Controls.Inventory.Collectables"
+                    xmlns:aHud="clr-namespace:SaveDataReaderProto.Controls.Inventory.AeionHud"
+                    xmlns:eHud="clr-namespace:SaveDataReaderProto.Controls.Inventory.EnergyHud">
+    <Style TargetType="{x:Type col:Collectables}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type col:Collectables}">
+                    <Grid Background="#FF000000">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#FFFFFFFF" />
+                                <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="TextAlignment" Value="Right" />
+                            </Style>
+
+                            <Style TargetType="Image">
+                                <Setter Property="Width" Value="12" />
+                                <Setter Property="Height" Value="12" />
+                                <Setter Property="Stretch" Value="Uniform" />
+                                <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+                            </Style>
+
+                            <Style TargetType="TextBox">
+                                <Setter Property="Width" Value="48" />
+                                <Setter Property="Background" Value="#FF000000" />
+                                <Setter Property="Foreground" Value="#FFFFFFFF" />
+                                <Setter Property="BorderBrush" Value="#FF00A0FF" />
+                                <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="TextAlignment" Value="Center" />
+                            </Style>
+                        </Grid.Resources>
+
+                        <!-- *** Energy/Aeion Display *** -->
+                        <StackPanel Grid.RowSpan="3">
+                            <eHud:EnergyHud x:Name="eHud" MaxEnergy="{Binding MaxEnergy}" CurrentEnergy="{Binding CurrentEnergy}" />
+                            <aHud:AeionHud x:Name="aHud" MaxAeionEnergy="{Binding MaxAeionEnergy}" CurrentAeionEnergy="{Binding CurrentAeionEnergy}" Margin="2,0" />
+                        </StackPanel>
+
+                        <!-- *** Labels *** -->
+                        <TextBlock Grid.Column="2" Grid.Row="1" Text="Current" />
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Maximum" />
+
+                        <!-- *** Energy *** -->
+                        <Image Grid.Column="4" Source="{StaticResource Images.Collectables.Energy}" />
+                        <TextBox Grid.Column="4" Grid.Row="1" Text="{Binding CurrentEnergy, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Column="4" Grid.Row="2" Text="{Binding MaxEnergy, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!-- *** Aeion Energy *** -->
+                        <Image Grid.Column="6" Source="{StaticResource Images.Collectables.AeionEnergy}" />
+                        <TextBox Grid.Column="6" Grid.Row="1" Text="{Binding CurrentAeionEnergy, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Column="6" Grid.Row="2" Text="{Binding MaxAeionEnergy, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!-- *** Missiles *** -->
+                        <Image Grid.Column="8" Source="{StaticResource Images.Collectables.Missiles}" />
+                        <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding CurrentMissiles, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Column="8" Grid.Row="2" Text="{Binding MaxMissiles, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!-- *** Super Missiles *** -->
+                        <Image Grid.Column="10" Source="{StaticResource Images.Collectables.SuperMissiles}" />
+                        <TextBox Grid.Column="10" Grid.Row="1" Text="{Binding CurrentSuperMissiles, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Column="10" Grid.Row="2" Text="{Binding MaxSuperMissiles, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!-- *** Power Bombs *** -->
+                        <Image Grid.Column="12" Source="{StaticResource Images.Collectables.PowerBombs}" />
+                        <TextBox Grid.Column="12" Grid.Row="1" Text="{Binding CurrentPowerBombs, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Column="12" Grid.Row="2" Text="{Binding MaxPowerBombs, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

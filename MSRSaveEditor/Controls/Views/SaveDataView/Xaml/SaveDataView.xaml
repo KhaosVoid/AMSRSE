@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:sdv="clr-namespace:MSRSaveEditor.Controls.Views.SaveDataView"
+                    xmlns:fx="clr-namespace:MSRSaveEditor.Effects">
+    <Style TargetType="{x:Type sdv:SaveDataView}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type sdv:SaveDataView}">
+                    <Grid>
+                        <Grid x:Name="background" Background="Black">
+                            <Grid.Effect>
+                                <fx:MultiplyEffect Input="{StaticResource TXTR-ColorInput}" />
+                            </Grid.Effect>
+                            <Canvas Background="{StaticResource TXTR-Background}">
+                                <Canvas.Effect>
+                                    <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                </Canvas.Effect>
+                            </Canvas>
+                            <Canvas x:Name="backgroundSpinner"
+                                    Background="{StaticResource TXTR-BackgroundSpinner}"
+                                    RenderTransformOrigin="0.5, 0.5">
+                                <Canvas.RenderTransform>
+                                    <RotateTransform x:Name="backgroundSpinnerRotation" />
+                                </Canvas.RenderTransform>
+                                <Canvas.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard Timeline.DesiredFrameRate="30">
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="(Canvas.RenderTransform).(RotateTransform.Angle)"
+                                                    To="360"  Duration="0:0:10" RepeatBehavior="Forever" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Canvas.Triggers>
+                                <Canvas.Effect>
+                                    <fx:ScreenEffect Input="{StaticResource TXTR-ColorTransparentInput}" />
+                                </Canvas.Effect>
+                            </Canvas>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="24" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="SAMUS FILES" Foreground="#FFFFFFFF" TextAlignment="Center" VerticalAlignment="Center" />
+                            <ItemsControl Grid.Row="1" BorderThickness="0" Background="Transparent">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Height="56" Background="#195ACAFF" Margin="4,2" BorderBrush="#3F5ACAFF" BorderThickness="1">
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding}" Foreground="#FFADE5FF" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <sys:String>SAMUS A</sys:String>
+                                <sys:String>SAMUS B</sys:String>
+                                <sys:String>SAMUS C</sys:String>
+                            </ItemsControl>
+                            <Rectangle Grid.Row="2" Fill="#4F51B6E6" />
+                        </Grid>
+                    </Grid>
+
+                    <!--<ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="backgroundSpinner"
+                                        Storyboard.TargetProperty="(Canvas.RenderTransform).(RotateTransform.Angle)"
+                                        To="-360" Duration="0:0:1" RepeatBehavior="Forever" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,58 @@
+﻿<Window x:Class="SaveDataReaderProto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:inv="clr-namespace:SaveDataReaderProto.Controls.Inventory"
+        xmlns:nrghud="clr-namespace:SaveDataReaderProto.Controls.Inventory.EnergyHud"
+        xmlns:equip="clr-namespace:SaveDataReaderProto.Controls.Inventory.Equipment"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+        Title="SaveDataReaderProto (AMSRSE v0.4) - Written by KhaosVoid">
+    <Grid Background="#FF081016">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8" />
+        </Grid.RowDefinitions>
+        <inv:Inventory x:Name="inventory" Visibility="Collapsed" />
+        <Button
+            x:Name="btnLoadFile"
+            Grid.Row="2"
+            Margin="8,0,8,0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource Styles.Buttons.MSRButton}"
+            Content="Load File"
+            Click="btnLoadFile_Click"/>
+        <Button
+            x:Name="btnSaveFileAs"
+            Grid.Row="2"
+            Margin="8,0,8,0"
+            HorizontalAlignment="Right"
+            Style="{StaticResource Styles.Buttons.MSRButton}"
+            Content="Save File As"
+            Visibility="Collapsed"
+            Click="btnSaveFileAs_Click"/>
+        <!--<equip:EquipmentContainer Grid.Row="1" HorizontalAlignment="Left">
+            <equip:EquipmentContainer.Items>
+                <equip:EquipmentItem
+                    UnselectedIcon="{StaticResource Images.Beams.PowerBeam-Unselected}"
+                    SelectedIcon="{StaticResource Images.Beams.PowerBeam-Selected}" />
+                <equip:EquipmentItem
+                    UnselectedIcon="{StaticResource Images.Beams.ChargeBeam-Unselected}"
+                    SelectedIcon="{StaticResource Images.Beams.ChargeBeam-Selected}" />
+                <equip:EquipmentItem
+                    UnselectedIcon="{StaticResource Images.Beams.PowerBeam-Unselected}"
+                    SelectedIcon="{StaticResource Images.Beams.PowerBeam-Selected}" />
+                <equip:EquipmentItem
+                    UnselectedIcon="{StaticResource Images.Beams.ChargeBeam-Unselected}"
+                    SelectedIcon="{StaticResource Images.Beams.ChargeBeam-Selected}" />
+            </equip:EquipmentContainer.Items>
+        </equip:EquipmentContainer>-->
+        <!--<equip:EquipmentItem Grid.Row="1" HorizontalAlignment="Left"
+                             UnselectedIcon="{StaticResource Images.Beams.PowerBeam-Unselected}"
+                             SelectedIcon="{StaticResource Images.Beams.PowerBeam-Selected}"
+                             IsSelected="False" />-->
+    </Grid>
+</Window>
