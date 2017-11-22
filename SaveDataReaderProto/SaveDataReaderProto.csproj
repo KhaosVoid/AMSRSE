@@ -136,6 +136,7 @@
     <Compile Include="Controls\Inventory\Loadout\Loadout.cs" />
     <Compile Include="DataModels\DataModelBase.cs" />
     <Compile Include="DataModels\InventoryDataModel.cs" />
+    <Compile Include="DataModels\ItemsCollectedByAreaDataModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
