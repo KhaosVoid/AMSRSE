@@ -137,6 +137,7 @@
     <Compile Include="DataModels\DataModelBase.cs" />
     <Compile Include="DataModels\InventoryDataModel.cs" />
     <Compile Include="DataModels\ItemsCollectedByAreaDataModel.cs" />
+    <Compile Include="DataModels\MiscDataDataModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
