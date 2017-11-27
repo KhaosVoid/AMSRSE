@@ -1,4 +1,4 @@
-﻿using SaveDataReaderProto.DataModels;
+﻿using SaveDataReaderProto.DataModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

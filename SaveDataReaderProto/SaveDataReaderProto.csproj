@@ -135,9 +135,10 @@
     <Compile Include="Controls\Inventory\Inventory.cs" />
     <Compile Include="Controls\Inventory\Loadout\Loadout.cs" />
     <Compile Include="DataModels\DataModelBase.cs" />
-    <Compile Include="DataModels\InventoryDataModel.cs" />
-    <Compile Include="DataModels\ItemsCollectedByAreaDataModel.cs" />
-    <Compile Include="DataModels\MiscDataDataModel.cs" />
+    <Compile Include="DataModels\Common\InventoryDataModel.cs" />
+    <Compile Include="DataModels\Common\ItemsCollectedByAreaDataModel.cs" />
+    <Compile Include="DataModels\Common\MiscDataDataModel.cs" />
+    <Compile Include="DataModels\Pkprfl\UnlockablesGameDifficultyDataModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -260,5 +261,6 @@
   <ItemGroup>
     <Resource Include="app.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,5 @@
 ﻿using SaveDataReaderProto.BinaryMercurySteamSave;
-using SaveDataReaderProto.DataModels;
+using SaveDataReaderProto.DataModels.Common;
 using System;
 using System.Linq;
 using System.Text;
