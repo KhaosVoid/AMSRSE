@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile">
+    <Style TargetType="{x:Type ppdv:SelectedProfileActionsDV}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ppdv:SelectedProfileActionsDV}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="4" />
+                            <Setter Property="Width" Value="160" />
+                            <Setter Property="Height" Value="48" />
+                            <Setter Property="Background" Value="#00000000" />
+                            <Setter Property="Foreground" Value="#FFFFFFFF" />
+                            <Setter Property="BorderThickness" Value="4" />
+                            <Setter Property="BorderBrush" Value="#FF00A0FF" />
+                            <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" TargetName="border" Value="#FF005180"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" TargetName="border" Value="#FF00A0FF"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Background" TargetName="border" Value="#3FFFFFFF" />
+                                                <Setter Property="BorderBrush" TargetName="border" Value="#FFC0C0C0" />
+                                                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="#FFC0C0C0" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Button x:Name="btnBack" Content="Back" Command="{TemplateBinding CloseProfileCommand}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

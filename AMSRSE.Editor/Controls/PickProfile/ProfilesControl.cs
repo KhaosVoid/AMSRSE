@@ -1,4 +1,5 @@
-﻿using AMSRSE.Editor.DataModels.Pkprfl;
+﻿using AMSRSE.Editor.Commands;
+using AMSRSE.Editor.DataModels.Pkprfl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -118,11 +119,50 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         #endregion Members
 
+        #region Commands
+
+        private DelegateCommand _closeProfile0Command;
+        private DelegateCommand _closeProfile1Command;
+        private DelegateCommand _closeProfile2Command;
+
+        #endregion Commands
+
         #region Ctor
 
         public ProfilesControl()
         {
-            
+            _closeProfile0Command = new DelegateCommand((o) =>
+            {
+                _templatePart_ProfileItem0.FadeOutActions();
+                _templatePart_ProfileItem0.IsSelected = false;
+
+                _templatePart_ProfileItem1.Visibility = Visibility.Visible;
+                _templatePart_ProfileItem2.Visibility = Visibility.Visible;
+
+                _profile0RetractProfileStoryboard.Begin();
+            });
+
+            _closeProfile1Command = new DelegateCommand((o) =>
+            {
+                _templatePart_ProfileItem1.FadeOutActions();
+                _templatePart_ProfileItem1.IsSelected = false;
+
+                _templatePart_ProfileItem0.Visibility = Visibility.Visible;
+                _templatePart_ProfileItem2.Visibility = Visibility.Visible;
+
+                _profile1RetractProfileStoryboard.Begin();
+            });
+
+            _closeProfile2Command = new DelegateCommand((o) =>
+            {
+                _templatePart_ProfileItem2.FadeOutActions();
+                _templatePart_ProfileItem2.IsSelected = false;
+
+                _templatePart_ProfileItem0.Visibility = Visibility.Visible;
+                _templatePart_ProfileItem1.Visibility = Visibility.Visible;
+
+                _profile2RetractProfileStoryboard.Begin();
+            });
         }
 
         #endregion Ctor
@@ -143,7 +183,9 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem1.OnSelected += _templatePart_ProfileItem1_OnSelected;
                 _templatePart_ProfileItem2.OnSelected += _templatePart_ProfileItem2_OnSelected;
 
-
+                _templatePart_ProfileItem0.CloseProfileCommand = _closeProfile0Command;
+                _templatePart_ProfileItem1.CloseProfileCommand = _closeProfile1Command;
+                _templatePart_ProfileItem2.CloseProfileCommand = _closeProfile2Command;
             }
 
             base.OnApplyTemplate();
@@ -162,14 +204,14 @@ namespace AMSRSE.Editor.Controls.PickProfile
             DoubleAnimation profileRestoreSizeAnimation = new DoubleAnimation();
 
             profileSwipeLeftAnimation.SpeedRatio = _animationSpeed;
-            profileSwipeLeftAnimation.From = new Thickness(0, 0, 0, 0);
+            //profileSwipeLeftAnimation.From = new Thickness(0, 0, 0, 0);
             profileSwipeLeftAnimation.To = new Thickness(-64, 0, 0, 0);
 
             profileFadeOutAnimation.SpeedRatio = _animationSpeed;
             profileFadeOutAnimation.To = 0;
 
             profileSwipeRightAnimation.SpeedRatio = _animationSpeed;
-            profileSwipeRightAnimation.From = new Thickness(-64, 0, 0, 0);
+            //profileSwipeRightAnimation.From = new Thickness(-64, 0, 0, 0);
             profileSwipeRightAnimation.To = new Thickness(0, 0, 0, 0);
 
             profileFadeInAnimation.SpeedRatio = _animationSpeed;
@@ -314,6 +356,8 @@ namespace AMSRSE.Editor.Controls.PickProfile
             {
                 _templatePart_ProfileItem1.Visibility = Visibility.Collapsed;
                 _templatePart_ProfileItem2.Visibility = Visibility.Collapsed;
+
+                _templatePart_ProfileItem0.FadeInActions();
             };
 
             _profile0RetractProfileStoryboard.Children.Add(_profile0RestoreSizeAnimation);
@@ -354,6 +398,8 @@ namespace AMSRSE.Editor.Controls.PickProfile
             {
                 _templatePart_ProfileItem0.Visibility = Visibility.Collapsed;
                 _templatePart_ProfileItem2.Visibility = Visibility.Collapsed;
+
+                _templatePart_ProfileItem1.FadeInActions();
             };
 
             _profile1RetractProfileStoryboard.Children.Add(_profile0RestoreSizeAnimation);
@@ -394,6 +440,8 @@ namespace AMSRSE.Editor.Controls.PickProfile
             {
                 _templatePart_ProfileItem0.Visibility = Visibility.Collapsed;
                 _templatePart_ProfileItem1.Visibility = Visibility.Collapsed;
+
+                _templatePart_ProfileItem2.FadeInActions();
             };
 
             _profile2RetractProfileStoryboard.Children.Add(_profile0RestoreSizeAnimation);

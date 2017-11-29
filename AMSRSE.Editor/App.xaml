@@ -5,8 +5,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AMSRSE.Editor;component/Fonts/Fonts.xaml" />
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Images/Images.xaml" />
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Controls/Controls.xaml" />
+                <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/PickProfile/Xaml/SelectedProfileActionsDV.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

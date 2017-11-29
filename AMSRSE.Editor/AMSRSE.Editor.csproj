@@ -54,6 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Views\Dynamic\PickProfile\SelectedProfileActionsDV.cs" />
     <Page Include="Controls\Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -65,6 +67,10 @@
     <Page Include="Controls\PickProfile\Xaml\ProfilesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fonts\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Images\Images.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -78,8 +84,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\DynamicView\DynamicView.cs" />
-    <Compile Include="Controls\DynamicView\DynamicViewHost.cs" />
+    <Compile Include="Views\Dynamic\DynamicViewBase.cs" />
+    <Compile Include="Views\Dynamic\DynamicViewCollection.cs" />
+    <Compile Include="Views\Dynamic\DynamicViewHost.cs" />
     <Compile Include="Controls\PickProfile\ProfileItem.cs" />
     <Compile Include="Controls\PickProfile\ProfileItemCollection.cs" />
     <Compile Include="Controls\PickProfile\ProfilesControl.cs" />
@@ -99,6 +106,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Dynamic\PickProfile\Xaml\SelectedProfileActionsDV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dynamic\Xaml\DynamicViewHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -120,6 +135,7 @@
     </EmbeddedResource>
     <Resource Include="Effects\MultiplyEffect.ps" />
     <Resource Include="Effects\ScreenEffect.ps" />
+    <Resource Include="Fonts\metroidsr_pixel_regular.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -328,6 +344,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\UI\PickProfile\samusProfileHelmet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\SlidingButtons\Xaml\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

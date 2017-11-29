@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AMSRSE.Editor"
         xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
+        xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
         Title="MainWindow">
@@ -17,7 +18,7 @@
             <Setter Property="Foreground" Value="#FFFFFFFF" />
             <Setter Property="BorderThickness" Value="4" />
             <Setter Property="BorderBrush" Value="#FF00A0FF" />
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -44,8 +45,9 @@
         </Style>
     </Window.Resources>
 
-    <Grid Width="640">
+    <Grid Width="640" Background="#FF000000">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -56,10 +58,11 @@
             <Button x:Name="btnStaffCredits" Content="Staff Credits" IsEnabled="False" />
         </ItemsControl>
         <pkprfl:ProfilesControl Grid.Row="1" />
+        <!--<ppdv:SelectedProfileActionsDV />-->
     </Grid>
 
     <Window.Triggers>
-        <EventTrigger SourceName="btnGallery" RoutedEvent="Button.Click">
+        <!--<EventTrigger SourceName="btnGallery" RoutedEvent="Button.Click">
             <BeginStoryboard>
                 <Storyboard
                     SpeedRatio="4">
@@ -73,6 +76,6 @@
                         To="0" />
                 </Storyboard>
             </BeginStoryboard>
-        </EventTrigger>
+        </EventTrigger>-->
     </Window.Triggers>
 </Window>

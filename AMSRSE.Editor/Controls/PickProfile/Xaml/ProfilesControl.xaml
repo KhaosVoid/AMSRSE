@@ -11,9 +11,9 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <pkprfl:ProfileItem x:Name="PART_ProfileItem0" DataContext="{TemplateBinding Profile0Data}" />
-                        <pkprfl:ProfileItem x:Name="PART_ProfileItem1" Grid.Row="1" DataContext="{TemplateBinding Profile1Data}" />
-                        <pkprfl:ProfileItem x:Name="PART_ProfileItem2" Grid.Row="2" DataContext="{TemplateBinding Profile2Data}" />
+                        <pkprfl:ProfileItem x:Name="PART_ProfileItem0" FileName="A" DataContext="{TemplateBinding Profile0Data}" />
+                        <pkprfl:ProfileItem x:Name="PART_ProfileItem1" Grid.Row="1" FileName="B" DataContext="{TemplateBinding Profile1Data}" />
+                        <pkprfl:ProfileItem x:Name="PART_ProfileItem2" Grid.Row="2" FileName="C" DataContext="{TemplateBinding Profile2Data}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
