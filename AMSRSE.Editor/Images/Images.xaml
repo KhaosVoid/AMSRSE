@@ -1,0 +1,96 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#region Collectibles-->
+    <ImageSource x:Key="Images.Collectables.Energy">/AMSRSE.Editor;component/Images/Collectables/energy.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.AeionEnergy">/AMSRSE.Editor;component/Images/Collectables/aeionEnergy.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.Missiles">/AMSRSE.Editor;component/Images/Collectables/missiles.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.SuperMissiles">/AMSRSE.Editor;component/Images/Collectables/superMissiles.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.PowerBombs">/AMSRSE.Editor;component/Images/Collectables/powerBombs.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.TotalMetroids">/AMSRSE.Editor;component/Images/Collectables/totalMetroids.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.MetroidsKilled">/AMSRSE.Editor;component/Images/Collectables/metroidsKilled.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.MetroidDNA">/AMSRSE.Editor;component/Images/Collectables/metroidDNA.png</ImageSource>
+    <ImageSource x:Key="Images.Collectables.BabyMetroid">/AMSRSE.Editor;component/Images/Collectables/babyMetroid.png</ImageSource>
+    <!--#endregion Collectibles-->
+
+    <!--#region UI-->
+    <!--#region PickProfile-->
+    <ImageSource x:Key="Images.UI.PickProfile.SamusProfileHelmet">/AMSRSE.Editor;component/Images/UI/PickProfile/samusProfileHelmet.png</ImageSource>
+    <!--#endregion PickProfile-->
+    
+    <ImageSource x:Key="Images.UI.Background">/AMSRSE.Editor;component/Images/UI/background.png</ImageSource>
+    <ImageSource x:Key="Images.UI.MSRButton-Normal">/AMSRSE.Editor;component/Images/UI/msrButton-normal.png</ImageSource>
+    <ImageSource x:Key="Images.UI.MSRButton-Active">/AMSRSE.Editor;component/Images/UI/msrButton-active.png</ImageSource>
+    <!--#endregion UI-->
+    
+    <!--#region Upgrades-->
+    <!--#region Abilities-->
+    <ImageSource x:Key="Images.Upgrades.Abilities.ScanPulse-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/scanPulse-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.ScanPulse-Selected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/scanPulse-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.LightningArmor-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/lightningArmor-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.LightningArmor-Selected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/lightningArmor-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.BeamBurst-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/beamBurst-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.BeamBurst-Selected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/beamBurst-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.PhaseDrift-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/phaseDrift-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Abilities.PhaseDrift-Selected">/AMSRSE.Editor;component/Images/Upgrades/Abilities/phaseDrift-selected.png</ImageSource>
+    <!--#endregion Abilities-->
+    
+    <!--#region Equipment-->
+    <ImageSource x:Key="Images.Upgrades.Equipment.MorphBall-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/morphBall-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.MorphBall-Selected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/morphBall-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpiderBall-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/spiderBall-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpiderBall-Selected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/spiderBall-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpringBall-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/springBall-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpringBall-Selected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/springBall-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.HighJumpBoots-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/highJumpBoots-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.HighJumpBoots-Selected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/highJumpBoots-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpaceJump-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/spaceJump-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.SpaceJump-Selected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/spaceJump-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.ScrewAttack-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/screwAttack-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Equipment.ScrewAttack-Selected">/AMSRSE.Editor;component/Images/Upgrades/Equipment/screwAttack-selected.png</ImageSource>
+    <!--#endregion Equipment-->
+    
+    <!--#region MorphBall Weapons-->
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.Bomb-Unselected">/AMSRSE.Editor;component/Images/Upgrades/MorphBall Weapons/bomb-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.Bomb-Selected">/AMSRSE.Editor;component/Images/Upgrades/MorphBall Weapons/bomb-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.PowerBomb-Unselected">/AMSRSE.Editor;component/Images/Upgrades/MorphBall Weapons/powerBomb-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.MorphBall-Weapons.PowerBomb-Selected">/AMSRSE.Editor;component/Images/Upgrades/MorphBall Weapons/powerBomb-selected.png</ImageSource>
+    <!--#endregion MorphBall Weapons-->
+    
+    <!--#region Suits-->
+    <ImageSource x:Key="Images.Upgrades.Suits.VariaSuit-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Suits/variaSuit-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.VariaSuit-Selected">/AMSRSE.Editor;component/Images/Upgrades/Suits/variaSuit-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.GravitySuit-Unselected">/AMSRSE.Editor;component/Images/Upgrades/Suits/gravitySuit-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.GravitySuit-Selected">/AMSRSE.Editor;component/Images/Upgrades/Suits/gravitySuit-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.PowerSuit">/AMSRSE.Editor;component/Images/Upgrades/Suits/samus-powerSuit.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.VariaSuit">/AMSRSE.Editor;component/Images/Upgrades/Suits/samus-variaSuit.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.GravitySuit">/AMSRSE.Editor;component/Images/Upgrades/Suits/samus-gravitySuit.png</ImageSource>
+    <ImageSource x:Key="Images.Upgrades.Suits.FusionSuit">/AMSRSE.Editor;component/Images/Upgrades/Suits/samus-fusionSuit.png</ImageSource>
+    <!--#endregion Suits-->
+    <!--#endregion Upgrades-->
+
+    <!--#region Weapons-->
+    <!--#region Beams-->
+    <ImageSource x:Key="Images.Weapons.Beams.PowerBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/powerBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.PowerBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/powerBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.ChargeBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/chargeBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.ChargeBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/chargeBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.IceBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/iceBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.IceBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/iceBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.WaveBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/waveBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.WaveBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/waveBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.GrappleBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/grappleBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.GrappleBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/grappleBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.SpazerBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/spazerBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.SpazerBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/spazerBeam-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.PlasmaBeam-Unselected">/AMSRSE.Editor;component/Images/Weapons/Beams/plasmaBeam-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Beams.PlasmaBeam-Selected">/AMSRSE.Editor;component/Images/Weapons/Beams/plasmaBeam-selected.png</ImageSource>
+    <!--#endregion Beams-->
+    
+    <!--#region Missiles-->
+    <ImageSource x:Key="Images.Weapons.Missiles.Missile-Unselected">/AMSRSE.Editor;component/Images/Weapons/Missiles/missile-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Missiles.Missile-Selected">/AMSRSE.Editor;component/Images/Weapons/Missiles/missile-selected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Missiles.SuperMissile-Unselected">/AMSRSE.Editor;component/Images/Weapons/Missiles/superMissile-unselected.png</ImageSource>
+    <ImageSource x:Key="Images.Weapons.Missiles.SuperMissile-Selected">/AMSRSE.Editor;component/Images/Weapons/Missiles/superMissile-selected.png</ImageSource>
+    <!--#endregion Missiles-->
+    <!--#endregion Weapons-->
+</ResourceDictionary>

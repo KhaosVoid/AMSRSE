@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55C36E67-71E9-4922-9DC0-44C94590BB47}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AMSRSE.Editor</RootNamespace>
+    <AssemblyName>AMSRSE.Editor</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Controls\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PickProfile\Xaml\ProfileItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PickProfile\Xaml\ProfilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Images\Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\DynamicView\DynamicView.cs" />
+    <Compile Include="Controls\DynamicView\DynamicViewHost.cs" />
+    <Compile Include="Controls\PickProfile\ProfileItem.cs" />
+    <Compile Include="Controls\PickProfile\ProfileItemCollection.cs" />
+    <Compile Include="Controls\PickProfile\ProfilesControl.cs" />
+    <Compile Include="Controls\SlidingButtons\SlideButton.cs" />
+    <Compile Include="Controls\SlidingButtons\SlideButtonCollection.cs" />
+    <Compile Include="Controls\SlidingButtons\SlidingButtonsControl.cs" />
+    <Compile Include="DataModels\DataModelBase.cs" />
+    <Compile Include="DataModels\Common\InventoryDataModel.cs" />
+    <Compile Include="DataModels\Common\ItemsCollectedByAreaDataModel.cs" />
+    <Compile Include="DataModels\Common\MiscDataDataModel.cs" />
+    <Compile Include="DataModels\Pkprfl\ProfileDataModel.cs" />
+    <Compile Include="DataModels\Pkprfl\UnlockablesGameDifficultyDataModel.cs" />
+    <Compile Include="Effects\BlendModeEffect.cs" />
+    <Compile Include="Effects\MultiplyEffect.cs" />
+    <Compile Include="Effects\ScreenEffect.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Effects\MultiplyEffect.ps" />
+    <Resource Include="Effects\ScreenEffect.ps" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMSRSE.BMSSV\AMSRSE.BMSSV.csproj">
+      <Project>{0a5e3dbd-dc86-414f-b209-7db5a33ff61e}</Project>
+      <Name>AMSRSE.BMSSV</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\aeionEnergy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\aeionReserveTank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\babyMetroid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\energy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\energyReserveTank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\metroidDNA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\metroidsKilled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\missiles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\powerBombs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\superMissiles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collectables\totalMetroids.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UI\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UI\msrButton-active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UI\msrButton-normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\beamBurst-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\beamBurst-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\lightningArmor-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\lightningArmor-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\phaseDrift-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\phaseDrift-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\scanPulse-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Abilities\scanPulse-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\highJumpBoots-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\highJumpBoots-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\morphBall-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\morphBall-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\screwAttack-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\screwAttack-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\spaceJump-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\spaceJump-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\spiderBall-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\spiderBall-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\springBall-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Equipment\springBall-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\MorphBall Weapons\bomb-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\MorphBall Weapons\bomb-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\MorphBall Weapons\powerBomb-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\MorphBall Weapons\powerBomb-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\gravitySuit-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\gravitySuit-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\samus-fusionSuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\samus-gravitySuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\samus-powerSuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\samus-variaSuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\variaSuit-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Upgrades\Suits\variaSuit-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\chargeBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\chargeBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\grappleBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\grappleBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\iceBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\iceBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\plasmaBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\plasmaBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\powerBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\powerBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\spazerBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\spazerBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\waveBeam-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Beams\waveBeam-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Missiles\missile-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Missiles\missile-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Missiles\superMissile-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Weapons\Missiles\superMissile-unselected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UI\PickProfile\samusProfileHelmet.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
