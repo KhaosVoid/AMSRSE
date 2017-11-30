@@ -16,7 +16,7 @@ namespace AMSRSE.Editor.Views.Dynamic
         #region Dependency Properties
 
         public static readonly DependencyProperty DynamicViewsProperty =
-            DependencyProperty.Register("DynamicViews", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewHost));
+            DependencyProperty.Register("DynamicViews", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
 
         public static readonly DependencyProperty CurrentDynamicViewProperty =
             DependencyProperty.Register("CurrentDynamicView", typeof(DynamicViewBase), typeof(DynamicViewHost));
@@ -48,6 +48,28 @@ namespace AMSRSE.Editor.Views.Dynamic
         }
 
         #endregion Ctor
+
+        #region Dependency Property Callbacks
+
+        private static void OnDynamicViewsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is DynamicViewHost dvh)
+            {
+                if (e.OldValue is DynamicViewCollection<DynamicViewBase> odvc)
+                    odvc.CollectionChanged -= dvh.DynamicViews_CollectionChanged;
+
+                if (e.NewValue is DynamicViewCollection<DynamicViewBase> ndvc)
+                    ndvc.CollectionChanged += dvh.DynamicViews_CollectionChanged;
+
+                for (int i = 0; i < dvh.DynamicViews.Count; i++)
+                {
+                    dvh.DynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
+                    dvh.DynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
+                }
+            }
+        }
+
+        #endregion Dependency Property Callbacks
 
         #region Methods
 

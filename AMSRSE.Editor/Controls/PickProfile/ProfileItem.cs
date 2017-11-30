@@ -1,4 +1,5 @@
-﻿using AMSRSE.Editor.Commands;
+﻿using AMSRSE.Editor.Animation;
+using AMSRSE.Editor.Commands;
 using AMSRSE.Editor.Views.Dynamic.PickProfile;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 namespace AMSRSE.Editor.Controls.PickProfile
 {
     [TemplatePart(Name = PART_SelectedProfileActionsDV, Type = typeof(SelectedProfileActionsDV))]
-    public class ProfileItem : Control
+    public class ProfileItem : AnimatedControl
     {
         #region Template Parts
 
@@ -84,10 +85,13 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         #region Methods
 
-
         public override void OnApplyTemplate()
         {
             _templatePart_SelectedProfileActionsDN = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
+            _templatePart_SelectedProfileActionsDN.OnFadeOutComplete += () =>
+            {
+
+            };
 
             base.OnApplyTemplate();
         }
@@ -102,12 +106,16 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         public void FadeInActions()
         {
-            _templatePart_SelectedProfileActionsDN.FadeIn();
+            //_templatePart_SelectedProfileActionsDN.FadeIn();
+
+            _templatePart_SelectedProfileActionsDN.Animations.Children.First(c => c.Name == "FadeIn").Start();
         }
 
         public void FadeOutActions()
         {
-            _templatePart_SelectedProfileActionsDN.FadeOut();
+            //_templatePart_SelectedProfileActionsDN.FadeOut();
+
+            _templatePart_SelectedProfileActionsDN.Animations.Children.First(c => c.Name == "FadeOut").Start();
         }
 
         #endregion Methods

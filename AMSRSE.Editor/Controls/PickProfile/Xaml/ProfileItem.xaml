@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
-                    xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile">
+                    xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
+                    xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
     <Style TargetType="{x:Type pkprfl:ProfileItem}">
         <Setter Property="Height" Value="140" />
         <Setter Property="Template">
@@ -116,7 +117,28 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Opacity="0"
-                                        CloseProfileCommand="{TemplateBinding CloseProfileCommand}" />
+                                        CloseProfileCommand="{TemplateBinding CloseProfileCommand}">
+                                        <ppdv:SelectedProfileActionsDV.Animations>
+                                            <anim:SequentialStoryboard>
+                                                <anim:StoryboardSequence Name="FadeIn" Index="0">
+                                                    <Storyboard SpeedRatio="4">
+                                                        <DoubleAnimation
+                                                            Storyboard.Target="{x:Reference Name=PART_SelectedProfileActionsDV}"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="1" />
+                                                    </Storyboard>
+                                                </anim:StoryboardSequence>
+                                                <anim:StoryboardSequence Name="FadeOut" Index="1">
+                                                    <Storyboard SpeedRatio="4">
+                                                        <DoubleAnimation
+                                                            Storyboard.Target="{x:Reference Name=PART_SelectedProfileActionsDV}"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0" />
+                                                    </Storyboard>
+                                                </anim:StoryboardSequence>
+                                            </anim:SequentialStoryboard>
+                                        </ppdv:SelectedProfileActionsDV.Animations>
+                                    </ppdv:SelectedProfileActionsDV>
                                 </Grid>
                             </Border>
                         </Grid>

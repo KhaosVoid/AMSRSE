@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMSRSE.Editor.Animation;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Windows.Markup;
 namespace AMSRSE.Editor.Views.Dynamic
 {
     [ContentProperty("Children")]
-    public abstract class DynamicViewBase : Control
+    public abstract class DynamicViewBase : AnimatedControl
     {
         #region Dependency Properties
 
@@ -19,7 +20,7 @@ namespace AMSRSE.Editor.Views.Dynamic
             DependencyProperty.Register("DynamicViewParent", typeof(DynamicViewBase), typeof(DynamicViewBase));
 
         public static readonly DependencyProperty ChildrenProperty =
-            DependencyProperty.Register("Children", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewBase));
+            DependencyProperty.Register("Children", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewBase), new PropertyMetadata(OnChildrenPropertyChanged));
 
         #endregion Dependency Properties
 
@@ -61,6 +62,28 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         #endregion Ctor
 
+        #region Dependency Property Callbacks
+
+        private static void OnChildrenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is DynamicViewBase dvb)
+            {
+                if (e.OldValue is DynamicViewCollection<DynamicViewBase> odvc)
+                    odvc.CollectionChanged -= dvb.Children_CollectionChanged;
+
+                if (e.NewValue is DynamicViewCollection<DynamicViewBase> ndvc)
+                    ndvc.CollectionChanged += dvb.Children_CollectionChanged;
+
+                for (int i = 0; i < dvb.Children.Count; i++)
+                {
+                    dvb.Children[i].OnSetAsCurrentView -= dvb.DynamicViewBase_OnSetAsCurrentView;
+                    dvb.Children[i].OnSetAsCurrentView += dvb.DynamicViewBase_OnSetAsCurrentView;
+                }
+            }
+        }
+
+        #endregion Dependency Property Callbacks
+
         #region Methods
 
         private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -69,10 +92,14 @@ namespace AMSRSE.Editor.Views.Dynamic
                 for (int i = 0; i < e.NewItems.Count; i++)
                 {
                     ((DynamicViewBase)e.NewItems[i]).DynamicViewParent = this;
-                    ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView +=
-                        (dynamicView) => OnSetAsCurrentView?.Invoke(dynamicView);
+                    ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView += DynamicViewBase_OnSetAsCurrentView;
                     ((DynamicViewBase)e.NewItems[i]).Opacity = 0;
                 }
+        }
+
+        private void DynamicViewBase_OnSetAsCurrentView(DynamicViewBase dynamicView)
+        {
+            OnSetAsCurrentView?.Invoke(dynamicView);
         }
 
         public void SetAsCurrentView()

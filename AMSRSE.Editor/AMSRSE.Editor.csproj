@@ -54,6 +54,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Animation\AnimatedControl.cs" />
+    <Compile Include="Animation\SequentialStoryboard.cs" />
+    <Compile Include="Animation\SequentialStoryboardItem.cs" />
+    <Compile Include="Animation\StoryboardSequence.cs" />
+    <Compile Include="Animation\StoryboardSequenceCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Views\Dynamic\PickProfile\SelectedProfileActionsDV.cs" />
     <Page Include="Controls\Controls.xaml">

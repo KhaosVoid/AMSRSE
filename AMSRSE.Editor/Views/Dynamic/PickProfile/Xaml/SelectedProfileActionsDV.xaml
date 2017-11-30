@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile">
+                    xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
+                    xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
     <Style TargetType="{x:Type ppdv:SelectedProfileActionsDV}">
         <Setter Property="Template">
             <Setter.Value>

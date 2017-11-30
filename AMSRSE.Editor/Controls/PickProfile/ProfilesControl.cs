@@ -1,4 +1,5 @@
-﻿using AMSRSE.Editor.Commands;
+﻿using AMSRSE.Editor.Animation;
+using AMSRSE.Editor.Commands;
 using AMSRSE.Editor.DataModels.Pkprfl;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
     [TemplatePart(Name = PART_ProfileItem0, Type = typeof(ProfileItem))]
     [TemplatePart(Name = PART_ProfileItem1, Type = typeof(ProfileItem))]
     [TemplatePart(Name = PART_ProfileItem2, Type = typeof(ProfileItem))]
-    public class ProfilesControl : Control
+    public class ProfilesControl : AnimatedControl
     {
         #region Template Parts
 
