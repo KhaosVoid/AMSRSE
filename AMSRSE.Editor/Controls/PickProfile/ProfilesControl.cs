@@ -77,46 +77,29 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         #region Members
 
-        private Storyboard _profile0FadeOutOtherProfilesStoryboard;
-        private Storyboard _profile0ExpandProfileStoryboard;
-        private Storyboard _profile0FadeInOtherProfilesStoryboard;
-        private Storyboard _profile0RetractProfileStoryboard;
+        private SequentialStoryboard _expandProfile0;
+        private StoryboardSequence _expandProfile0_HideProfiles1_2;
+        private StoryboardSequence _expandProfile0_ExpandProfile0;
 
-        private Storyboard _profile1FadeOutOtherProfilesStoryboard;
-        private Storyboard _profile1ExpandProfileStoryboard;
-        private Storyboard _profile1FadeInOtherProfilesStoryboard;
-        private Storyboard _profile1RetractProfileStoryboard;
+        private SequentialStoryboard _retractProfile0;
+        private StoryboardSequence _retractProfile0_RestoreProfiles;
+        private StoryboardSequence _retractProfile0_ShowProfiles1_2;
 
-        private Storyboard _profile2FadeOutOtherProfilesStoryboard;
-        private Storyboard _profile2ExpandProfileStoryboard;
-        private Storyboard _profile2FadeInOtherProfilesStoryboard;
-        private Storyboard _profile2RetractProfileStoryboard;
+        private SequentialStoryboard _expandProfile1;
+        private StoryboardSequence _expandProfile1_HideProfiles0_2;
+        private StoryboardSequence _expandProfile1_ExpandProfile1;
 
-        private ThicknessAnimation _profile0SwipeLeftAnimation;
-        private DoubleAnimation _profile0FadeOutAnimation;
-        private ThicknessAnimation _profile0SwipeRightAnimation;
-        private DoubleAnimation _profile0FadeInAnimation;
-        private DoubleAnimation _profile0ExpandAnimation;
-        private DoubleAnimation _profile0CollapseAnimation;
-        private DoubleAnimation _profile0RestoreSizeAnimation;
+        private SequentialStoryboard _retractProfile1;
+        private StoryboardSequence _retractProfile1_RestoreProfiles;
+        private StoryboardSequence _retractProfile1_ShowProfiles0_2;
 
-        private ThicknessAnimation _profile1SwipeLeftAnimation;
-        private DoubleAnimation _profile1FadeOutAnimation;
-        private ThicknessAnimation _profile1SwipeRightAnimation;
-        private DoubleAnimation _profile1FadeInAnimation;
-        private DoubleAnimation _profile1ExpandAnimation;
-        private DoubleAnimation _profile1CollapseAnimation;
-        private DoubleAnimation _profile1RestoreSizeAnimation;
+        private SequentialStoryboard _expandProfile2;
+        private StoryboardSequence _expandProfile2_HideProfiles0_1;
+        private StoryboardSequence _expandProfile2_ExpandProfile2;
 
-        private ThicknessAnimation _profile2SwipeLeftAnimation;
-        private DoubleAnimation _profile2FadeOutAnimation;
-        private ThicknessAnimation _profile2SwipeRightAnimation;
-        private DoubleAnimation _profile2FadeInAnimation;
-        private DoubleAnimation _profile2ExpandAnimation;
-        private DoubleAnimation _profile2CollapseAnimation;
-        private DoubleAnimation _profile2RestoreSizeAnimation;
-
-        private double _animationSpeed = 4;
+        private SequentialStoryboard _retractProfile2;
+        private StoryboardSequence _retractProfile2_RestoreProfiles;
+        private StoryboardSequence _retractProfile2_ShowProfiles0_1;
 
         #endregion Members
 
@@ -140,7 +123,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem1.Visibility = Visibility.Visible;
                 _templatePart_ProfileItem2.Visibility = Visibility.Visible;
 
-                _profile0RetractProfileStoryboard.Begin();
+                //_profile0RetractProfileStoryboard.Begin();
             });
 
             _closeProfile1Command = new DelegateCommand((o) =>
@@ -151,7 +134,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem0.Visibility = Visibility.Visible;
                 _templatePart_ProfileItem2.Visibility = Visibility.Visible;
 
-                _profile1RetractProfileStoryboard.Begin();
+                //_profile1RetractProfileStoryboard.Begin();
             });
 
             _closeProfile2Command = new DelegateCommand((o) =>
@@ -162,7 +145,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem0.Visibility = Visibility.Visible;
                 _templatePart_ProfileItem1.Visibility = Visibility.Visible;
 
-                _profile2RetractProfileStoryboard.Begin();
+                //_profile2RetractProfileStoryboard.Begin();
             });
         }
 
@@ -172,6 +155,8 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         public override void OnApplyTemplate()
         {
+            base.OnApplyTemplate();
+
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
                 _templatePart_ProfileItem0 = this.GetTemplateChild(PART_ProfileItem0) as ProfileItem;
@@ -184,298 +169,196 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem1.OnSelected += _templatePart_ProfileItem1_OnSelected;
                 _templatePart_ProfileItem2.OnSelected += _templatePart_ProfileItem2_OnSelected;
 
+                _templatePart_ProfileItem0.OnProfileActionsFadedOut += _templatePart_ProfileItem0_OnProfileActionsFadedOut;
+                _templatePart_ProfileItem1.OnProfileActionsFadedOut += _templatePart_ProfileItem1_OnProfileActionsFadedOut;
+                _templatePart_ProfileItem2.OnProfileActionsFadedOut += _templatePart_ProfileItem2_OnProfileActionsFadedOut;
+
                 _templatePart_ProfileItem0.CloseProfileCommand = _closeProfile0Command;
                 _templatePart_ProfileItem1.CloseProfileCommand = _closeProfile1Command;
                 _templatePart_ProfileItem2.CloseProfileCommand = _closeProfile2Command;
             }
-
-            base.OnApplyTemplate();
         }
 
         private void CreateProfileAnimations()
         {
-            #region Create Base Animations
+            #region Base Storyboard & Animations
 
-            ThicknessAnimation profileSwipeLeftAnimation = new ThicknessAnimation();
-            DoubleAnimation profileFadeOutAnimation = new DoubleAnimation();
-            ThicknessAnimation profileSwipeRightAnimation = new ThicknessAnimation();
-            DoubleAnimation profileFadeInAnimation = new DoubleAnimation();
-            DoubleAnimation profileExpandAnimation = new DoubleAnimation();
-            DoubleAnimation profileCollapseAnimation = new DoubleAnimation();
-            DoubleAnimation profileRestoreSizeAnimation = new DoubleAnimation();
+            Storyboard _storyboard = new Storyboard() { SpeedRatio = 4 };
 
-            profileSwipeLeftAnimation.SpeedRatio = _animationSpeed;
-            //profileSwipeLeftAnimation.From = new Thickness(0, 0, 0, 0);
-            profileSwipeLeftAnimation.To = new Thickness(-64, 0, 0, 0);
+            ThicknessAnimation anim_ProfileSwipeLeft = this.Style.Resources["ANIM_ProfileSwipeLeft"] as ThicknessAnimation;
+            DoubleAnimation anim_ProfileFadeOut = this.Style.Resources["ANIM_ProfileFadeOut"] as DoubleAnimation;
+            ThicknessAnimation anim_ProfileSwipeRight = this.Style.Resources["ANIM_ProfileSwipeRight"] as ThicknessAnimation;
+            DoubleAnimation anim_ProfileFadeIn = this.Style.Resources["ANIM_ProfileFadeIn"] as DoubleAnimation;
+            DoubleAnimation anim_ProfileExpand = this.Style.Resources["ANIM_ProfileExpand"] as DoubleAnimation;
+            DoubleAnimation anim_ProfileCollapse = this.Style.Resources["ANIM_ProfileCollapse"] as DoubleAnimation;
+            DoubleAnimation anim_ProfileRestore = this.Style.Resources["ANIM_ProfileRestore"] as DoubleAnimation;
 
-            profileFadeOutAnimation.SpeedRatio = _animationSpeed;
-            profileFadeOutAnimation.To = 0;
+            #endregion Base Storyboard & Animations
 
-            profileSwipeRightAnimation.SpeedRatio = _animationSpeed;
-            //profileSwipeRightAnimation.From = new Thickness(-64, 0, 0, 0);
-            profileSwipeRightAnimation.To = new Thickness(0, 0, 0, 0);
+            #region Assign Sequential Storyboards
 
-            profileFadeInAnimation.SpeedRatio = _animationSpeed;
-            profileFadeInAnimation.To = 1;
+            _expandProfile0 = Animations["ExpandProfile0"] as SequentialStoryboard;
+            _expandProfile0_HideProfiles1_2 = _expandProfile0["HideProfiles1-2"] as StoryboardSequence;
+            _expandProfile0_ExpandProfile0 = _expandProfile0["ExpandProfile0"] as StoryboardSequence;
 
-            profileExpandAnimation.SpeedRatio = _animationSpeed;
-            //profileExpandAnimation.From = 140;
-            profileExpandAnimation.To = 420;
+            _retractProfile0 = Animations["RetractProfile0"] as SequentialStoryboard;
+            _retractProfile0_RestoreProfiles = _retractProfile0["RestoreProfiles"] as StoryboardSequence;
+            _retractProfile0_ShowProfiles1_2 = _retractProfile0["ShowProfiles1-2"] as StoryboardSequence;
 
-            profileCollapseAnimation.SpeedRatio = _animationSpeed;
-            //profileCollapseAnimation.From = 140;
-            profileCollapseAnimation.To = 0;
+            _expandProfile1 = Animations["ExpandProfile1"] as SequentialStoryboard;
+            _expandProfile1_HideProfiles0_2 = _expandProfile1["HideProfiles0-2"] as StoryboardSequence;
+            _expandProfile1_ExpandProfile1 = _expandProfile1["ExpandProfile1"] as StoryboardSequence;
 
-            profileRestoreSizeAnimation.SpeedRatio = _animationSpeed;
-            //profileRestoreSizeAnimation.From = 0;
-            profileRestoreSizeAnimation.To = 140;
+            _retractProfile1 = Animations["RetractProfile1"] as SequentialStoryboard;
+            _retractProfile1_RestoreProfiles = _retractProfile1["RestoreProfiles"] as StoryboardSequence;
+            _retractProfile1_ShowProfiles0_2 = _retractProfile1["ShowProfiles0-2"] as StoryboardSequence;
 
-            #endregion Create Base Animations
+            _expandProfile2 = Animations["ExpandProfile2"] as SequentialStoryboard;
+            _expandProfile2_HideProfiles0_1 = _expandProfile2["HideProfiles0-1"] as StoryboardSequence;
+            _expandProfile2_ExpandProfile2 = _expandProfile2["ExpandProfile2"] as StoryboardSequence;
 
-            #region Create Animations for Profiles
+            _retractProfile2 = Animations["RetractProfile2"] as SequentialStoryboard;
+            _retractProfile2_RestoreProfiles = _retractProfile2["RestoreProfiles"] as StoryboardSequence;
+            _retractProfile2_ShowProfiles0_1 = _retractProfile2["ShowProfiles0-1"] as StoryboardSequence;
 
-            #region Clone Animations for Profile 0
+            #endregion Assign Sequential Storyboards
 
-            _profile0SwipeLeftAnimation = profileSwipeLeftAnimation.Clone();
-            Storyboard.SetTarget(_profile0SwipeLeftAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0SwipeLeftAnimation, new PropertyPath(MarginProperty));
+            #region Add Animations for Profile 0
 
-            _profile0FadeOutAnimation = profileFadeOutAnimation.Clone();
-            Storyboard.SetTarget(_profile0FadeOutAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0FadeOutAnimation, new PropertyPath(OpacityProperty));
+            _expandProfile0.Completed += _expandProfile0_Completed;
 
-            _profile0SwipeRightAnimation = profileSwipeRightAnimation.Clone();
-            Storyboard.SetTarget(_profile0SwipeRightAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0SwipeRightAnimation, new PropertyPath(MarginProperty));
+            _expandProfile0_HideProfiles1_2.Storyboard = _storyboard.Clone();
+            _expandProfile0_HideProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeLeft, _templatePart_ProfileItem1));
+            _expandProfile0_HideProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeOut, _templatePart_ProfileItem1));
+            _expandProfile0_HideProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeLeft, _templatePart_ProfileItem2));
+            _expandProfile0_HideProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeOut, _templatePart_ProfileItem2));
 
-            _profile0FadeInAnimation = profileFadeInAnimation.Clone();
-            Storyboard.SetTarget(_profile0FadeInAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0FadeInAnimation, new PropertyPath(OpacityProperty));
+            _expandProfile0_ExpandProfile0.Storyboard = _storyboard.Clone();
+            _expandProfile0_ExpandProfile0.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileExpand, _templatePart_ProfileItem0));
+            _expandProfile0_ExpandProfile0.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileCollapse, _templatePart_ProfileItem1));
+            _expandProfile0_ExpandProfile0.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileCollapse, _templatePart_ProfileItem2));
 
-            _profile0ExpandAnimation = profileExpandAnimation.Clone();
-            Storyboard.SetTarget(_profile0ExpandAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0ExpandAnimation, new PropertyPath(HeightProperty));
+            _retractProfile0_RestoreProfiles.Storyboard = _storyboard.Clone();
+            _retractProfile0_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem0));
+            _retractProfile0_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem1));
+            _retractProfile0_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem2));
 
-            _profile0CollapseAnimation = profileCollapseAnimation.Clone();
-            Storyboard.SetTarget(_profile0CollapseAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0CollapseAnimation, new PropertyPath(HeightProperty));
+            _retractProfile0_ShowProfiles1_2.Storyboard = _storyboard.Clone();
+            _retractProfile0_ShowProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeRight, _templatePart_ProfileItem1));
+            _retractProfile0_ShowProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeIn, _templatePart_ProfileItem1));
+            _retractProfile0_ShowProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeRight, _templatePart_ProfileItem2));
+            _retractProfile0_ShowProfiles1_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeIn, _templatePart_ProfileItem2));
 
-            _profile0RestoreSizeAnimation = profileRestoreSizeAnimation.Clone();
-            Storyboard.SetTarget(_profile0RestoreSizeAnimation, _templatePart_ProfileItem0);
-            Storyboard.SetTargetProperty(_profile0RestoreSizeAnimation, new PropertyPath(HeightProperty));
+            #endregion Add Animations for Profile 0
 
-            #endregion Clone Animations for Profile 0
+            #region Add Animations for Profile 1
 
-            #region Clone Animations for Profile 1
+            _expandProfile1.Completed += _expandProfile1_Completed;
 
-            _profile1SwipeLeftAnimation = profileSwipeLeftAnimation.Clone();
-            Storyboard.SetTarget(_profile1SwipeLeftAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1SwipeLeftAnimation, new PropertyPath(MarginProperty));
+            _expandProfile1_HideProfiles0_2.Storyboard = _storyboard.Clone();
+            _expandProfile1_HideProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeLeft, _templatePart_ProfileItem0));
+            _expandProfile1_HideProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeOut, _templatePart_ProfileItem0));
+            _expandProfile1_HideProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeLeft, _templatePart_ProfileItem2));
+            _expandProfile1_HideProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeOut, _templatePart_ProfileItem2));
 
-            _profile1FadeOutAnimation = profileFadeOutAnimation.Clone();
-            Storyboard.SetTarget(_profile1FadeOutAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1FadeOutAnimation, new PropertyPath(OpacityProperty));
+            _expandProfile1_ExpandProfile1.Storyboard = _storyboard.Clone();
+            _expandProfile1_ExpandProfile1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileCollapse, _templatePart_ProfileItem0));
+            _expandProfile1_ExpandProfile1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileExpand, _templatePart_ProfileItem1));
+            _expandProfile1_ExpandProfile1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileCollapse, _templatePart_ProfileItem2));
 
-            _profile1SwipeRightAnimation = profileSwipeRightAnimation.Clone();
-            Storyboard.SetTarget(_profile1SwipeRightAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1SwipeRightAnimation, new PropertyPath(MarginProperty));
+            _retractProfile1_RestoreProfiles.Storyboard = _storyboard.Clone();
+            _retractProfile1_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem0));
+            _retractProfile1_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem1));
+            _retractProfile1_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem2));
 
-            _profile1FadeInAnimation = profileFadeInAnimation.Clone();
-            Storyboard.SetTarget(_profile1FadeInAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1FadeInAnimation, new PropertyPath(OpacityProperty));
+            _retractProfile1_ShowProfiles0_2.Storyboard = _storyboard.Clone();
+            _retractProfile1_ShowProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeRight, _templatePart_ProfileItem0));
+            _retractProfile1_ShowProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeIn, _templatePart_ProfileItem0));
+            _retractProfile1_ShowProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeRight, _templatePart_ProfileItem2));
+            _retractProfile1_ShowProfiles0_2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeIn, _templatePart_ProfileItem2));
 
-            _profile1ExpandAnimation = profileExpandAnimation.Clone();
-            Storyboard.SetTarget(_profile1ExpandAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1ExpandAnimation, new PropertyPath(HeightProperty));
+            #endregion Add Animations for Profile 1
 
-            _profile1CollapseAnimation = profileCollapseAnimation.Clone();
-            Storyboard.SetTarget(_profile1CollapseAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1CollapseAnimation, new PropertyPath(HeightProperty));
+            #region Add Animations for Profile 2
 
-            _profile1RestoreSizeAnimation = profileRestoreSizeAnimation.Clone();
-            Storyboard.SetTarget(_profile1RestoreSizeAnimation, _templatePart_ProfileItem1);
-            Storyboard.SetTargetProperty(_profile1RestoreSizeAnimation, new PropertyPath(HeightProperty));
-
-            #endregion Clone Animations for Profile 1
-
-            #region Clone Animations for Profile 2
-
-            _profile2SwipeLeftAnimation = profileSwipeLeftAnimation.Clone();
-            Storyboard.SetTarget(_profile2SwipeLeftAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2SwipeLeftAnimation, new PropertyPath(MarginProperty));
-
-            _profile2FadeOutAnimation = profileFadeOutAnimation.Clone();
-            Storyboard.SetTarget(_profile2FadeOutAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2FadeOutAnimation, new PropertyPath(OpacityProperty));
-
-            _profile2SwipeRightAnimation = profileSwipeRightAnimation.Clone();
-            Storyboard.SetTarget(_profile2SwipeRightAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2SwipeRightAnimation, new PropertyPath(MarginProperty));
-
-            _profile2FadeInAnimation = profileFadeInAnimation.Clone();
-            Storyboard.SetTarget(_profile2FadeInAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2FadeInAnimation, new PropertyPath(OpacityProperty));
-
-            _profile2ExpandAnimation = profileExpandAnimation.Clone();
-            Storyboard.SetTarget(_profile2ExpandAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2ExpandAnimation, new PropertyPath(HeightProperty));
-
-            _profile2CollapseAnimation = profileCollapseAnimation.Clone();
-            Storyboard.SetTarget(_profile2CollapseAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2CollapseAnimation, new PropertyPath(HeightProperty));
-
-            _profile2RestoreSizeAnimation = profileRestoreSizeAnimation.Clone();
-            Storyboard.SetTarget(_profile2RestoreSizeAnimation, _templatePart_ProfileItem2);
-            Storyboard.SetTargetProperty(_profile2RestoreSizeAnimation, new PropertyPath(HeightProperty));
-
-            #endregion Clone Animations for Profile 2
-
-            #endregion Create Animations for Profiles
-
-            #region Create Storyboards
-
-            #region Create Storyboards for Profile 0
-
-            _profile0FadeOutOtherProfilesStoryboard = new Storyboard();
-            _profile0ExpandProfileStoryboard = new Storyboard();
-            _profile0FadeInOtherProfilesStoryboard = new Storyboard();
-            _profile0RetractProfileStoryboard = new Storyboard();
-
-            _profile0FadeOutOtherProfilesStoryboard.Children.Add(_profile1FadeOutAnimation);
-            _profile0FadeOutOtherProfilesStoryboard.Children.Add(_profile1SwipeLeftAnimation);
-            _profile0FadeOutOtherProfilesStoryboard.Children.Add(_profile2FadeOutAnimation);
-            _profile0FadeOutOtherProfilesStoryboard.Children.Add(_profile2SwipeLeftAnimation);
-            _profile0FadeOutOtherProfilesStoryboard.Completed += (sender, e) =>
-            {
-                _profile0ExpandProfileStoryboard.Begin();
-            };
-
-            _profile0ExpandProfileStoryboard.Children.Add(_profile0ExpandAnimation);
-            _profile0ExpandProfileStoryboard.Children.Add(_profile1CollapseAnimation);
-            _profile0ExpandProfileStoryboard.Children.Add(_profile2CollapseAnimation);
-            _profile0ExpandProfileStoryboard.Completed += (sender, e) =>
-            {
-                _templatePart_ProfileItem1.Visibility = Visibility.Collapsed;
-                _templatePart_ProfileItem2.Visibility = Visibility.Collapsed;
-
-                _templatePart_ProfileItem0.FadeInActions();
-            };
-
-            _profile0RetractProfileStoryboard.Children.Add(_profile0RestoreSizeAnimation);
-            _profile0RetractProfileStoryboard.Children.Add(_profile1RestoreSizeAnimation);
-            _profile0RetractProfileStoryboard.Children.Add(_profile2RestoreSizeAnimation);
-            _profile0RetractProfileStoryboard.Completed += (sender, e) =>
-            {
-                _profile0FadeInOtherProfilesStoryboard.Begin();
-            };
-
-            _profile0FadeInOtherProfilesStoryboard.Children.Add(_profile1FadeInAnimation);
-            _profile0FadeInOtherProfilesStoryboard.Children.Add(_profile1SwipeRightAnimation);
-            _profile0FadeInOtherProfilesStoryboard.Children.Add(_profile2FadeInAnimation);
-            _profile0FadeInOtherProfilesStoryboard.Children.Add(_profile2SwipeRightAnimation);
-
-            #endregion Create Storyboards for Profile 0
-
-            #region Create Storyboards for Profile 1
-
-            _profile1FadeOutOtherProfilesStoryboard = new Storyboard();
-            _profile1ExpandProfileStoryboard = new Storyboard();
-            _profile1FadeInOtherProfilesStoryboard = new Storyboard();
-            _profile1RetractProfileStoryboard = new Storyboard();
-
-            _profile1FadeOutOtherProfilesStoryboard.Children.Add(_profile0FadeOutAnimation);
-            _profile1FadeOutOtherProfilesStoryboard.Children.Add(_profile0SwipeLeftAnimation);
-            _profile1FadeOutOtherProfilesStoryboard.Children.Add(_profile2FadeOutAnimation);
-            _profile1FadeOutOtherProfilesStoryboard.Children.Add(_profile2SwipeLeftAnimation);
-            _profile1FadeOutOtherProfilesStoryboard.Completed += (sender, e) =>
-            {
-                _profile1ExpandProfileStoryboard.Begin();
-            };
-
-            _profile1ExpandProfileStoryboard.Children.Add(_profile0CollapseAnimation);
-            _profile1ExpandProfileStoryboard.Children.Add(_profile1ExpandAnimation);
-            _profile1ExpandProfileStoryboard.Children.Add(_profile2CollapseAnimation);
-            _profile1ExpandProfileStoryboard.Completed += (sender, e) =>
-            {
-                _templatePart_ProfileItem0.Visibility = Visibility.Collapsed;
-                _templatePart_ProfileItem2.Visibility = Visibility.Collapsed;
-
-                _templatePart_ProfileItem1.FadeInActions();
-            };
-
-            _profile1RetractProfileStoryboard.Children.Add(_profile0RestoreSizeAnimation);
-            _profile1RetractProfileStoryboard.Children.Add(_profile1RestoreSizeAnimation);
-            _profile1RetractProfileStoryboard.Children.Add(_profile2RestoreSizeAnimation);
-            _profile1RetractProfileStoryboard.Completed += (sender, e) =>
-            {
-                _profile1FadeInOtherProfilesStoryboard.Begin();
-            };
-
-            _profile1FadeInOtherProfilesStoryboard.Children.Add(_profile0FadeInAnimation);
-            _profile1FadeInOtherProfilesStoryboard.Children.Add(_profile0SwipeRightAnimation);
-            _profile1FadeInOtherProfilesStoryboard.Children.Add(_profile2FadeInAnimation);
-            _profile1FadeInOtherProfilesStoryboard.Children.Add(_profile2SwipeRightAnimation);
-
-            #endregion Create Storyboards for Profile 1
-
-            #region Create Storyboards for Profile 2
-
-            _profile2FadeOutOtherProfilesStoryboard = new Storyboard();
-            _profile2ExpandProfileStoryboard = new Storyboard();
-            _profile2FadeInOtherProfilesStoryboard = new Storyboard();
-            _profile2RetractProfileStoryboard = new Storyboard();
-
-            _profile2FadeOutOtherProfilesStoryboard.Children.Add(_profile0FadeOutAnimation);
-            _profile2FadeOutOtherProfilesStoryboard.Children.Add(_profile0SwipeLeftAnimation);
-            _profile2FadeOutOtherProfilesStoryboard.Children.Add(_profile1FadeOutAnimation);
-            _profile2FadeOutOtherProfilesStoryboard.Children.Add(_profile1SwipeLeftAnimation);
-            _profile2FadeOutOtherProfilesStoryboard.Completed += (sender, e) =>
-            {
-                _profile2ExpandProfileStoryboard.Begin();
-            };
-
-            _profile2ExpandProfileStoryboard.Children.Add(_profile0CollapseAnimation);
-            _profile2ExpandProfileStoryboard.Children.Add(_profile1CollapseAnimation);
-            _profile2ExpandProfileStoryboard.Children.Add(_profile2ExpandAnimation);
-            _profile2ExpandProfileStoryboard.Completed += (sender, e) =>
-            {
-                _templatePart_ProfileItem0.Visibility = Visibility.Collapsed;
-                _templatePart_ProfileItem1.Visibility = Visibility.Collapsed;
-
-                _templatePart_ProfileItem2.FadeInActions();
-            };
-
-            _profile2RetractProfileStoryboard.Children.Add(_profile0RestoreSizeAnimation);
-            _profile2RetractProfileStoryboard.Children.Add(_profile1RestoreSizeAnimation);
-            _profile2RetractProfileStoryboard.Children.Add(_profile2RestoreSizeAnimation);
-            _profile2RetractProfileStoryboard.Completed += (sender, e) =>
-            {
-                _profile2FadeInOtherProfilesStoryboard.Begin();
-            };
-
-            _profile2FadeInOtherProfilesStoryboard.Children.Add(_profile0FadeInAnimation);
-            _profile2FadeInOtherProfilesStoryboard.Children.Add(_profile0SwipeRightAnimation);
-            _profile2FadeInOtherProfilesStoryboard.Children.Add(_profile1FadeInAnimation);
-            _profile2FadeInOtherProfilesStoryboard.Children.Add(_profile1SwipeRightAnimation);
-
-            #endregion Create Storyboards for Profile 2
-
-            #endregion Create Storyboards
+            _expandProfile2.Completed += _expandProfile2_Completed;
+
+            _expandProfile2_HideProfiles0_1.Storyboard = _storyboard.Clone();
+            _expandProfile2_HideProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeLeft, _templatePart_ProfileItem0));
+            _expandProfile2_HideProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeOut, _templatePart_ProfileItem0));
+            _expandProfile2_HideProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeLeft, _templatePart_ProfileItem1));
+            _expandProfile2_HideProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeOut, _templatePart_ProfileItem1));
+
+            _expandProfile2_ExpandProfile2.Storyboard = _storyboard.Clone();
+            _expandProfile2_ExpandProfile2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileCollapse, _templatePart_ProfileItem0));
+            _expandProfile2_ExpandProfile2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileCollapse, _templatePart_ProfileItem1));
+            _expandProfile2_ExpandProfile2.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileExpand, _templatePart_ProfileItem2));
+
+            _retractProfile2_RestoreProfiles.Storyboard = _storyboard.Clone();
+            _retractProfile2_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem0));
+            _retractProfile2_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem1));
+            _retractProfile2_RestoreProfiles.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileRestore, _templatePart_ProfileItem2));
+
+            _retractProfile2_ShowProfiles0_1.Storyboard = _storyboard.Clone();
+            _retractProfile2_ShowProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeRight, _templatePart_ProfileItem0));
+            _retractProfile2_ShowProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeIn, _templatePart_ProfileItem0));
+            _retractProfile2_ShowProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileSwipeRight, _templatePart_ProfileItem1));
+            _retractProfile2_ShowProfiles0_1.Storyboard.Children.Add(CloneAnimationForTarget(anim_ProfileFadeIn, _templatePart_ProfileItem1));
+
+            #endregion Add Animations for Profile 2
+        }
+
+        private AnimationTimeline CloneAnimationForTarget(AnimationTimeline animation, DependencyObject target)
+        {
+            AnimationTimeline anim = animation.Clone();
+            Storyboard.SetTarget(anim, target);
+
+            return anim;
+        }
+
+        private void _expandProfile0_Completed(SequentialStoryboardItem ssbi)
+        {
+            _templatePart_ProfileItem0.FadeInActions();
+        }
+
+        private void _expandProfile1_Completed(SequentialStoryboardItem ssbi)
+        {
+            _templatePart_ProfileItem1.FadeInActions();
+        }
+
+        private void _expandProfile2_Completed(SequentialStoryboardItem ssbi)
+        {
+            _templatePart_ProfileItem2.FadeInActions();
         }
 
         private void _templatePart_ProfileItem0_OnSelected()
         {
-            _profile0FadeOutOtherProfilesStoryboard.Begin();
+            _expandProfile0.Start();
         }
 
         private void _templatePart_ProfileItem1_OnSelected()
         {
-            _profile1FadeOutOtherProfilesStoryboard.Begin();
+            _expandProfile1.Start();
         }
 
         private void _templatePart_ProfileItem2_OnSelected()
         {
-            _profile2FadeOutOtherProfilesStoryboard.Begin();
+            _expandProfile2.Start();
+        }
+
+        private void _templatePart_ProfileItem0_OnProfileActionsFadedOut()
+        {
+            _retractProfile0.Start();
+        }
+
+        private void _templatePart_ProfileItem1_OnProfileActionsFadedOut()
+        {
+            _retractProfile1.Start();
+        }
+
+        private void _templatePart_ProfileItem2_OnProfileActionsFadedOut()
+        {
+            _retractProfile2.Start();
         }
 
         #endregion Methods

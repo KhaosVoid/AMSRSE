@@ -1,7 +1,74 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile">
-    <Style TargetType="{x:Type pkprfl:ProfilesControl}">
+                    xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
+                    xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
+    <Style TargetType="{x:Type pkprfl:ProfilesControl}" x:Shared="False">
+        <Style.Resources>
+            <ThicknessAnimation
+                x:Key="ANIM_ProfileSwipeLeft"
+                Storyboard.TargetProperty="Margin"
+                From="0,0,0,0"
+                To="-64,0,0,0" />
+            <DoubleAnimation
+                x:Key="ANIM_ProfileFadeOut"
+                Storyboard.TargetProperty="Opacity"
+                From="1"
+                To="0" />
+            <ThicknessAnimation
+                x:Key="ANIM_ProfileSwipeRight"
+                Storyboard.TargetProperty="Margin"
+                From="-64,0,0,0"
+                To="0,0,0,0" />
+            <DoubleAnimation
+                x:Key="ANIM_ProfileFadeIn"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1" />
+            <DoubleAnimation
+                x:Key="ANIM_ProfileExpand"
+                Storyboard.TargetProperty="Height"
+                From="140"
+                To="420" />
+            <DoubleAnimation
+                x:Key="ANIM_ProfileCollapse"
+                Storyboard.TargetProperty="Height"
+                From="140"
+                To="0" />
+            <DoubleAnimation
+                x:Key="ANIM_ProfileRestore"
+                Storyboard.TargetProperty="Height"
+                To="140" />
+        </Style.Resources>
+        <Setter Property="Animations">
+            <Setter.Value>
+                <anim:SequentialStoryboard>
+                    <anim:SequentialStoryboard Name="ExpandProfile0">
+                        <anim:StoryboardSequence Name="HideProfiles1-2" Index="0" />
+                        <anim:StoryboardSequence Name="ExpandProfile0" Index="1" />
+                    </anim:SequentialStoryboard>
+                    <anim:SequentialStoryboard Name="RetractProfile0">
+                        <anim:StoryboardSequence Name="RestoreProfiles" Index="0" />
+                        <anim:StoryboardSequence Name="ShowProfiles1-2" Index="1" />
+                    </anim:SequentialStoryboard>
+                    <anim:SequentialStoryboard Name="ExpandProfile1">
+                        <anim:StoryboardSequence Name="HideProfiles0-2" Index="0" />
+                        <anim:StoryboardSequence Name="ExpandProfile1" Index="1" />
+                    </anim:SequentialStoryboard>
+                    <anim:SequentialStoryboard Name="RetractProfile1">
+                        <anim:StoryboardSequence Name="RestoreProfiles" Index="0" />
+                        <anim:StoryboardSequence Name="ShowProfiles0-2" Index="1" />
+                    </anim:SequentialStoryboard>
+                    <anim:SequentialStoryboard Name="ExpandProfile2">
+                        <anim:StoryboardSequence Name="HideProfiles0-1" Index="0" />
+                        <anim:StoryboardSequence Name="ExpandProfile2" Index="1" />
+                    </anim:SequentialStoryboard>
+                    <anim:SequentialStoryboard Name="RetractProfile2">
+                        <anim:StoryboardSequence Name="RestoreProfiles" Index="0" />
+                        <anim:StoryboardSequence Name="ShowProfiles0-1" Index="1" />
+                    </anim:SequentialStoryboard>
+                </anim:SequentialStoryboard>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type pkprfl:ProfilesControl}">

@@ -18,7 +18,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
         #region Template Parts
 
         private const string PART_SelectedProfileActionsDV = "PART_SelectedProfileActionsDV";
-        private SelectedProfileActionsDV _templatePart_SelectedProfileActionsDN;
+        private SelectedProfileActionsDV _templatePart_SelectedProfileActionsDV;
 
         #endregion Template Parts
 
@@ -62,6 +62,9 @@ namespace AMSRSE.Editor.Controls.PickProfile
         public delegate void SelectedHandler();
         public event SelectedHandler OnSelected;
 
+        public delegate void ProfileActionsFadedOutHandler();
+        public event ProfileActionsFadedOutHandler OnProfileActionsFadedOut;
+
         #endregion Events
 
         #region Ctor
@@ -87,10 +90,16 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         public override void OnApplyTemplate()
         {
-            _templatePart_SelectedProfileActionsDN = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
-            _templatePart_SelectedProfileActionsDN.OnFadeOutComplete += () =>
-            {
+            _templatePart_SelectedProfileActionsDV = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
 
+            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed += (ssbi) =>
+            {
+                OnProfileActionsFadedOut?.Invoke();
+            };
+
+            _templatePart_SelectedProfileActionsDV.OnFadeOutComplete += () =>
+            {
+                OnProfileActionsFadedOut?.Invoke();
             };
 
             base.OnApplyTemplate();
@@ -108,14 +117,14 @@ namespace AMSRSE.Editor.Controls.PickProfile
         {
             //_templatePart_SelectedProfileActionsDN.FadeIn();
 
-            _templatePart_SelectedProfileActionsDN.Animations.Children.First(c => c.Name == "FadeIn").Start();
+            _templatePart_SelectedProfileActionsDV.Animations["FadeIn"].Start();
         }
 
         public void FadeOutActions()
         {
             //_templatePart_SelectedProfileActionsDN.FadeOut();
 
-            _templatePart_SelectedProfileActionsDN.Animations.Children.First(c => c.Name == "FadeOut").Start();
+            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Start();
         }
 
         #endregion Methods

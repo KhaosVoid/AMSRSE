@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,11 +35,21 @@ namespace AMSRSE.Editor.Animation
 
         #endregion Members
 
+        #region Indexers
+
+        public SequentialStoryboardItem this[string name]
+        {
+            get { return Children.First(c => c.Name == name); }
+        }
+
+        #endregion Indexers
+
         #region Ctor
 
         public SequentialStoryboard()
         {
             Children = new StoryboardSequenceCollection<SequentialStoryboardItem>();
+            Children.CollectionChanged += Children_CollectionChanged;
         }
 
         #endregion Ctor
@@ -49,11 +60,13 @@ namespace AMSRSE.Editor.Animation
         {
             if (d is SequentialStoryboard ssb)
             {
-                if (e.OldValue is SequentialStoryboardItem ossbi)
-                    ossbi.Completed -= ssb.SequentialStoryboardItem_Completed;
+                ssb.SubscribeItemCompletedEvents();
 
-                if (e.NewValue is SequentialStoryboardItem nssbi)
-                    nssbi.Completed += ssb.SequentialStoryboardItem_Completed;
+                //if (e.OldValue is SequentialStoryboardItem ossbi)
+                //    ossbi.Completed -= ssb.SequentialStoryboardItem_Completed;
+
+                //if (e.NewValue is SequentialStoryboardItem nssbi)
+                //    nssbi.Completed += ssb.SequentialStoryboardItem_Completed;
             }
         }
 
@@ -67,13 +80,30 @@ namespace AMSRSE.Editor.Animation
 
             var nextAnimationIndex = Children.IndexOf(ssbi) + 1;
 
-            if (nextAnimationIndex < Children.Count)
+            if (nextAnimationIndex < Children.Count && AnimationState == AnimationStates.Animating)
                 Children[nextAnimationIndex].Start();
+
+            else
+                this.RaiseCompletedEvent();
         }
 
         #endregion Dependency Property Callbacks
 
         #region Methods
+
+        private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            SubscribeItemCompletedEvents();
+        }
+
+        private void SubscribeItemCompletedEvents()
+        {
+            for (int i = 0; i < Children?.Count; i++)
+            {
+                Children[i].Completed -= SequentialStoryboardItem_Completed;
+                Children[i].Completed += SequentialStoryboardItem_Completed;
+            }
+        }
 
         public override void Start()
         {

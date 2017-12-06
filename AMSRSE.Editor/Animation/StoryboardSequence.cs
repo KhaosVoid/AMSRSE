@@ -17,6 +17,9 @@ namespace AMSRSE.Editor.Animation
         public static readonly DependencyProperty StoryboardProperty =
             DependencyProperty.Register("Storyboard", typeof(Storyboard), typeof(StoryboardSequence), new PropertyMetadata(OnStoryboardPropertyChanged));
 
+        public static readonly DependencyProperty AnimationTargetNameProperty =
+            DependencyProperty.RegisterAttached("AnimationTargetName", typeof(string), typeof(StoryboardSequence));
+
         #endregion Dependency Properties
 
         #region Properties
@@ -53,6 +56,20 @@ namespace AMSRSE.Editor.Animation
         }
 
         #endregion Dependency Property Callbacks
+
+        #region Attached Property Methods
+
+        public static string GetAnimationTargetName(Timeline obj)
+        {
+            return (string)obj.GetValue(AnimationTargetNameProperty);
+        }
+
+        public static void SetAnimationTargetName(Timeline obj, string value)
+        {
+            obj.SetValue(AnimationTargetNameProperty, value);
+        }
+
+        #endregion Attached Property Methods
 
         #region Methods
 

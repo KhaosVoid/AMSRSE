@@ -2,7 +2,31 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
-    <Style TargetType="{x:Type ppdv:SelectedProfileActionsDV}">
+    <Style TargetType="{x:Type ppdv:SelectedProfileActionsDV}" x:Shared="False">
+        <Setter Property="Animations">
+            <Setter.Value>
+                <anim:SequentialStoryboard>
+                    <anim:StoryboardSequence Name="FadeIn">
+                        <Storyboard SpeedRatio="4">
+                            <DoubleAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0"
+                                To="1" />
+                        </Storyboard>
+                    </anim:StoryboardSequence>
+                    <anim:StoryboardSequence Name="FadeOut">
+                        <Storyboard SpeedRatio="4">
+                            <DoubleAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Opacity"
+                                From="1"
+                                To="0" />
+                        </Storyboard>
+                    </anim:StoryboardSequence>
+                </anim:SequentialStoryboard>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ppdv:SelectedProfileActionsDV}">

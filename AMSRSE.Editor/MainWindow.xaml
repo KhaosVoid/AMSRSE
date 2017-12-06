@@ -62,7 +62,7 @@
     </Grid>
 
     <Window.Triggers>
-        <!--<EventTrigger SourceName="btnGallery" RoutedEvent="Button.Click">
+        <EventTrigger SourceName="btnGallery" RoutedEvent="Button.Click">
             <BeginStoryboard>
                 <Storyboard
                     SpeedRatio="4">
@@ -76,6 +76,6 @@
                         To="0" />
                 </Storyboard>
             </BeginStoryboard>
-        </EventTrigger>-->
+        </EventTrigger>
     </Window.Triggers>
 </Window>

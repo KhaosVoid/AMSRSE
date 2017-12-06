@@ -3,7 +3,7 @@
                     xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
                     xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
-    <Style TargetType="{x:Type pkprfl:ProfileItem}">
+    <Style TargetType="{x:Type pkprfl:ProfileItem}" x:Shared="False">
         <Setter Property="Height" Value="140" />
         <Setter Property="Template">
             <Setter.Value>
@@ -118,7 +118,7 @@
                                         VerticalAlignment="Center"
                                         Opacity="0"
                                         CloseProfileCommand="{TemplateBinding CloseProfileCommand}">
-                                        <ppdv:SelectedProfileActionsDV.Animations>
+                                        <!--<ppdv:SelectedProfileActionsDV.Animations>
                                             <anim:SequentialStoryboard>
                                                 <anim:StoryboardSequence Name="FadeIn" Index="0">
                                                     <Storyboard SpeedRatio="4">
@@ -137,7 +137,7 @@
                                                     </Storyboard>
                                                 </anim:StoryboardSequence>
                                             </anim:SequentialStoryboard>
-                                        </ppdv:SelectedProfileActionsDV.Animations>
+                                        </ppdv:SelectedProfileActionsDV.Animations>-->
                                     </ppdv:SelectedProfileActionsDV>
                                 </Grid>
                             </Border>
