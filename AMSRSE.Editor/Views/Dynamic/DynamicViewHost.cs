@@ -19,7 +19,7 @@ namespace AMSRSE.Editor.Views.Dynamic
             DependencyProperty.Register("DynamicViews", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
 
         public static readonly DependencyProperty CurrentDynamicViewProperty =
-            DependencyProperty.Register("CurrentDynamicView", typeof(DynamicViewBase), typeof(DynamicViewHost));
+            DependencyProperty.Register("CurrentDynamicView", typeof(DynamicViewBase), typeof(DynamicViewHost), new PropertyMetadata(OnCurrentDynamicViewPropertyChanged));
 
         #endregion Dependency Properties
 
@@ -69,6 +69,12 @@ namespace AMSRSE.Editor.Views.Dynamic
             }
         }
 
+        private static void OnCurrentDynamicViewPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is DynamicViewHost dvh)
+                dvh.CurrentDynamicView.FadeIn();
+        }
+
         #endregion Dependency Property Callbacks
 
         #region Methods
@@ -88,7 +94,7 @@ namespace AMSRSE.Editor.Views.Dynamic
             CurrentDynamicView.OnFadeOutComplete += () =>
             {
                 CurrentDynamicView = dynamicView;
-                CurrentDynamicView.FadeIn();
+                //CurrentDynamicView.FadeIn();
             };
             CurrentDynamicView.FadeOut();
         }

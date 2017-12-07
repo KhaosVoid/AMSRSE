@@ -3,5 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/AMSRSE.Editor;component/Controls/PickProfile/Xaml/ProfileItem.xaml" />
         <ResourceDictionary Source="/AMSRSE.Editor;component/Controls/PickProfile/Xaml/ProfilesControl.xaml" />
+
+        <ResourceDictionary Source="/AMSRSE.Editor;component/Controls/SpriteButton/Xaml/SpriteButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

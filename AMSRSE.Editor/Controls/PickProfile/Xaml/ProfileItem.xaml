@@ -3,7 +3,7 @@
                     xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
                     xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
-    <Style TargetType="{x:Type pkprfl:ProfileItem}" x:Shared="False">
+    <Style TargetType="{x:Type pkprfl:ProfileItem}">
         <Setter Property="Height" Value="140" />
         <Setter Property="Template">
             <Setter.Value>
@@ -118,26 +118,6 @@
                                         VerticalAlignment="Center"
                                         Opacity="0"
                                         CloseProfileCommand="{TemplateBinding CloseProfileCommand}">
-                                        <!--<ppdv:SelectedProfileActionsDV.Animations>
-                                            <anim:SequentialStoryboard>
-                                                <anim:StoryboardSequence Name="FadeIn" Index="0">
-                                                    <Storyboard SpeedRatio="4">
-                                                        <DoubleAnimation
-                                                            Storyboard.Target="{x:Reference Name=PART_SelectedProfileActionsDV}"
-                                                            Storyboard.TargetProperty="Opacity"
-                                                            To="1" />
-                                                    </Storyboard>
-                                                </anim:StoryboardSequence>
-                                                <anim:StoryboardSequence Name="FadeOut" Index="1">
-                                                    <Storyboard SpeedRatio="4">
-                                                        <DoubleAnimation
-                                                            Storyboard.Target="{x:Reference Name=PART_SelectedProfileActionsDV}"
-                                                            Storyboard.TargetProperty="Opacity"
-                                                            To="0" />
-                                                    </Storyboard>
-                                                </anim:StoryboardSequence>
-                                            </anim:SequentialStoryboard>
-                                        </ppdv:SelectedProfileActionsDV.Animations>-->
                                     </ppdv:SelectedProfileActionsDV>
                                 </Grid>
                             </Border>
@@ -151,38 +131,6 @@
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="profileIcon" Property="Visibility" Value="Visible" />
                         </Trigger>
-                        <!--<MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
-                                <StopStoryboard BeginStoryboardName="collapseProfile" />
-                                <BeginStoryboard x:Name="expandProfile">
-                                    <Storyboard SpeedRatio="4">
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="profileBorder"
-                                            Storyboard.TargetProperty="Height"
-                                            To="420" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
-                                <StopStoryboard BeginStoryboardName="expandProfile" />
-                                <BeginStoryboard x:Name="collapseProfile">
-                                    <Storyboard SpeedRatio="4">
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="profileBorder"
-                                            Storyboard.TargetProperty="Height"
-                                            To="140" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                        </MultiTrigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

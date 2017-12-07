@@ -60,6 +60,9 @@
     <Compile Include="Animation\StoryboardSequence.cs" />
     <Compile Include="Animation\StoryboardSequenceCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
+    <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
+    <Compile Include="Views\Dynamic\MultiButtonDV.cs" />
     <Compile Include="Views\Dynamic\PickProfile\SelectedProfileActionsDV.cs" />
     <Page Include="Controls\Controls.xaml">
       <SubType>Designer</SubType>
@@ -70,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PickProfile\Xaml\ProfilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SpriteButton\Xaml\SpriteButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,6 +123,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dynamic\Xaml\DynamicViewHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dynamic\Xaml\MultiButtonDV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Views.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

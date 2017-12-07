@@ -1,4 +1,5 @@
-﻿using AMSRSE.Editor.Commands;
+﻿using AMSRSE.Editor.Animation;
+using AMSRSE.Editor.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace AMSRSE.Editor.Views.Dynamic.PickProfile
 
         public override void OnApplyTemplate()
         {
-            CreateAnimations();
+            //CreateAnimations();
 
             base.OnApplyTemplate();
         }
@@ -85,12 +86,18 @@ namespace AMSRSE.Editor.Views.Dynamic.PickProfile
 
         public override void FadeIn()
         {
-            _fadeInStoryboard.Begin();
+            if (this.IsLoaded)
+                this.Animations["FadeIn"].Start();
+
+            else
+                this.Opacity = 1;
+            //_fadeInStoryboard.Begin();
         }
 
         public override void FadeOut()
         {
-            _fadeOutStoryboard.Begin();
+            this.Animations["FadeOut"].Start();
+            //_fadeOutStoryboard.Begin();
         }
 
         #endregion Methods

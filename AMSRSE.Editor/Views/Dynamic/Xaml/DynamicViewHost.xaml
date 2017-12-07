@@ -5,7 +5,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dv:DynamicViewHost}">
-                    <ContentPresenter Content="{TemplateBinding CurrentDynamicView}" />
+                    <ContentPresenter Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CurrentDynamicView}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

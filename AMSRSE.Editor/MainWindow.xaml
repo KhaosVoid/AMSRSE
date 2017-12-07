@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AMSRSE.Editor"
         xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
+        xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
+        xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
         xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
@@ -43,6 +45,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="MSRButton" TargetType="{x:Type sb:SpriteButton}" BasedOn="{StaticResource {x:Type sb:SpriteButton}}">
+            <Setter Property="Foreground" Value="#FFFFFFFF" />
+            <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="IsToggleButton" Value="True" />
+        </Style>
     </Window.Resources>
 
     <Grid Width="640" Background="#FF000000">
@@ -51,17 +60,40 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ItemsControl x:Name="slidingButtons" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=mbdv}">
+            <!--<ppdv:SelectedProfileActionsDV x:Name="spadv" />-->
+            <dv:MultiButtonDV x:Name="mbdv">
+                <dv:MultiButtonDV.Buttons>
+                    <sb:SpriteButton
+                        Style="{StaticResource MSRButton}"
+                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                        Text="Edit Profile" />
+                    <sb:SpriteButton
+                        Style="{StaticResource MSRButton}"
+                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                        Text="New Game" />
+                    <sb:SpriteButton
+                        Style="{StaticResource MSRButton}"
+                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                        Text="Options" />
+                </dv:MultiButtonDV.Buttons>
+            </dv:MultiButtonDV>
+        </dv:DynamicViewHost>
+        <!--<ItemsControl x:Name="slidingButtons" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnControls" Content="Controls" />
             <Button x:Name="btnGallery" Content="Gallery" />
             <Button x:Name="btnAmiibo" Content="amiibo" />
             <Button x:Name="btnStaffCredits" Content="Staff Credits" IsEnabled="False" />
-        </ItemsControl>
-        <pkprfl:ProfilesControl Grid.Row="1" />
+        </ItemsControl>-->
+        <!--<pkprfl:ProfilesControl Grid.Row="1" />-->
         <!--<ppdv:SelectedProfileActionsDV />-->
     </Grid>
 
-    <Window.Triggers>
+    <!--<Window.Triggers>
         <EventTrigger SourceName="btnGallery" RoutedEvent="Button.Click">
             <BeginStoryboard>
                 <Storyboard
@@ -77,5 +109,5 @@
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
-    </Window.Triggers>
+    </Window.Triggers>-->
 </Window>
