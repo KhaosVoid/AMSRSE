@@ -93,7 +93,13 @@ namespace AMSRSE.Editor.Animation
 
         private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            SubscribeItemCompletedEvents();
+            for (int i = 0; i < e.OldItems?.Count; i++)
+                ((SequentialStoryboardItem)e.OldItems[i]).Completed -= SequentialStoryboardItem_Completed;
+
+            for (int i = 0; i < e.NewItems?.Count; i++)
+                ((SequentialStoryboardItem)e.NewItems[i]).Completed += SequentialStoryboardItem_Completed;
+
+            //SubscribeItemCompletedEvents();
         }
 
         private void SubscribeItemCompletedEvents()

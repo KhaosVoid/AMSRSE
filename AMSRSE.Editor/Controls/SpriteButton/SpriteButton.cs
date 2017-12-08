@@ -89,7 +89,7 @@ namespace AMSRSE.Editor.Controls.SpriteButton
         public delegate void ToggledHandler(bool isSelected);
         public event ToggledHandler Toggled;
 
-        public delegate void ClickedHandler();
+        public delegate void ClickedHandler(SpriteButton sender);
         public event ClickedHandler Clicked;
 
         #endregion Events
@@ -115,8 +115,14 @@ namespace AMSRSE.Editor.Controls.SpriteButton
                 Toggled?.Invoke(IsSelected);
             }
 
-            Clicked?.Invoke();
+            OnClicked();
+            Clicked?.Invoke(this);
             Command?.Execute(CommandParameter);
+        }
+
+        protected virtual void OnClicked()
+        {
+
         }
 
         #endregion Methods

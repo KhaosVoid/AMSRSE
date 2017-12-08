@@ -1,4 +1,5 @@
-﻿using AMSRSE.Editor.Controls.SpriteButton;
+﻿using AMSRSE.Editor.Animation;
+using AMSRSE.Editor.Controls.SpriteButton;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AMSRSE.Editor.Views.Dynamic
         #region Dependency Properties
 
         public static readonly DependencyProperty ButtonsProperty =
-            DependencyProperty.Register("Buttons", typeof(SpriteButtonCollection<SpriteButton>), typeof(MultiButtonDV));
+            DependencyProperty.Register("Buttons", typeof(SpriteButtonCollection<SpriteButton>), typeof(MultiButtonDV), new PropertyMetadata(OnButtonsPropertyChanged));
 
         #endregion Dependency Properties
 
@@ -32,21 +33,111 @@ namespace AMSRSE.Editor.Views.Dynamic
         public MultiButtonDV()
         {
             Buttons = new SpriteButtonCollection<SpriteButton>();
+            this.Loaded += (sender, e) => { FadeIn(); };
         }
 
         #endregion Ctor
 
+        #region Dependency Property Callbacks
+
+        private static void OnButtonsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is MultiButtonDV mdv)
+            {
+                if (e.OldValue is SpriteButtonCollection<SpriteButton> osbc)
+                    osbc.CollectionChanged -= mdv.Buttons_CollectionChanged;
+
+                if (e.NewValue is SpriteButtonCollection<SpriteButton> nsbc)
+                    nsbc.CollectionChanged += mdv.Buttons_CollectionChanged;
+
+                mdv.SubscribeButtonsNavigation();
+            }
+        }
+
+        #endregion Dependency Property Callbacks
+
         #region Methods
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.Animations["FadeOutLeft"].Completed -= FadeOut_Completed;
+            this.Animations["FadeOutLeft"].Completed += FadeOut_Completed;
+
+            this.Animations["FadeOutRight"].Completed -= FadeOut_Completed;
+            this.Animations["FadeOutRight"].Completed += FadeOut_Completed;
+
+            SubscribeButtonsNavigation();
+        }
+
+        private void Buttons_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            for (int i = 0; i < e.OldItems?.Count; i++)
+                ((SpriteButton)e.OldItems[i]).Clicked -= MultiButtonDV_Clicked;
+
+            for (int i = 0; i < e.NewItems?.Count; i++)
+            {
+                if (DynamicViewHost.GetNavigateTo((SpriteButton)e.NewItems[i]) is string ntstr &&
+                    DynamicViewHost.GetNavigationDirection((SpriteButton)e.NewItems[i]) is DynamicViewHost.NavigationDirections nd)
+                    ((SpriteButton)e.NewItems[i]).Clicked += MultiButtonDV_Clicked;
+            }
+
+            SubscribeButtonsNavigation();
+        }
+
+        private void SubscribeButtonsNavigation()
+        {
+            for (int i = 0; i < Buttons?.Count; i++)
+            {
+                if (DynamicViewHost.GetNavigateTo(Buttons[i]) is string ntstr &&
+                    DynamicViewHost.GetNavigationDirection(Buttons[i]) is DynamicViewHost.NavigationDirections nd)
+                {
+                    Buttons[i].Clicked -= MultiButtonDV_Clicked;
+                    Buttons[i].Clicked += MultiButtonDV_Clicked;
+                }
+            }
+        }
+
+        private void MultiButtonDV_Clicked(SpriteButton sender)
+        {
+            var navigateTo = DynamicViewHost.GetNavigateTo(sender);
+            var navigationDirection = DynamicViewHost.GetNavigationDirection(sender);
+
+            GetView(navigateTo).SetAsCurrentView(navigationDirection);
+        }
 
         public override void FadeIn()
         {
-            this.Opacity = 1;
-            //throw new NotImplementedException();
+            switch (this._navigationDirection)
+            {
+                case DynamicViewHost.NavigationDirections.Backward:
+                    this.Animations["FadeInLeft"].Start();
+                    break;
+
+                case DynamicViewHost.NavigationDirections.Forward:
+                    this.Animations["FadeInRight"].Start();
+                    break;
+            }
         }
 
         public override void FadeOut()
         {
-            //throw new NotImplementedException();
+            switch (this._navigationDirection)
+            {
+                case DynamicViewHost.NavigationDirections.Backward:
+                    this.Animations["FadeOutRight"].Start();
+                    break;
+
+                case DynamicViewHost.NavigationDirections.Forward:
+                    this.Animations["FadeOutLeft"].Start();
+                    break;
+            }
+        }
+
+        private void FadeOut_Completed(SequentialStoryboardItem ssbi)
+        {
+            RaiseOnFadeOutComplete();
         }
 
         #endregion Methods

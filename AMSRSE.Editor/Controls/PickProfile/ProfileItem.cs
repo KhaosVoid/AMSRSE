@@ -92,10 +92,8 @@ namespace AMSRSE.Editor.Controls.PickProfile
         {
             _templatePart_SelectedProfileActionsDV = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
 
-            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed += (ssbi) =>
-            {
-                OnProfileActionsFadedOut?.Invoke();
-            };
+            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed -= ProfileItem_ProfileActionsFadeOutAnimationCompleted;
+            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed += ProfileItem_ProfileActionsFadeOutAnimationCompleted;
 
             _templatePart_SelectedProfileActionsDV.OnFadeOutComplete += () =>
             {
@@ -103,6 +101,11 @@ namespace AMSRSE.Editor.Controls.PickProfile
             };
 
             base.OnApplyTemplate();
+        }
+
+        private void ProfileItem_ProfileActionsFadeOutAnimationCompleted(SequentialStoryboardItem ssbi)
+        {
+            OnProfileActionsFadedOut?.Invoke();
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)

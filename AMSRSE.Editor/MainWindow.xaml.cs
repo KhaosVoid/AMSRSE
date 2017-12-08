@@ -15,14 +15,27 @@ using System.Windows.Shapes;
 
 namespace AMSRSE.Editor
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        #region Dependency Properties
+
+
+
+        #endregion Dependency Properties
+
+        #region Properties
+
+
+
+        #endregion Properties
+
+        #region Ctor
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        #endregion Ctor
     }
 }

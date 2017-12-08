@@ -60,6 +60,7 @@
     <Compile Include="Animation\StoryboardSequence.cs" />
     <Compile Include="Animation\StoryboardSequenceCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Controls\NavButton\NavButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
     <Compile Include="Views\Dynamic\MultiButtonDV.cs" />
@@ -118,7 +119,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\BaseViews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dynamic\PickProfile\Xaml\SelectedProfileActionsDV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dynamic\Xaml\DynamicViewBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

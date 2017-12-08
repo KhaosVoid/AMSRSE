@@ -1,4 +1,5 @@
-﻿<Window x:Class="AMSRSE.Editor.MainWindow"
+﻿<Window x:Name="mWnd"
+        x:Class="AMSRSE.Editor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +7,7 @@
         xmlns:local="clr-namespace:AMSRSE.Editor"
         xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
         xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
+        xmlns:nvbtn="clr-namespace:AMSRSE.Editor.Controls.NavButton"
         xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
         xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
         SizeToContent="WidthAndHeight"
@@ -50,8 +52,9 @@
             <Setter Property="Foreground" Value="#FFFFFFFF" />
             <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="IsToggleButton" Value="True" />
         </Style>
+
+
     </Window.Resources>
 
     <Grid Width="640" Background="#FF000000">
@@ -61,26 +64,45 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=mbdv}">
+        <dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=mbdv1}">
             <!--<ppdv:SelectedProfileActionsDV x:Name="spadv" />-->
-            <dv:MultiButtonDV x:Name="mbdv">
+            <dv:MultiButtonDV x:Name="mbdv1">
                 <dv:MultiButtonDV.Buttons>
-                    <sb:SpriteButton
+                    <nvbtn:NavButton
                         Style="{StaticResource MSRButton}"
                         SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
                         UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
-                        Text="Edit Profile" />
-                    <sb:SpriteButton
-                        Style="{StaticResource MSRButton}"
-                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
-                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
-                        Text="New Game" />
-                    <sb:SpriteButton
-                        Style="{StaticResource MSRButton}"
-                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
-                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
-                        Text="Options" />
+                        Text="Next"
+                        dv:DynamicViewHost.NavigateTo="mbdv2"
+                        dv:DynamicViewHost.NavigationDirection="Forward" />
                 </dv:MultiButtonDV.Buttons>
+
+                <dv:MultiButtonDV x:Name="mbdv2">
+                    <dv:MultiButtonDV.Buttons>
+                        <nvbtn:NavButton
+                            Style="{StaticResource MSRButton}"
+                            SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                            UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                            Text="Edit Profile" />
+                        <nvbtn:NavButton
+                            Style="{StaticResource MSRButton}"
+                            SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                            UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                            Text="New Game" />
+                        <nvbtn:NavButton
+                            Style="{StaticResource MSRButton}"
+                            SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                            UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                            Text="Options" />
+                        <nvbtn:NavButton
+                            Style="{StaticResource MSRButton}"
+                            SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                            UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                            Text="Back"
+                            dv:DynamicViewHost.NavigateTo="mbdv1"
+                            dv:DynamicViewHost.NavigationDirection="Backward" />
+                    </dv:MultiButtonDV.Buttons>
+                </dv:MultiButtonDV>
             </dv:MultiButtonDV>
         </dv:DynamicViewHost>
         <!--<ItemsControl x:Name="slidingButtons" HorizontalAlignment="Center" VerticalAlignment="Center">

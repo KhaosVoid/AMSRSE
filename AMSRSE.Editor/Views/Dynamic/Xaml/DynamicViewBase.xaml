@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
+                    xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
+    <Style x:Key="Views.BaseViews.ButtonsDynamicView" TargetType="{x:Type dv:DynamicViewBase}">
+        <Setter Property="Animations">
+            <Setter.Value>
+                <anim:SequentialStoryboard>
+                    <anim:StoryboardSequence Name="FadeInLeft">
+                        <Storyboard SpeedRatio="4">
+                            <ThicknessAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Margin"
+                                From="-64,0,0,0"
+                                To="0" />
+                            <DoubleAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0"
+                                To="1" />
+                        </Storyboard>
+                    </anim:StoryboardSequence>
+                    <anim:StoryboardSequence Name="FadeInRight">
+                        <Storyboard SpeedRatio="4">
+                            <ThicknessAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Margin"
+                                From="64,0,0,0"
+                                To="0" />
+                            <DoubleAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0"
+                                To="1" />
+                        </Storyboard>
+                    </anim:StoryboardSequence>
+                    <anim:StoryboardSequence Name="FadeOutLeft">
+                        <Storyboard SpeedRatio="4">
+                            <ThicknessAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Margin"
+                                From="0"
+                                To="-64,0,0,0" />
+                            <DoubleAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Opacity"
+                                From="1"
+                                To="0" />
+                        </Storyboard>
+                    </anim:StoryboardSequence>
+                    <anim:StoryboardSequence Name="FadeOutRight">
+                        <Storyboard SpeedRatio="4">
+                            <ThicknessAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Margin"
+                                From="0"
+                                To="64,0,0,0" />
+                            <DoubleAnimation
+                                anim:StoryboardSequence.AnimationTargetName="Self"
+                                Storyboard.TargetProperty="Opacity"
+                                From="1"
+                                To="0" />
+                        </Storyboard>
+                    </anim:StoryboardSequence>
+                </anim:SequentialStoryboard>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

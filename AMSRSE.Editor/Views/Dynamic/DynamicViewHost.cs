@@ -13,6 +13,16 @@ namespace AMSRSE.Editor.Views.Dynamic
     [ContentProperty("DynamicViews")]
     public class DynamicViewHost : Control
     {
+        #region Enums
+
+        public enum NavigationDirections
+        {
+            Backward,
+            Forward
+        }
+
+        #endregion Enums
+
         #region Dependency Properties
 
         public static readonly DependencyProperty DynamicViewsProperty =
@@ -20,6 +30,12 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         public static readonly DependencyProperty CurrentDynamicViewProperty =
             DependencyProperty.Register("CurrentDynamicView", typeof(DynamicViewBase), typeof(DynamicViewHost), new PropertyMetadata(OnCurrentDynamicViewPropertyChanged));
+
+        public static readonly DependencyProperty NavigateToProperty =
+            DependencyProperty.RegisterAttached("NavigateTo", typeof(string), typeof(DynamicViewHost));
+
+        public static readonly DependencyProperty NavigationDirectionProperty =
+            DependencyProperty.RegisterAttached("NavigationDirection", typeof(NavigationDirections), typeof(DynamicViewHost));
 
         #endregion Dependency Properties
 
@@ -38,6 +54,13 @@ namespace AMSRSE.Editor.Views.Dynamic
         }
 
         #endregion Properties
+
+        #region Members
+
+        private DynamicViewBase _newView;
+        private NavigationDirections _newViewDirection;
+
+        #endregion Members
 
         #region Ctor
 
@@ -71,32 +94,81 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         private static void OnCurrentDynamicViewPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is DynamicViewHost dvh)
-                dvh.CurrentDynamicView.FadeIn();
+            //if (d is DynamicViewHost dvh)
+            //    dvh.CurrentDynamicView.FadeIn();
         }
 
         #endregion Dependency Property Callbacks
+
+        #region Attached Property Methods
+
+        public static string GetNavigateTo(DependencyObject obj)
+        {
+            return (string)obj.GetValue(NavigateToProperty);
+        }
+
+        public static void SetNavigateTo(DependencyObject obj, string value)
+        {
+            obj.SetValue(NavigateToProperty, value);
+        }
+
+        public static NavigationDirections GetNavigationDirection(DependencyObject obj)
+        {
+            return (NavigationDirections)obj.GetValue(NavigationDirectionProperty);
+        }
+
+        public static void SetNavigationDirection(DependencyObject obj, NavigationDirections value)
+        {
+            obj.SetValue(NavigationDirectionProperty, value);
+        }
+
+        #endregion Attached Property Methods
 
         #region Methods
 
         private void DynamicViews_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                for (int i = 0; i < e.NewItems.Count; i++)
-                {
-                    ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView += DynamicViewHost_OnSetAsCurrentView;
-                    ((DynamicViewBase)e.NewItems[i]).Opacity = 0;
-                }
+            for (int i = 0; i < e.OldItems?.Count; i++)
+            {
+                ((DynamicViewBase)e.OldItems[i]).OnSetAsCurrentView -= DynamicViewHost_OnSetAsCurrentView;
+                ((DynamicViewBase)e.OldItems[i]).Opacity = 0;
+            }
+
+            for (int i = 0; i < e.NewItems?.Count; i++)
+            {
+                ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView += DynamicViewHost_OnSetAsCurrentView;
+                ((DynamicViewBase)e.NewItems[i]).Opacity = 0;
+            }
+
+            //if (e.Action == NotifyCollectionChangedAction.Add)
+            //    for (int i = 0; i < e.NewItems.Count; i++)
+            //    {
+            //        ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView += DynamicViewHost_OnSetAsCurrentView;
+            //        ((DynamicViewBase)e.NewItems[i]).Opacity = 0;
+            //    }
         }
 
-        private void DynamicViewHost_OnSetAsCurrentView(DynamicViewBase dynamicView)
+        private void DynamicViewHost_OnSetAsCurrentView(DynamicViewBase dynamicView, NavigationDirections navigationDirection)
         {
-            CurrentDynamicView.OnFadeOutComplete += () =>
-            {
-                CurrentDynamicView = dynamicView;
-                //CurrentDynamicView.FadeIn();
-            };
+            _newView = dynamicView;
+            _newViewDirection = navigationDirection;
+
+            CurrentDynamicView.OnFadeOutComplete += CurrentDynamicView_OnFadeOutComplete;
             CurrentDynamicView.FadeOut();
+        }
+
+        private void CurrentDynamicView_OnFadeOutComplete()
+        {
+            var oldDV = CurrentDynamicView.GetHashCode();
+
+            _newView.SetDirection(_newViewDirection);
+            CurrentDynamicView.OnFadeOutComplete -= CurrentDynamicView_OnFadeOutComplete;
+            CurrentDynamicView = _newView;
+
+            if (oldDV == _newView.GetHashCode())
+                CurrentDynamicView.FadeIn();
+
+            _newView = null;
         }
 
         #endregion Methods

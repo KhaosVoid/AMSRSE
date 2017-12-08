@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AMSRSE.Editor.Views.Dynamic">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/Xaml/DynamicViewBase.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
