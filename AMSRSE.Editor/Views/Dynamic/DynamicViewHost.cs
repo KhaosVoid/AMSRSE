@@ -60,6 +60,8 @@ namespace AMSRSE.Editor.Views.Dynamic
         private DynamicViewBase _newView;
         private NavigationDirections _newViewDirection;
 
+        private DynamicViewBase.FadeOutCompleteHandler _currentDynamicView_OnFadeOutComplete;
+
         #endregion Members
 
         #region Ctor
@@ -94,8 +96,8 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         private static void OnCurrentDynamicViewPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //if (d is DynamicViewHost dvh)
-            //    dvh.CurrentDynamicView.FadeIn();
+            if (d is DynamicViewHost dvh)
+                dvh.CurrentDynamicView.OnApplyTemplate();
         }
 
         #endregion Dependency Property Callbacks
@@ -136,6 +138,7 @@ namespace AMSRSE.Editor.Views.Dynamic
 
             for (int i = 0; i < e.NewItems?.Count; i++)
             {
+                ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView -= DynamicViewHost_OnSetAsCurrentView;
                 ((DynamicViewBase)e.NewItems[i]).OnSetAsCurrentView += DynamicViewHost_OnSetAsCurrentView;
                 ((DynamicViewBase)e.NewItems[i]).Opacity = 0;
             }
@@ -153,7 +156,26 @@ namespace AMSRSE.Editor.Views.Dynamic
             _newView = dynamicView;
             _newViewDirection = navigationDirection;
 
-            CurrentDynamicView.OnFadeOutComplete += CurrentDynamicView_OnFadeOutComplete;
+            CurrentDynamicView.OnFadeOutComplete -= _currentDynamicView_OnFadeOutComplete;
+
+            _currentDynamicView_OnFadeOutComplete = () =>
+            {
+                var oldDV = CurrentDynamicView.GetHashCode();
+                var newDV = dynamicView.GetHashCode();
+
+                dynamicView.SetDirection(navigationDirection);
+                CurrentDynamicView = dynamicView;
+
+                if (oldDV == newDV)
+                    CurrentDynamicView.FadeIn();
+            };
+
+
+            CurrentDynamicView.OnFadeOutComplete += _currentDynamicView_OnFadeOutComplete;
+            //CurrentDynamicView.OnFadeOutComplete += CurrentDynamicView_OnFadeOutComplete;
+
+            CurrentDynamicView.SetDirection(navigationDirection);
+
             CurrentDynamicView.FadeOut();
         }
 

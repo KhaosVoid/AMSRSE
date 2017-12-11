@@ -63,8 +63,10 @@
     <Compile Include="Controls\NavButton\NavButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
+    <Compile Include="Views\Dynamic\MessageDV.cs" />
     <Compile Include="Views\Dynamic\MultiButtonDV.cs" />
     <Compile Include="Views\Dynamic\PickProfile\SelectedProfileActionsDV.cs" />
+    <Compile Include="Views\Dynamic\YesNoDV.cs" />
     <Page Include="Controls\Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,7 +137,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dynamic\Xaml\MessageDV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dynamic\Xaml\MultiButtonDV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dynamic\Xaml\YesNoDV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,51 @@
+* [Profile] - (MultiButtonDV):ProfileDecisionMBDV
+  * [Edit Profile] - !!Layout Change!!
+  * [New Game] - (YesNoDV):StartNewGameYNDV
+    * $NewGameMsg$ - (OKDV):NewGameWarningOKDV
+      "Starting a new game will cause you
+      to lose all of your current progress.
+      All unlocked features and Options
+      settings will remain."
+        * $Label$
+          "Start a new game?"
+        * [Yes] - (MultiButtonDV):ChooseModeMBDV
+          * [Normal] - (YesNoDV):NewNormalGameYNDV
+            * $Label$
+              "Current data will be erased.
+              Start a new game in Normal mode?"
+            * [Yes] - CommandCreateNewNormalGame
+            * [No] - CommandGoBack
+          * [Hard] - (YesNoDV):NewHardGameYNDV
+            * $NewHardGameMsg$ - (OKDV):NewHardGameWarningOKDV
+              "In Hard mode, enemies are
+              more powerful."
+              * $Label$
+                "Current data will be erased.
+                Start a new game in Hard mode?"
+              * [Yes] - CommandCreateNewHardGame
+              * [No] - CommandGoBack
+          * [Fusion] - (YesNoDV):NewFusionGameYNDV
+            * $NewFusionGameMsg$ = (OKDV):NewFusionGameWarningOKDV
+              "In Fusion mode, enemies are even
+              more powerful, and you can play
+              as Fusion Suit Samus."
+              * $Label$
+                "Current data will be erased.
+                Start a new game in Fusion mode?"
+              * [Yes] - CommandCreateNewFusionGame
+              * [No] - CommandGoBack
+        * [No] - CommandGoBack
+
+================================================================================
+
+  * [Options] - !!Layout Change!! - (MultiButtonDV):ProfileOptionsMBDV
+    * [Controls] - !!Layout Change!!
+      * //Shows Controls layout
+    * [Gallery] (MultiButtonDV):GalleryMBDV
+      * [Unlock Chozo Memories]
+      * [Unlock Metroid II Art]
+      * [Unlock Concept Art]
+      * [Unlock Music]
+    * [amiibo]
+      * !!Layout Change!!
+    * [Staff Credits]

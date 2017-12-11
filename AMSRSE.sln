@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9B2B74F2-5
 	ProjectSection(SolutionItems) = preProject
 		Docs\game-map.png = Docs\game-map.png
 		Docs\Map Information.xlsx = Docs\Map Information.xlsx
-		..\..\MSR-PKPRFL-UI-Paths.txt = ..\..\MSR-PKPRFL-UI-Paths.txt
+		Docs\MSR-PKPRFL-UI-Paths.txt = Docs\MSR-PKPRFL-UI-Paths.txt
 		Docs\Save Format.xlsx = Docs\Save Format.xlsx
 	EndProjectSection
 EndProject

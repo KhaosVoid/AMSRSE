@@ -65,8 +65,6 @@ namespace AMSRSE.Editor.Views.Dynamic
             Children.CollectionChanged += Children_CollectionChanged;
         }
 
-
-
         #endregion Ctor
 
         #region Dependency Property Callbacks
@@ -92,6 +90,17 @@ namespace AMSRSE.Editor.Views.Dynamic
         #endregion Dependency Property Callbacks
 
         #region Methods
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.Animations["FadeOutLeft"].Completed -= FadeOut_Completed;
+            this.Animations["FadeOutLeft"].Completed += FadeOut_Completed;
+
+            this.Animations["FadeOutRight"].Completed -= FadeOut_Completed;
+            this.Animations["FadeOutRight"].Completed += FadeOut_Completed;
+        }
 
         private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -160,8 +169,43 @@ namespace AMSRSE.Editor.Views.Dynamic
             OnSetAsCurrentView?.Invoke(this, navigationDirection);
         }
 
-        public abstract void FadeIn();
-        public abstract void FadeOut();
+        public virtual void FadeIn()
+        {
+            switch (this._navigationDirection)
+            {
+                case DynamicViewHost.NavigationDirections.Backward:
+                    this.Animations["FadeInLeft"].Start();
+                    break;
+
+                case DynamicViewHost.NavigationDirections.Forward:
+                    this.Animations["FadeInRight"].Start();
+                    break;
+            }
+        }
+
+        public virtual void FadeOut()
+        {
+            switch (this._navigationDirection)
+            {
+                case DynamicViewHost.NavigationDirections.Backward:
+                    this.Animations["FadeOutRight"].Start();
+                    break;
+
+                case DynamicViewHost.NavigationDirections.Forward:
+                    this.Animations["FadeOutLeft"].Start();
+                    break;
+            }
+        }
+
+        private void FadeOut_Completed(SequentialStoryboardItem ssbi)
+        {
+            OnFadeOutCompleted(ssbi);
+        }
+
+        protected virtual void OnFadeOutCompleted(SequentialStoryboardItem ssbi)
+        {
+            RaiseOnFadeOutComplete();
+        }
 
         protected void RaiseOnFadeOutComplete()
         {

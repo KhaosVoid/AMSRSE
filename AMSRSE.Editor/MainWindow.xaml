@@ -54,6 +54,20 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
+        <Style x:Key="YesNoDVStyle" TargetType="{x:Type dv:YesNoDV}" BasedOn="{StaticResource {x:Type dv:YesNoDV}}">
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Foreground" Value="#FFFFFFFF" />
+            <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="MessageDVStyle" TargetType="{x:Type dv:MessageDV}" BasedOn="{StaticResource {x:Type dv:MessageDV}}">
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Foreground" Value="#FFFFFFFF" />
+            <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
 
     </Window.Resources>
 
@@ -64,20 +78,33 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=mbdv1}">
-            <!--<ppdv:SelectedProfileActionsDV x:Name="spadv" />-->
-            <dv:MultiButtonDV x:Name="mbdv1">
+        <dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=pkprflView}">
+            <dv:MultiButtonDV x:Name="pkprflView">
                 <dv:MultiButtonDV.Buttons>
                     <nvbtn:NavButton
                         Style="{StaticResource MSRButton}"
                         SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
                         UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
-                        Text="Next"
-                        dv:DynamicViewHost.NavigateTo="mbdv2"
+                        Text="SAMUS A"
+                        dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                    <nvbtn:NavButton
+                        Style="{StaticResource MSRButton}"
+                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                        Text="SAMUS B"
+                        dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                    <nvbtn:NavButton
+                        Style="{StaticResource MSRButton}"
+                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                        Text="SAMUS C"
+                        dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
                         dv:DynamicViewHost.NavigationDirection="Forward" />
                 </dv:MultiButtonDV.Buttons>
 
-                <dv:MultiButtonDV x:Name="mbdv2">
+                <dv:MultiButtonDV x:Name="pkprflDecisionView">
                     <dv:MultiButtonDV.Buttons>
                         <nvbtn:NavButton
                             Style="{StaticResource MSRButton}"
@@ -88,20 +115,205 @@
                             Style="{StaticResource MSRButton}"
                             SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
                             UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
-                            Text="New Game" />
+                            Text="New Game"
+                            dv:DynamicViewHost.NavigateTo="newGameWarningView"
+                            dv:DynamicViewHost.NavigationDirection="Forward"/>
                         <nvbtn:NavButton
                             Style="{StaticResource MSRButton}"
                             SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
                             UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
-                            Text="Options" />
+                            Text="Options"
+                            dv:DynamicViewHost.NavigateTo="optionsView"
+                            dv:DynamicViewHost.NavigationDirection="Forward" />
                         <nvbtn:NavButton
                             Style="{StaticResource MSRButton}"
                             SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
                             UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
                             Text="Back"
-                            dv:DynamicViewHost.NavigateTo="mbdv1"
+                            dv:DynamicViewHost.NavigateTo="pkprflView"
                             dv:DynamicViewHost.NavigationDirection="Backward" />
                     </dv:MultiButtonDV.Buttons>
+
+                    <dv:MessageDV
+                        x:Name="newGameWarningView" Style="{StaticResource MessageDVStyle}"
+                        Message="Starting a new game will cause you to lose all of your current progress. All unlocked features and Options settings will remain.">
+                        <dv:MessageDV.OKButton>
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="OK"
+                                dv:DynamicViewHost.NavigateTo="newGameYNView"
+                                dv:DynamicViewHost.NavigationDirection="Forward" />
+                        </dv:MessageDV.OKButton>
+                    </dv:MessageDV>
+                    
+                    <dv:YesNoDV x:Name="newGameYNView" Style="{StaticResource YesNoDVStyle}" Message="Start a new game?">
+                        <dv:YesNoDV.YesButton>
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="Yes"
+                                dv:DynamicViewHost.NavigateTo="gameModeSelectView"
+                                dv:DynamicViewHost.NavigationDirection="Forward" />
+                        </dv:YesNoDV.YesButton>
+                        <dv:YesNoDV.NoButton>
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="No"
+                                dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                                dv:DynamicViewHost.NavigationDirection="Backward" />
+                        </dv:YesNoDV.NoButton>
+
+                        <dv:MultiButtonDV x:Name="gameModeSelectView">
+                            <dv:MultiButtonDV.Buttons>
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Normal"
+                                    dv:DynamicViewHost.NavigateTo="confirmNewGameView"
+                                    dv:DynamicViewHost.NavigationDirection="Forward" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Hard"
+                                    dv:DynamicViewHost.NavigateTo="newHardGameWarningView"
+                                    dv:DynamicViewHost.NavigationDirection="Forward" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Fusion"
+                                    dv:DynamicViewHost.NavigateTo="newFusionGameWarningView"
+                                    dv:DynamicViewHost.NavigationDirection="Forward" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Back"
+                                    dv:DynamicViewHost.NavigateTo="newGameYNView"
+                                    dv:DynamicViewHost.NavigationDirection="Backward" />
+                            </dv:MultiButtonDV.Buttons>
+
+                            <dv:MessageDV x:Name="newHardGameWarningView" Style="{StaticResource MessageDVStyle}"
+                                          Message="In Hard mode, enemies are more powerful.">
+                                <dv:MessageDV.OKButton>
+                                    <nvbtn:NavButton
+                                        Style="{StaticResource MSRButton}"
+                                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                        Text="OK"
+                                        dv:DynamicViewHost.NavigateTo="confirmNewGameView"
+                                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                                </dv:MessageDV.OKButton>
+                            </dv:MessageDV>
+
+                            <dv:MessageDV x:Name="newFusionGameWarningView" Style="{StaticResource MessageDVStyle}"
+                                          Message="In Fusion mode, enemies are even more powerful, and you can play as Fusion Suit Samus.">
+                                <dv:MessageDV.OKButton>
+                                    <nvbtn:NavButton
+                                        Style="{StaticResource MSRButton}"
+                                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                        Text="OK"
+                                        dv:DynamicViewHost.NavigateTo="confirmNewGameView"
+                                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                                </dv:MessageDV.OKButton>
+                            </dv:MessageDV>
+
+                            <dv:YesNoDV x:Name="confirmNewGameView" Style="{StaticResource YesNoDVStyle}"
+                                        Message="Current data will be erased. Start a new game in #S.MODE# mode?">
+                                <dv:YesNoDV.YesButton>
+                                    <nvbtn:NavButton
+                                        Style="{StaticResource MSRButton}"
+                                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                        Text="Yes"
+                                        dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                                        dv:DynamicViewHost.NavigationDirection="Backward" />
+                                </dv:YesNoDV.YesButton>
+                                <dv:YesNoDV.NoButton>
+                                    <nvbtn:NavButton
+                                        Style="{StaticResource MSRButton}"
+                                        SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                        UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                        Text="No"
+                                        dv:DynamicViewHost.NavigateTo="gameModeSelectView"
+                                        dv:DynamicViewHost.NavigationDirection="Backward" />
+                                </dv:YesNoDV.NoButton>
+                            </dv:YesNoDV>
+                        </dv:MultiButtonDV>
+                    </dv:YesNoDV>
+                    <dv:MultiButtonDV x:Name="optionsView">
+                        <dv:MultiButtonDV.Buttons>
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="Controls" />
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="Gallery"
+                                dv:DynamicViewHost.NavigateTo="galleryOptionsView"
+                                dv:DynamicViewHost.NavigationDirection="Forward" />
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="amiibo" />
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="Staff Credits" />
+                            <nvbtn:NavButton
+                                Style="{StaticResource MSRButton}"
+                                SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                Text="Back"
+                                dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                                dv:DynamicViewHost.NavigationDirection="Backward" />
+                        </dv:MultiButtonDV.Buttons>
+
+                        <dv:MultiButtonDV x:Name="galleryOptionsView">
+                            <dv:MultiButtonDV.Buttons>
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Unlock Chozo Memories" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Unlock Metroid II Art" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Unlock Concept Art" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Unlock Music" />
+                                <nvbtn:NavButton
+                                    Style="{StaticResource MSRButton}"
+                                    SelectedSprite="{StaticResource Images.UI.MSRButton-Active}"
+                                    UnselectedSprite="{StaticResource Images.UI.MSRButton-Normal}"
+                                    Text="Back"
+                                    dv:DynamicViewHost.NavigateTo="optionsView"
+                                    dv:DynamicViewHost.NavigationDirection="Backward" />
+                            </dv:MultiButtonDV.Buttons>
+                        </dv:MultiButtonDV>
+                    </dv:MultiButtonDV>
                 </dv:MultiButtonDV>
             </dv:MultiButtonDV>
         </dv:DynamicViewHost>

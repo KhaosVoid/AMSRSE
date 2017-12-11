@@ -48,7 +48,10 @@ namespace AMSRSE.Editor.Views.Dynamic
                     osbc.CollectionChanged -= mdv.Buttons_CollectionChanged;
 
                 if (e.NewValue is SpriteButtonCollection<SpriteButton> nsbc)
+                {
+                    nsbc.CollectionChanged -= mdv.Buttons_CollectionChanged;
                     nsbc.CollectionChanged += mdv.Buttons_CollectionChanged;
+                }
 
                 mdv.SubscribeButtonsNavigation();
             }
@@ -61,12 +64,6 @@ namespace AMSRSE.Editor.Views.Dynamic
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
-            this.Animations["FadeOutLeft"].Completed -= FadeOut_Completed;
-            this.Animations["FadeOutLeft"].Completed += FadeOut_Completed;
-
-            this.Animations["FadeOutRight"].Completed -= FadeOut_Completed;
-            this.Animations["FadeOutRight"].Completed += FadeOut_Completed;
 
             SubscribeButtonsNavigation();
         }
@@ -105,39 +102,6 @@ namespace AMSRSE.Editor.Views.Dynamic
             var navigationDirection = DynamicViewHost.GetNavigationDirection(sender);
 
             GetView(navigateTo).SetAsCurrentView(navigationDirection);
-        }
-
-        public override void FadeIn()
-        {
-            switch (this._navigationDirection)
-            {
-                case DynamicViewHost.NavigationDirections.Backward:
-                    this.Animations["FadeInLeft"].Start();
-                    break;
-
-                case DynamicViewHost.NavigationDirections.Forward:
-                    this.Animations["FadeInRight"].Start();
-                    break;
-            }
-        }
-
-        public override void FadeOut()
-        {
-            switch (this._navigationDirection)
-            {
-                case DynamicViewHost.NavigationDirections.Backward:
-                    this.Animations["FadeOutRight"].Start();
-                    break;
-
-                case DynamicViewHost.NavigationDirections.Forward:
-                    this.Animations["FadeOutLeft"].Start();
-                    break;
-            }
-        }
-
-        private void FadeOut_Completed(SequentialStoryboardItem ssbi)
-        {
-            RaiseOnFadeOutComplete();
         }
 
         #endregion Methods
