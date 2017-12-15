@@ -17,18 +17,6 @@ namespace AMSRSE.Editor
 {
     public partial class MainWindow : Window
     {
-        #region Dependency Properties
-
-
-
-        #endregion Dependency Properties
-
-        #region Properties
-
-
-
-        #endregion Properties
-
         #region Ctor
 
         public MainWindow()

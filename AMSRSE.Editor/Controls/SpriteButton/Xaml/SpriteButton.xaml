@@ -67,4 +67,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="MSRButton" TargetType="{x:Type sb:SpriteButton}" BasedOn="{StaticResource {x:Type sb:SpriteButton}}">
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="SelectedSprite" Value="{StaticResource Images.UI.MSRButton-Active}" />
+        <Setter Property="UnselectedSprite" Value="{StaticResource Images.UI.MSRButton-Normal}" />
+    </Style>
 </ResourceDictionary>

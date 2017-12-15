@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
@@ -15,22 +17,32 @@ namespace AMSRSE.Editor.Animation
         #region Dependency Properties
 
         public static readonly DependencyProperty ChildrenProperty =
-            DependencyProperty.Register("Children", typeof(StoryboardSequenceCollection<SequentialStoryboardItem>), typeof(SequentialStoryboard), new PropertyMetadata(OnChildrenPropertyChanged));
+            DependencyProperty.Register("Children", typeof(IList), typeof(SequentialStoryboard), new PropertyMetadata(OnChildrenPropertyChanged));
+
+        //public static readonly DependencyProperty ChildrenProperty =
+        //    DependencyProperty.Register("Children", typeof(StoryboardSequenceCollection<SequentialStoryboardItem>), typeof(SequentialStoryboard), new PropertyMetadata(OnChildrenPropertyChanged));
 
         #endregion Dependency Properties
 
         #region Properties
 
-        public StoryboardSequenceCollection<SequentialStoryboardItem> Children
+        public IList Children
         {
-            get { return (StoryboardSequenceCollection<SequentialStoryboardItem>)GetValue(ChildrenProperty); }
+            get { return (IList)GetValue(ChildrenProperty); }
             set { SetValue(ChildrenProperty, value); }
         }
+
+        //public StoryboardSequenceCollection<SequentialStoryboardItem> Children
+        //{
+        //    get { return (StoryboardSequenceCollection<SequentialStoryboardItem>)GetValue(ChildrenProperty); }
+        //    set { SetValue(ChildrenProperty, value); }
+        //}
 
         #endregion Properties
 
         #region Members
 
+        private ObservableCollection<SequentialStoryboardItem> _children;
         private bool _isStartOne;
 
         #endregion Members
@@ -39,7 +51,8 @@ namespace AMSRSE.Editor.Animation
 
         public SequentialStoryboardItem this[string name]
         {
-            get { return Children.First(c => c.Name == name); }
+            get { return _children.First(c => c.Name == name); }
+            //get { return Children.First(c => c.Name == name); }
         }
 
         #endregion Indexers
@@ -48,8 +61,10 @@ namespace AMSRSE.Editor.Animation
 
         public SequentialStoryboard()
         {
-            Children = new StoryboardSequenceCollection<SequentialStoryboardItem>();
-            Children.CollectionChanged += Children_CollectionChanged;
+            _children = new ObservableCollection<SequentialStoryboardItem>();
+            Children = _children;
+            //Children = new StoryboardSequenceCollection<SequentialStoryboardItem>();
+            _children.CollectionChanged += Children_CollectionChanged;
         }
 
         #endregion Ctor
@@ -81,7 +96,8 @@ namespace AMSRSE.Editor.Animation
             var nextAnimationIndex = Children.IndexOf(ssbi) + 1;
 
             if (nextAnimationIndex < Children.Count && AnimationState == AnimationStates.Animating)
-                Children[nextAnimationIndex].Start();
+                _children[nextAnimationIndex].Start();
+            //Children[nextAnimationIndex].Start();
 
             else
                 this.RaiseCompletedEvent();
@@ -106,8 +122,11 @@ namespace AMSRSE.Editor.Animation
         {
             for (int i = 0; i < Children?.Count; i++)
             {
-                Children[i].Completed -= SequentialStoryboardItem_Completed;
-                Children[i].Completed += SequentialStoryboardItem_Completed;
+                _children[i].Completed -= SequentialStoryboardItem_Completed;
+                _children[i].Completed += SequentialStoryboardItem_Completed;
+
+                //Children[i].Completed -= SequentialStoryboardItem_Completed;
+                //Children[i].Completed += SequentialStoryboardItem_Completed;
             }
         }
 
@@ -116,7 +135,8 @@ namespace AMSRSE.Editor.Animation
             if (this.AnimationState != AnimationStates.Animating)
             {
                 base.Start();
-                Children.First().Start();
+                _children.First().Start();
+                //Children.First().Start();
             }
         }
 
@@ -125,7 +145,8 @@ namespace AMSRSE.Editor.Animation
             if (this.AnimationState != AnimationStates.Animating)
             {
                 _isStartOne = true;
-                Children.First(c => c.Index == index).Start();
+                _children.First(c => c.Index == index).Start();
+                //Children.First(c => c.Index == index).Start();
             }
             //    base.StartOne(index);
 

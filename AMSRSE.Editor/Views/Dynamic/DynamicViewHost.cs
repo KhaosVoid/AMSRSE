@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
@@ -26,7 +28,10 @@ namespace AMSRSE.Editor.Views.Dynamic
         #region Dependency Properties
 
         public static readonly DependencyProperty DynamicViewsProperty =
-            DependencyProperty.Register("DynamicViews", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
+            DependencyProperty.Register("DynamicViews", typeof(IList), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
+
+        //public static readonly DependencyProperty DynamicViewsProperty =
+        //    DependencyProperty.Register("DynamicViews", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
 
         public static readonly DependencyProperty CurrentDynamicViewProperty =
             DependencyProperty.Register("CurrentDynamicView", typeof(DynamicViewBase), typeof(DynamicViewHost), new PropertyMetadata(OnCurrentDynamicViewPropertyChanged));
@@ -41,11 +46,17 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         #region Properties
 
-        public DynamicViewCollection<DynamicViewBase> DynamicViews
+        public IList DynamicViews
         {
-            get { return (DynamicViewCollection<DynamicViewBase>)GetValue(DynamicViewsProperty); }
+            get { return (IList)GetValue(DynamicViewsProperty); }
             set { SetValue(DynamicViewsProperty, value); }
         }
+
+        //public DynamicViewCollection<DynamicViewBase> DynamicViews
+        //{
+        //    get { return (DynamicViewCollection<DynamicViewBase>)GetValue(DynamicViewsProperty); }
+        //    set { SetValue(DynamicViewsProperty, value); }
+        //}
 
         public DynamicViewBase CurrentDynamicView
         {
@@ -56,6 +67,8 @@ namespace AMSRSE.Editor.Views.Dynamic
         #endregion Properties
 
         #region Members
+
+        private ObservableCollection<DynamicViewBase> _dynamicViews;
 
         private DynamicViewBase _newView;
         private NavigationDirections _newViewDirection;
@@ -68,8 +81,12 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         public DynamicViewHost()
         {
-            DynamicViews = new DynamicViewCollection<DynamicViewBase>();
-            DynamicViews.CollectionChanged += DynamicViews_CollectionChanged;
+            _dynamicViews = new ObservableCollection<DynamicViewBase>();
+            DynamicViews = _dynamicViews;
+            _dynamicViews.CollectionChanged += DynamicViews_CollectionChanged;
+
+            //DynamicViews = new DynamicViewCollection<DynamicViewBase>();
+            //DynamicViews.CollectionChanged += DynamicViews_CollectionChanged;
         }
 
         #endregion Ctor
@@ -88,8 +105,11 @@ namespace AMSRSE.Editor.Views.Dynamic
 
                 for (int i = 0; i < dvh.DynamicViews.Count; i++)
                 {
-                    dvh.DynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
-                    dvh.DynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
+                    dvh._dynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
+                    dvh._dynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
+
+                    //dvh.DynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
+                    //dvh.DynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
                 }
             }
         }

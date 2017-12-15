@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
                     xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
+                    xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
+                    xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
     <Style TargetType="{x:Type pkprfl:ProfileItem}">
         <Setter Property="Height" Value="140" />
@@ -111,14 +113,24 @@
                                                 Text="00:45:50" />
                                         </Grid>
                                     </Grid>
-                                    <ppdv:SelectedProfileActionsDV
+                                    <dv:MessageDV
+                                        Grid.Column="2" Grid.Row="1"
+                                        Style="{StaticResource MessageDVStyle}"
+                                        Message="Hello World">
+                                        <!--<dv:MessageDV.OKButton>
+                                            <sb:SpriteButton
+                                                Style="{StaticResource MSRButton}"
+                                                Text="OK" />
+                                        </dv:MessageDV.OKButton>-->
+                                    </dv:MessageDV>
+                                    <!--<ppdv:SelectedProfileActionsDV
                                         x:Name="PART_SelectedProfileActionsDV"
                                         Grid.ColumnSpan="2" Grid.Row="1"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Opacity="0"
                                         CloseProfileCommand="{TemplateBinding CloseProfileCommand}">
-                                    </ppdv:SelectedProfileActionsDV>
+                                    </ppdv:SelectedProfileActionsDV>-->
                                 </Grid>
                             </Border>
                         </Grid>

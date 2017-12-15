@@ -1,6 +1,8 @@
 ﻿using AMSRSE.Editor.Animation;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
@@ -20,7 +22,10 @@ namespace AMSRSE.Editor.Views.Dynamic
             DependencyProperty.Register("DynamicViewParent", typeof(DynamicViewBase), typeof(DynamicViewBase));
 
         public static readonly DependencyProperty ChildrenProperty =
-            DependencyProperty.Register("Children", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewBase), new PropertyMetadata(OnChildrenPropertyChanged));
+            DependencyProperty.Register("Children", typeof(IList), typeof(DynamicViewBase), new PropertyMetadata(null, OnChildrenPropertyChanged));
+
+        //public static readonly DependencyProperty ChildrenProperty =
+        //    DependencyProperty.Register("Children", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewBase), new PropertyMetadata(OnChildrenPropertyChanged));
 
         #endregion Dependency Properties
 
@@ -32,15 +37,23 @@ namespace AMSRSE.Editor.Views.Dynamic
             set { SetValue(DynamicViewParentProperty, value); }
         }
 
-        public DynamicViewCollection<DynamicViewBase> Children
+        public IList Children
         {
-            get { return (DynamicViewCollection<DynamicViewBase>)GetValue(ChildrenProperty); }
+            get { return (IList)GetValue(ChildrenProperty); }
             set { SetValue(ChildrenProperty, value); }
         }
+
+        //public DynamicViewCollection<DynamicViewBase> Children
+        //{
+        //    get { return (DynamicViewCollection<DynamicViewBase>)GetValue(ChildrenProperty); }
+        //    set { SetValue(ChildrenProperty, value); }
+        //}
 
         #endregion Properties
 
         #region Members
+
+        private ObservableCollection<DynamicViewBase> _children;
 
         protected DynamicViewHost.NavigationDirections _navigationDirection =
             DynamicViewHost.NavigationDirections.Forward;
@@ -61,8 +74,12 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         public DynamicViewBase()
         {
-            Children = new DynamicViewCollection<DynamicViewBase>();
-            Children.CollectionChanged += Children_CollectionChanged;
+            _children = new ObservableCollection<DynamicViewBase>();
+            Children = _children;
+            _children.CollectionChanged += Children_CollectionChanged;
+
+            //Children = new DynamicViewCollection<DynamicViewBase>();
+            //Children.CollectionChanged += Children_CollectionChanged;
         }
 
         #endregion Ctor
@@ -81,8 +98,11 @@ namespace AMSRSE.Editor.Views.Dynamic
 
                 for (int i = 0; i < dvb.Children.Count; i++)
                 {
-                    dvb.Children[i].OnSetAsCurrentView -= dvb.DynamicViewBase_OnSetAsCurrentView;
-                    dvb.Children[i].OnSetAsCurrentView += dvb.DynamicViewBase_OnSetAsCurrentView;
+                    dvb._children[i].OnSetAsCurrentView -= dvb.DynamicViewBase_OnSetAsCurrentView;
+                    dvb._children[i].OnSetAsCurrentView += dvb.DynamicViewBase_OnSetAsCurrentView;
+
+                    //dvb.Children[i].OnSetAsCurrentView -= dvb.DynamicViewBase_OnSetAsCurrentView;
+                    //dvb.Children[i].OnSetAsCurrentView += dvb.DynamicViewBase_OnSetAsCurrentView;
                 }
             }
         }
@@ -95,14 +115,17 @@ namespace AMSRSE.Editor.Views.Dynamic
         {
             base.OnApplyTemplate();
 
-            this.Animations["FadeOutLeft"].Completed -= FadeOut_Completed;
-            this.Animations["FadeOutLeft"].Completed += FadeOut_Completed;
+            if (this.Animations != null)
+            {
+                this.Animations["FadeOutLeft"].Completed -= FadeOut_Completed;
+                this.Animations["FadeOutLeft"].Completed += FadeOut_Completed;
 
-            this.Animations["FadeOutRight"].Completed -= FadeOut_Completed;
-            this.Animations["FadeOutRight"].Completed += FadeOut_Completed;
+                this.Animations["FadeOutRight"].Completed -= FadeOut_Completed;
+                this.Animations["FadeOutRight"].Completed += FadeOut_Completed;
+            }
         }
 
-        private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        protected void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             for (int i = 0; i < e.OldItems?.Count; i++)
             {
@@ -155,7 +178,8 @@ namespace AMSRSE.Editor.Views.Dynamic
 
             for (int i = 0; i < view.Children?.Count; i++)
             {
-                var cView = FindView(view.Children[i], name);
+                var cView = FindView(view._children[i], name);
+                //var cView = FindView(view.Children[i], name);
 
                 if (cView != null)
                     return cView;

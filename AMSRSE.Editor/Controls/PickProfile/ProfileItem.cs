@@ -90,15 +90,16 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         public override void OnApplyTemplate()
         {
-            _templatePart_SelectedProfileActionsDV = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
+            //_templatePart_SelectedProfileActionsDV = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
 
-            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed -= ProfileItem_ProfileActionsFadeOutAnimationCompleted;
-            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed += ProfileItem_ProfileActionsFadeOutAnimationCompleted;
+            
+            //_templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed -= ProfileItem_ProfileActionsFadeOutAnimationCompleted;
+            //_templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed += ProfileItem_ProfileActionsFadeOutAnimationCompleted;
 
-            _templatePart_SelectedProfileActionsDV.OnFadeOutComplete += () =>
-            {
-                OnProfileActionsFadedOut?.Invoke();
-            };
+            //_templatePart_SelectedProfileActionsDV.OnFadeOutComplete += () =>
+            //{
+            //    OnProfileActionsFadedOut?.Invoke();
+            //};
 
             base.OnApplyTemplate();
         }
@@ -120,14 +121,14 @@ namespace AMSRSE.Editor.Controls.PickProfile
         {
             //_templatePart_SelectedProfileActionsDN.FadeIn();
 
-            _templatePart_SelectedProfileActionsDV.Animations["FadeIn"].Start();
+            //_templatePart_SelectedProfileActionsDV.Animations["FadeIn"].Start();
         }
 
         public void FadeOutActions()
         {
             //_templatePart_SelectedProfileActionsDN.FadeOut();
 
-            _templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Start();
+            //_templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Start();
         }
 
         #endregion Methods

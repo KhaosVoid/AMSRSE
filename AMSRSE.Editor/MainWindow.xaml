@@ -48,25 +48,25 @@
             </Setter>
         </Style>
 
-        <Style x:Key="MSRButton" TargetType="{x:Type sb:SpriteButton}" BasedOn="{StaticResource {x:Type sb:SpriteButton}}">
+        <!--<Style x:Key="MSRButton" TargetType="{x:Type sb:SpriteButton}" BasedOn="{StaticResource {x:Type sb:SpriteButton}}">
             <Setter Property="Foreground" Value="#FFFFFFFF" />
             <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
             <Setter Property="FontSize" Value="16" />
-        </Style>
+        </Style>-->
 
-        <Style x:Key="YesNoDVStyle" TargetType="{x:Type dv:YesNoDV}" BasedOn="{StaticResource {x:Type dv:YesNoDV}}">
+        <!--<Style x:Key="YesNoDVStyle" TargetType="{x:Type dv:YesNoDV}" BasedOn="{StaticResource {x:Type dv:YesNoDV}}">
             <Setter Property="Width" Value="280" />
             <Setter Property="Foreground" Value="#FFFFFFFF" />
             <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
             <Setter Property="FontSize" Value="16" />
-        </Style>
+        </Style>-->
 
-        <Style x:Key="MessageDVStyle" TargetType="{x:Type dv:MessageDV}" BasedOn="{StaticResource {x:Type dv:MessageDV}}">
+        <!--<Style x:Key="MessageDVStyle" TargetType="{x:Type dv:MessageDV}" BasedOn="{StaticResource {x:Type dv:MessageDV}}">
             <Setter Property="Width" Value="280" />
             <Setter Property="Foreground" Value="#FFFFFFFF" />
             <Setter Property="FontFamily" Value="{StaticResource Fonts.MetroidSR-Pixel}" />
             <Setter Property="FontSize" Value="16" />
-        </Style>
+        </Style>-->
 
 
     </Window.Resources>
@@ -77,8 +77,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=pkprflView}">
+        <pkprfl:ProfilesControl />
+        <!--<dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=pkprflView}">
             <dv:MultiButtonDV x:Name="pkprflView">
                 <dv:MultiButtonDV.Buttons>
                     <nvbtn:NavButton
@@ -316,7 +316,7 @@
                     </dv:MultiButtonDV>
                 </dv:MultiButtonDV>
             </dv:MultiButtonDV>
-        </dv:DynamicViewHost>
+        </dv:DynamicViewHost>-->
         <!--<ItemsControl x:Name="slidingButtons" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnControls" Content="Controls" />
             <Button x:Name="btnGallery" Content="Gallery" />
