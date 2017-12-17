@@ -12,10 +12,14 @@ using System.Windows.Input;
 
 namespace AMSRSE.Editor.Controls.PickProfile
 {
+    [TemplatePart(Name = PART_ProfileMetadata, Type = typeof(Grid))]
     [TemplatePart(Name = PART_SelectedProfileActionsDV, Type = typeof(SelectedProfileActionsDV))]
     public class ProfileItem : AnimatedControl
     {
         #region Template Parts
+
+        private const string PART_ProfileMetadata = "PART_ProfileMetadata";
+        private Grid _templatePart_ProfileMetadata;
 
         private const string PART_SelectedProfileActionsDV = "PART_SelectedProfileActionsDV";
         private SelectedProfileActionsDV _templatePart_SelectedProfileActionsDV;
@@ -90,6 +94,9 @@ namespace AMSRSE.Editor.Controls.PickProfile
 
         public override void OnApplyTemplate()
         {
+            _templatePart_ProfileMetadata = this.GetTemplateChild(PART_ProfileMetadata) as Grid;
+            _templatePart_ProfileMetadata.MouseDown += _templatePart_ProfileMetadata_MouseDown;
+
             //_templatePart_SelectedProfileActionsDV = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
 
             
@@ -104,23 +111,28 @@ namespace AMSRSE.Editor.Controls.PickProfile
             base.OnApplyTemplate();
         }
 
+        private void _templatePart_ProfileMetadata_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!IsSelected)
+                IsSelected = true;
+        }
+
         private void ProfileItem_ProfileActionsFadeOutAnimationCompleted(SequentialStoryboardItem ssbi)
         {
             OnProfileActionsFadedOut?.Invoke();
         }
 
-        protected override void OnMouseDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseDown(e);
+        //protected override void OnMouseDown(MouseButtonEventArgs e)
+        //{
+        //    base.OnMouseDown(e);
 
-            if (!IsSelected)
-                IsSelected = true;
-        }
+        //    if (!IsSelected)
+        //        IsSelected = true;
+        //}
 
         public void FadeInActions()
         {
             //_templatePart_SelectedProfileActionsDN.FadeIn();
-
             //_templatePart_SelectedProfileActionsDV.Animations["FadeIn"].Start();
         }
 

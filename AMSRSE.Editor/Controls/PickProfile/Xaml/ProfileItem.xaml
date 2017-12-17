@@ -4,8 +4,9 @@
                     xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
                     xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
                     xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
+                    xmlns:nvbtn="clr-namespace:AMSRSE.Editor.Controls.NavButton"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
-    <Style TargetType="{x:Type pkprfl:ProfileItem}">
+    <Style TargetType="{x:Type pkprfl:ProfileItem}" x:Shared="False">
         <Setter Property="Height" Value="140" />
         <Setter Property="Template">
             <Setter.Value>
@@ -29,28 +30,30 @@
                             </Border>
                             <Border Grid.Column="1" BorderThickness="4" BorderBrush="#FF00A0FF">
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="64" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="114" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock
-                                        Foreground="#FF00A0FF"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontFamily="{StaticResource Fonts.MetroidSR-Pixel}"
-                                        FontSize="32"
-                                        Text="{TemplateBinding FileName}" />
-                                    <Grid Grid.Column="1">
+
+                                    <Grid x:Name="PART_ProfileMetadata" Background="#FF000000">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="64" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-
-                                        <Grid VerticalAlignment="Center">
+                                        <TextBlock
+                                            Grid.RowSpan="2"
+                                            Foreground="#FF00A0FF"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontFamily="{StaticResource Fonts.MetroidSR-Pixel}"
+                                            FontSize="32"
+                                            Text="{TemplateBinding FileName}" />
+                                            
+                                        <Grid Grid.Column="1" VerticalAlignment="Center">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="*" />
@@ -86,7 +89,7 @@
                                                 FontSize="32"
                                                 Text="[M]44" />
                                         </Grid>
-                                        <Grid Grid.Row="1" VerticalAlignment="Center">
+                                        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
@@ -113,25 +116,191 @@
                                                 Text="00:45:50" />
                                         </Grid>
                                     </Grid>
-                                    <dv:MessageDV
-                                        Grid.Column="2" Grid.Row="1"
-                                        Style="{StaticResource MessageDVStyle}"
-                                        Message="Hello World">
-                                        <!--<dv:MessageDV.OKButton>
-                                            <sb:SpriteButton
-                                                Style="{StaticResource MSRButton}"
-                                                Text="OK" />
-                                        </dv:MessageDV.OKButton>-->
-                                    </dv:MessageDV>
-                                    <!--<ppdv:SelectedProfileActionsDV
-                                        x:Name="PART_SelectedProfileActionsDV"
-                                        Grid.ColumnSpan="2" Grid.Row="1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Opacity="0"
-                                        CloseProfileCommand="{TemplateBinding CloseProfileCommand}">
-                                    </ppdv:SelectedProfileActionsDV>-->
+
+                                    <dv:DynamicViewHost
+                                        Grid.Row="1"
+                                        CurrentDynamicViewName="pkprflDecisionView">
+                                        <dv:MultiButtonDV x:Name="pkprflDecisionView">
+                                            <dv:MultiButtonDV.Buttons>
+                                                <nvbtn:NavButton
+                                                    Style="{DynamicResource MSRButton}"
+                                                    Text="Edit Profile" />
+                                                <nvbtn:NavButton
+                                                    Style="{DynamicResource MSRButton}"
+                                                    Text="New Game"
+                                                    dv:DynamicViewHost.NavigateTo="newGameWarningView"
+                                                    dv:DynamicViewHost.NavigationDirection="Forward"/>
+                                                <nvbtn:NavButton
+                                                    Style="{DynamicResource MSRButton}"
+                                                    Text="Options"
+                                                    dv:DynamicViewHost.NavigateTo="optionsView"
+                                                    dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                <sb:SpriteButton
+                                                    Style="{DynamicResource MSRButton}"
+                                                    Command="{TemplateBinding CloseProfileCommand}"
+                                                    Text="Back" />
+                                            </dv:MultiButtonDV.Buttons>
+
+                                            <dv:MessageDV
+                                                x:Name="newGameWarningView" Style="{DynamicResource MessageDVStyle}"
+                                                Message="Starting a new game will cause you to lose all of your current progress. All unlocked features and Options settings will remain.">
+                                                <dv:MessageDV.OKButton>
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="OK"
+                                                        dv:DynamicViewHost.NavigateTo="newGameYNView"
+                                                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                </dv:MessageDV.OKButton>
+                                            </dv:MessageDV>
+
+                                            <dv:YesNoDV x:Name="newGameYNView" Style="{DynamicResource YesNoDVStyle}" Message="Start a new game?">
+                                                <dv:YesNoDV.YesButton>
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="Yes"
+                                                        dv:DynamicViewHost.NavigateTo="gameModeSelectView"
+                                                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                </dv:YesNoDV.YesButton>
+                                                <dv:YesNoDV.NoButton>
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="No"
+                                                        dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                                                        dv:DynamicViewHost.NavigationDirection="Backward" />
+                                                </dv:YesNoDV.NoButton>
+
+                                                <dv:MultiButtonDV x:Name="gameModeSelectView">
+                                                    <dv:MultiButtonDV.Buttons>
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Normal"
+                                                            dv:DynamicViewHost.NavigateTo="confirmNewGameView"
+                                                            dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Hard"
+                                                            dv:DynamicViewHost.NavigateTo="newHardGameWarningView"
+                                                            dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Fusion"
+                                                            dv:DynamicViewHost.NavigateTo="newFusionGameWarningView"
+                                                            dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Back"
+                                                            dv:DynamicViewHost.NavigateTo="newGameYNView"
+                                                            dv:DynamicViewHost.NavigationDirection="Backward" />
+                                                    </dv:MultiButtonDV.Buttons>
+
+                                                    <dv:MessageDV 
+                                                        x:Name="newHardGameWarningView"
+                                                        Style="{DynamicResource MessageDVStyle}"
+                                                        Message="In Hard mode, enemies are more powerful.">
+                                                        <dv:MessageDV.OKButton>
+                                                            <nvbtn:NavButton
+                                                                Style="{DynamicResource MSRButton}"
+                                                                Text="OK"
+                                                                dv:DynamicViewHost.NavigateTo="confirmNewGameView"
+                                                                dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                        </dv:MessageDV.OKButton>
+                                                    </dv:MessageDV>
+
+                                                    <dv:MessageDV
+                                                        x:Name="newFusionGameWarningView"
+                                                        Style="{DynamicResource MessageDVStyle}"
+                                                        Message="In Fusion mode, enemies are even more powerful, and you can play as Fusion Suit Samus.">
+                                                        <dv:MessageDV.OKButton>
+                                                            <nvbtn:NavButton
+                                                                Style="{DynamicResource MSRButton}"
+                                                                Text="OK"
+                                                                dv:DynamicViewHost.NavigateTo="confirmNewGameView"
+                                                                dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                        </dv:MessageDV.OKButton>
+                                                    </dv:MessageDV>
+
+                                                    <dv:YesNoDV
+                                                        x:Name="confirmNewGameView"
+                                                        Style="{DynamicResource YesNoDVStyle}"
+                                                        Message="Current data will be erased. Start a new game in #S.MODE# mode?">
+                                                        <dv:YesNoDV.YesButton>
+                                                            <nvbtn:NavButton
+                                                                Style="{DynamicResource MSRButton}"
+                                                                Text="Yes"
+                                                                dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                                                                dv:DynamicViewHost.NavigationDirection="Backward" />
+                                                        </dv:YesNoDV.YesButton>
+                                                        <dv:YesNoDV.NoButton>
+                                                            <nvbtn:NavButton
+                                                                Style="{DynamicResource MSRButton}"
+                                                                Text="No"
+                                                                dv:DynamicViewHost.NavigateTo="gameModeSelectView"
+                                                                dv:DynamicViewHost.NavigationDirection="Backward" />
+                                                        </dv:YesNoDV.NoButton>
+                                                    </dv:YesNoDV>
+                                                </dv:MultiButtonDV>
+                                            </dv:YesNoDV>
+                                            <dv:MultiButtonDV x:Name="optionsView">
+                                                <dv:MultiButtonDV.Buttons>
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="Controls" />
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="Gallery"
+                                                        dv:DynamicViewHost.NavigateTo="galleryOptionsView"
+                                                        dv:DynamicViewHost.NavigationDirection="Forward" />
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="amiibo" />
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="Staff Credits" />
+                                                    <nvbtn:NavButton
+                                                        Style="{DynamicResource MSRButton}"
+                                                        Text="Back"
+                                                        dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
+                                                        dv:DynamicViewHost.NavigationDirection="Backward" />
+                                                </dv:MultiButtonDV.Buttons>
+
+                                                <dv:MultiButtonDV x:Name="galleryOptionsView">
+                                                    <dv:MultiButtonDV.Buttons>
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Unlock Chozo Memories" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Unlock Metroid II Art" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Unlock Concept Art" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Unlock Music" />
+                                                        <nvbtn:NavButton
+                                                            Style="{DynamicResource MSRButton}"
+                                                            Text="Back"
+                                                            dv:DynamicViewHost.NavigateTo="optionsView"
+                                                            dv:DynamicViewHost.NavigationDirection="Backward" />
+                                                    </dv:MultiButtonDV.Buttons>
+                                                </dv:MultiButtonDV>
+                                            </dv:MultiButtonDV>
+                                        </dv:MultiButtonDV>
+                                    </dv:DynamicViewHost>
                                 </Grid>
+
+                                <!--<dv:DynamicViewHost Grid.Column="2" Grid.Row="1">
+                                        
+                                </dv:DynamicViewHost>-->
+
+                                <!--<ppdv:SelectedProfileActionsDV
+                                    x:Name="PART_SelectedProfileActionsDV"
+                                    Grid.ColumnSpan="2" Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Opacity="0"
+                                    CloseProfileCommand="{TemplateBinding CloseProfileCommand}">
+                                </ppdv:SelectedProfileActionsDV>-->
                             </Border>
                         </Grid>
                     </Border>

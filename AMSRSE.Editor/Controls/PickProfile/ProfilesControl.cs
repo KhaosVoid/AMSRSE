@@ -123,6 +123,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem1.Visibility = Visibility.Visible;
                 _templatePart_ProfileItem2.Visibility = Visibility.Visible;
 
+                _retractProfile0.Start();
                 //_profile0RetractProfileStoryboard.Begin();
             });
 
@@ -134,6 +135,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem0.Visibility = Visibility.Visible;
                 _templatePart_ProfileItem2.Visibility = Visibility.Visible;
 
+                _retractProfile1.Start();
                 //_profile1RetractProfileStoryboard.Begin();
             });
 
@@ -145,6 +147,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
                 _templatePart_ProfileItem0.Visibility = Visibility.Visible;
                 _templatePart_ProfileItem1.Visibility = Visibility.Visible;
 
+                _retractProfile2.Start();
                 //_profile2RetractProfileStoryboard.Begin();
             });
         }

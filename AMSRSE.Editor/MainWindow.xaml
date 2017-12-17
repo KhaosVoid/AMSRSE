@@ -78,7 +78,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <pkprfl:ProfilesControl />
-        <!--<dv:DynamicViewHost CurrentDynamicView="{Binding ElementName=pkprflView}">
+        <!--<dv:DynamicViewHost CurrentDynamicViewName="pkprflView">
             <dv:MultiButtonDV x:Name="pkprflView">
                 <dv:MultiButtonDV.Buttons>
                     <nvbtn:NavButton

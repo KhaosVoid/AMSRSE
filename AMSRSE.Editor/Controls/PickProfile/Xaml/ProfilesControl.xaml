@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
-    <Style TargetType="{x:Type pkprfl:ProfilesControl}">
+    <Style TargetType="{x:Type pkprfl:ProfilesControl}" x:Shared="False">
         <Style.Resources>
             <ThicknessAnimation
                 x:Key="ANIM_ProfileSwipeLeft"
