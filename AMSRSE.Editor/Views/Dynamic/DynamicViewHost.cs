@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AMSRSE.Editor.Animation;
+using AMSRSE.Editor.Collections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +15,7 @@ using System.Windows.Markup;
 namespace AMSRSE.Editor.Views.Dynamic
 {
     [ContentProperty("DynamicViews")]
-    public class DynamicViewHost : Control
+    public class DynamicViewHost : AnimatedControl
     {
         #region Enums
 
@@ -28,7 +30,7 @@ namespace AMSRSE.Editor.Views.Dynamic
         #region Dependency Properties
 
         public static readonly DependencyProperty DynamicViewsProperty =
-            DependencyProperty.Register("DynamicViews", typeof(IList), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
+            DependencyProperty.Register("DynamicViews", typeof(XamlSafeObservableCollection<DynamicViewBase>), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
 
         //public static readonly DependencyProperty DynamicViewsProperty =
         //    DependencyProperty.Register("DynamicViews", typeof(DynamicViewCollection<DynamicViewBase>), typeof(DynamicViewHost), new PropertyMetadata(OnDynamicViewsPropertyChanged));
@@ -52,9 +54,9 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         #region Properties
 
-        public IList DynamicViews
+        public XamlSafeObservableCollection<DynamicViewBase> DynamicViews
         {
-            get { return (IList)GetValue(DynamicViewsProperty); }
+            get { return (XamlSafeObservableCollection<DynamicViewBase>)GetValue(DynamicViewsProperty); }
             set { SetValue(DynamicViewsProperty, value); }
         }
 
@@ -80,8 +82,6 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         #region Members
 
-        private ObservableCollection<DynamicViewBase> _dynamicViews;
-
         private DynamicViewBase _newView;
         private NavigationDirections _newViewDirection;
 
@@ -93,9 +93,10 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         public DynamicViewHost()
         {
-            _dynamicViews = new ObservableCollection<DynamicViewBase>();
-            DynamicViews = _dynamicViews;
-            _dynamicViews.CollectionChanged += DynamicViews_CollectionChanged;
+            //_dynamicViews = new ObservableCollection<DynamicViewBase>();
+            //DynamicViews = _dynamicViews;
+            DynamicViews = new XamlSafeObservableCollection<DynamicViewBase>();
+            DynamicViews.CollectionChanged += DynamicViews_CollectionChanged;
 
             //DynamicViews = new DynamicViewCollection<DynamicViewBase>();
             //DynamicViews.CollectionChanged += DynamicViews_CollectionChanged;
@@ -117,8 +118,8 @@ namespace AMSRSE.Editor.Views.Dynamic
 
                 for (int i = 0; i < dvh.DynamicViews.Count; i++)
                 {
-                    dvh._dynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
-                    dvh._dynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
+                    dvh.DynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
+                    dvh.DynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
 
                     //dvh.DynamicViews[i].OnSetAsCurrentView -= dvh.DynamicViewHost_OnSetAsCurrentView;
                     //dvh.DynamicViews[i].OnSetAsCurrentView += dvh.DynamicViewHost_OnSetAsCurrentView;
@@ -130,9 +131,9 @@ namespace AMSRSE.Editor.Views.Dynamic
         {
             if (d is DynamicViewHost dvh)
             {
-                for (int i = 0; i < dvh._dynamicViews.Count; i++)
+                for (int i = 0; i < dvh.DynamicViews.Count; i++)
                 {
-                    var view = dvh._dynamicViews[i].GetView(dvh.CurrentDynamicViewName);
+                    var view = dvh.DynamicViews[i].GetView(dvh.CurrentDynamicViewName);
 
                     if (view != null)
                         dvh.CurrentDynamicView = view;
@@ -178,9 +179,9 @@ namespace AMSRSE.Editor.Views.Dynamic
         {
             base.OnApplyTemplate();
 
-            for (int i = 0; i < _dynamicViews.Count; i++)
+            for (int i = 0; i < DynamicViews.Count; i++)
             {
-                var view = _dynamicViews[i].GetView(CurrentDynamicViewName);
+                var view = DynamicViews[i].GetView(CurrentDynamicViewName);
 
                 if (view != null)
                 {

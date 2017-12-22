@@ -8,6 +8,7 @@
 
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Fonts/Fonts.xaml" />
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Images/Images.xaml" />
+                <ResourceDictionary Source="/AMSRSE.Editor;component/Animation/Xaml/Animation.xaml" />
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Views/BaseViews.xaml" />
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Views.xaml" />
                 <ResourceDictionary Source="/AMSRSE.Editor;component/Controls/Controls.xaml" />

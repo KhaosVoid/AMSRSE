@@ -1,6 +1,6 @@
 ﻿using AMSRSE.Editor.Animation;
 using AMSRSE.Editor.Commands;
-using AMSRSE.Editor.Views.Dynamic.PickProfile;
+using AMSRSE.Editor.Views.Dynamic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using System.Windows.Input;
 namespace AMSRSE.Editor.Controls.PickProfile
 {
     [TemplatePart(Name = PART_ProfileMetadata, Type = typeof(Grid))]
-    [TemplatePart(Name = PART_SelectedProfileActionsDV, Type = typeof(SelectedProfileActionsDV))]
+    [TemplatePart(Name = PART_PkprflDecisionView, Type = typeof(DynamicViewHost))]
     public class ProfileItem : AnimatedControl
     {
         #region Template Parts
@@ -21,8 +21,8 @@ namespace AMSRSE.Editor.Controls.PickProfile
         private const string PART_ProfileMetadata = "PART_ProfileMetadata";
         private Grid _templatePart_ProfileMetadata;
 
-        private const string PART_SelectedProfileActionsDV = "PART_SelectedProfileActionsDV";
-        private SelectedProfileActionsDV _templatePart_SelectedProfileActionsDV;
+        private const string PART_PkprflDecisionView = "PART_PkprflDecisionView";
+        private DynamicViewHost _templatePart_PkprflDecisionView;
 
         #endregion Template Parts
 
@@ -95,18 +95,10 @@ namespace AMSRSE.Editor.Controls.PickProfile
         public override void OnApplyTemplate()
         {
             _templatePart_ProfileMetadata = this.GetTemplateChild(PART_ProfileMetadata) as Grid;
+            _templatePart_PkprflDecisionView = this.GetTemplateChild(PART_PkprflDecisionView) as DynamicViewHost;
+
             _templatePart_ProfileMetadata.MouseDown += _templatePart_ProfileMetadata_MouseDown;
-
-            //_templatePart_SelectedProfileActionsDV = this.GetTemplateChild(PART_SelectedProfileActionsDV) as SelectedProfileActionsDV;
-
-            
-            //_templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed -= ProfileItem_ProfileActionsFadeOutAnimationCompleted;
-            //_templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Completed += ProfileItem_ProfileActionsFadeOutAnimationCompleted;
-
-            //_templatePart_SelectedProfileActionsDV.OnFadeOutComplete += () =>
-            //{
-            //    OnProfileActionsFadedOut?.Invoke();
-            //};
+            _templatePart_PkprflDecisionView.Opacity = 0;
 
             base.OnApplyTemplate();
         }
@@ -122,22 +114,22 @@ namespace AMSRSE.Editor.Controls.PickProfile
             OnProfileActionsFadedOut?.Invoke();
         }
 
-        //protected override void OnMouseDown(MouseButtonEventArgs e)
-        //{
-        //    base.OnMouseDown(e);
-
-        //    if (!IsSelected)
-        //        IsSelected = true;
-        //}
-
         public void FadeInActions()
         {
+            _templatePart_PkprflDecisionView.Animations["FadeIn"].Completed += (ssbi) =>
+            {
+                var test1 = this;
+                var test2 = _templatePart_PkprflDecisionView;
+            };
+
+            _templatePart_PkprflDecisionView.Animations["FadeIn"].Start();
             //_templatePart_SelectedProfileActionsDN.FadeIn();
             //_templatePart_SelectedProfileActionsDV.Animations["FadeIn"].Start();
         }
 
         public void FadeOutActions()
         {
+            _templatePart_PkprflDecisionView.Animations["FadeOut"].Start();
             //_templatePart_SelectedProfileActionsDN.FadeOut();
 
             //_templatePart_SelectedProfileActionsDV.Animations["FadeOut"].Start();

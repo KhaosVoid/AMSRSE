@@ -7,6 +7,6 @@
         <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/Xaml/MultiButtonDV.xaml" />
         <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/Xaml/YesNoDV.xaml" />
         <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/Xaml/MessageDV.xaml" />
-        <ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/PickProfile/Xaml/SelectedProfileActionsDV.xaml" />
+        <!--<ResourceDictionary Source="/AMSRSE.Editor;component/Views/Dynamic/PickProfile/Xaml/SelectedProfileActionsDV.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

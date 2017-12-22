@@ -6,7 +6,8 @@
                     xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
                     xmlns:nvbtn="clr-namespace:AMSRSE.Editor.Controls.NavButton"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
-    <Style TargetType="{x:Type pkprfl:ProfileItem}" x:Shared="False">
+    <Style TargetType="{x:Type pkprfl:ProfileItem}">
+        <Setter Property="Animations" Value="{StaticResource Animations.Common}" />
         <Setter Property="Height" Value="140" />
         <Setter Property="Template">
             <Setter.Value>
@@ -118,6 +119,7 @@
                                     </Grid>
 
                                     <dv:DynamicViewHost
+                                        x:Name="PART_PkprflDecisionView"
                                         Grid.Row="1"
                                         CurrentDynamicViewName="pkprflDecisionView">
                                         <dv:MultiButtonDV x:Name="pkprflDecisionView">

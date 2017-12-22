@@ -55,18 +55,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Animation\AnimatedControl.cs" />
+    <Compile Include="Animation\AnimationSet.cs" />
+    <Compile Include="Animation\AnimationSetCollection.cs" />
+    <Compile Include="Animation\AnimationTemplate.cs" />
+    <Compile Include="Animation\AnimationTemplateExtension.cs" />
     <Compile Include="Animation\SequentialStoryboard.cs" />
     <Compile Include="Animation\SequentialStoryboardItem.cs" />
     <Compile Include="Animation\StoryboardSequence.cs" />
     <Compile Include="Animation\StoryboardSequenceCollection.cs" />
+    <Compile Include="Animation\TemplatedAnimation.cs" />
+    <Compile Include="Collections\XamlSafeCollection.cs" />
+    <Compile Include="Collections\XamlSafeObservableCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\NavButton\NavButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
     <Compile Include="Views\Dynamic\MessageDV.cs" />
     <Compile Include="Views\Dynamic\MultiButtonDV.cs" />
-    <Compile Include="Views\Dynamic\PickProfile\SelectedProfileActionsDV.cs" />
     <Compile Include="Views\Dynamic\YesNoDV.cs" />
+    <Page Include="Animation\Xaml\Animation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,10 +132,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\BaseViews.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dynamic\PickProfile\Xaml\SelectedProfileActionsDV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

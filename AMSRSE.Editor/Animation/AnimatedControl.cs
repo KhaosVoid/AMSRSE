@@ -37,12 +37,6 @@ namespace AMSRSE.Editor.Animation
 
         #endregion Ctor
 
-        #region Members
-
-        private static AnimatedControl testAnim;
-
-        #endregion Members
-
         #region Methods
 
         public override void OnApplyTemplate()

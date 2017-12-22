@@ -1,0 +1,308 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
+
+    <!--#region Common Animations-->
+    <anim:AnimationTemplate x:Key="Animations.Common.Templates.SwipeInLeft">
+        <Setter Property="Storyboard.TargetProperty" Value="Margin" />
+        <Setter Property="ThicknessAnimation.From" Value="-64,0,0,0" />
+        <Setter Property="ThicknessAnimation.To" Value="0,0,0,0" />
+    </anim:AnimationTemplate>
+
+    <anim:AnimationTemplate x:Key="Animations.Common.Templates.SwipeOutLeft">
+        <Setter Property="Storyboard.TargetProperty" Value="Margin" />
+        <Setter Property="ThicknessAnimation.From" Value="0,0,0,0" />
+        <Setter Property="ThicknessAnimation.To" Value="-64,0,0,0" />
+    </anim:AnimationTemplate>
+
+    <anim:AnimationTemplate x:Key="Animations.Common.Templates.SwipeInRight">
+        <Setter Property="Storyboard.TargetProperty" Value="Margin" />
+        <Setter Property="ThicknessAnimation.From" Value="64,0,0,0" />
+        <Setter Property="ThicknessAnimation.To" Value="0,0,0,0" />
+    </anim:AnimationTemplate>
+
+    <anim:AnimationTemplate x:Key="Animations.Common.Templates.SwipeOutRight">
+        <Setter Property="Storyboard.TargetProperty" Value="Margin" />
+        <Setter Property="ThicknessAnimation.From" Value="0,0,0,0" />
+        <Setter Property="ThicknessAnimation.To" Value="64,0,0,0" />
+    </anim:AnimationTemplate>
+
+    <anim:AnimationTemplate x:Key="Animations.Common.Templates.FadeIn">
+        <Setter Property="Storyboard.TargetProperty" Value="Opacity" />
+        <Setter Property="DoubleAnimation.From" Value="0" />
+        <Setter Property="DoubleAnimation.To" Value="1" />
+    </anim:AnimationTemplate>
+
+    <anim:AnimationTemplate x:Key="Animations.Common.Templates.FadeOut">
+        <Setter Property="Storyboard.TargetProperty" Value="Opacity" />
+        <Setter Property="DoubleAnimation.From" Value="1" />
+        <Setter Property="DoubleAnimation.To" Value="0" />
+    </anim:AnimationTemplate>
+    <!--#endregion Common Animations-->
+
+    <!--#region Pick Profile Animations-->
+    <anim:AnimationTemplate x:Key="Animations.PickProfile.Templates.Profile.Expand">
+        <Setter Property="Storyboard.TargetProperty" Value="Height" />
+        <Setter Property="DoubleAnimation.From" Value="140" />
+        <Setter Property="DoubleAnimation.To" Value="420" />
+    </anim:AnimationTemplate>
+    
+    <anim:AnimationTemplate x:Key="Animations.PickProfile.Templates.Profile.Collapse">
+        <Setter Property="Storyboard.TargetProperty" Value="Height" />
+        <Setter Property="DoubleAnimation.From" Value="140" />
+        <Setter Property="DoubleAnimation.To" Value="0" />
+    </anim:AnimationTemplate>
+    
+    <anim:AnimationTemplate x:Key="Animations.PickProfile.Templates.Profile.Restore">
+        <Setter Property="Storyboard.TargetProperty" Value="Height" />
+        <Setter Property="DoubleAnimation.To" Value="140" />
+    </anim:AnimationTemplate>
+    <!--#endregion Pick Profile Animations-->
+
+    
+    <anim:SequentialStoryboard x:Key="Animations.Common">
+        <anim:StoryboardSequence Name="FadeIn">
+            <Storyboard SpeedRatio="4">
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeInLeft">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeInRight">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInRight}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeOut">
+            <Storyboard SpeedRatio="4">
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeOutLeft">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeOutRight">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutRight}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+    </anim:SequentialStoryboard>
+    
+    <anim:SequentialStoryboard x:Key="Animations.PickProfile.ProfilesControl">
+        <anim:SequentialStoryboard Name="ExpandProfile0">
+            <anim:StoryboardSequence Name="HideProfiles1-2" Index="0">
+                <Storyboard SpeedRatio="4">
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+            <anim:StoryboardSequence Name="ExpandProfile0" Index="1">
+                <Storyboard SpeedRatio="4">
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Expand}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+        </anim:SequentialStoryboard>
+        <anim:SequentialStoryboard Name="RetractProfile0">
+            <anim:StoryboardSequence Name="RestoreProfiles" Index="0">
+                <Storyboard SpeedRatio="4">
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+            <anim:StoryboardSequence Name="ShowProfiles1-2" Index="1">
+                <Storyboard SpeedRatio="4">
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+        </anim:SequentialStoryboard>
+        <anim:SequentialStoryboard Name="ExpandProfile1">
+            <anim:StoryboardSequence Name="HideProfiles0-2" Index="0">
+                <Storyboard SpeedRatio="4">
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+            <anim:StoryboardSequence Name="ExpandProfile1" Index="1">
+                <Storyboard SpeedRatio="4">
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Expand}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+        </anim:SequentialStoryboard>
+        <anim:SequentialStoryboard Name="RetractProfile1">
+            <anim:StoryboardSequence Name="RestoreProfiles" Index="0">
+                <Storyboard SpeedRatio="4">
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+            <anim:StoryboardSequence Name="ShowProfiles0-2" Index="1">
+                <Storyboard SpeedRatio="4">
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+        </anim:SequentialStoryboard>
+        <anim:SequentialStoryboard Name="ExpandProfile2">
+            <anim:StoryboardSequence Name="HideProfiles0-1" Index="0">
+                <Storyboard SpeedRatio="4">
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+            <anim:StoryboardSequence Name="ExpandProfile1" Index="1">
+                <Storyboard SpeedRatio="4">
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Expand}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+        </anim:SequentialStoryboard>
+        <anim:SequentialStoryboard Name="RetractProfile1">
+            <anim:StoryboardSequence Name="RestoreProfiles" Index="0">
+                <Storyboard SpeedRatio="4">
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Restore}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem2" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+            <anim:StoryboardSequence Name="ShowProfiles0-2" Index="1">
+                <Storyboard SpeedRatio="4">
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem0" />
+                    <ThicknessAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                    <DoubleAnimation
+                        anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                        anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
+                </Storyboard>
+            </anim:StoryboardSequence>
+        </anim:SequentialStoryboard>
+    </anim:SequentialStoryboard>
+</ResourceDictionary>

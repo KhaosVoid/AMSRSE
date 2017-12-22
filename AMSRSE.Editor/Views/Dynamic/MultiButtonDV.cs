@@ -1,4 +1,5 @@
 ﻿using AMSRSE.Editor.Animation;
+using AMSRSE.Editor.Collections;
 using AMSRSE.Editor.Controls.SpriteButton;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ namespace AMSRSE.Editor.Views.Dynamic
         #region Dependency Properties
 
         public static readonly DependencyProperty ButtonsProperty =
-            DependencyProperty.Register("Buttons", typeof(IList), typeof(MultiButtonDV), new PropertyMetadata(OnButtonsPropertyChanged));
+            DependencyProperty.Register("Buttons", typeof(XamlSafeObservableCollection<SpriteButton>), typeof(MultiButtonDV), new PropertyMetadata(OnButtonsPropertyChanged));
 
         //public static readonly DependencyProperty ButtonsProperty =
         //    DependencyProperty.Register("Buttons", typeof(SpriteButtonCollection<SpriteButton>), typeof(MultiButtonDV), new PropertyMetadata(OnButtonsPropertyChanged));
@@ -25,9 +26,9 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         #region Properties
 
-        public IList Buttons
+        public XamlSafeObservableCollection<SpriteButton> Buttons
         {
-            get { return (IList)GetValue(ButtonsProperty); }
+            get { return (XamlSafeObservableCollection<SpriteButton>)GetValue(ButtonsProperty); }
             set { SetValue(ButtonsProperty, value); }
         }
 
@@ -39,18 +40,13 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         #endregion Properties
 
-        #region Members
-
-        private ObservableCollection<SpriteButton> _buttons;
-
-        #endregion Members
-
         #region Ctor
 
         public MultiButtonDV()
         {
-            _buttons = new ObservableCollection<SpriteButton>();
-            Buttons = _buttons;
+            //_buttons = new ObservableCollection<SpriteButton>();
+            //Buttons = _buttons;
+            Buttons = new XamlSafeObservableCollection<SpriteButton>();
             //Buttons = new SpriteButtonCollection<SpriteButton>();
             this.Loaded += (sender, e) => { FadeIn(); };
         }
@@ -106,13 +102,13 @@ namespace AMSRSE.Editor.Views.Dynamic
         {
             for (int i = 0; i < Buttons?.Count; i++)
             {
-                if (DynamicViewHost.GetNavigateTo(_buttons[i]) is string ntstr &&
-                    DynamicViewHost.GetNavigationDirection(_buttons[i]) is DynamicViewHost.NavigationDirections nd)
+                if (DynamicViewHost.GetNavigateTo(Buttons[i]) is string ntstr &&
+                    DynamicViewHost.GetNavigationDirection(Buttons[i]) is DynamicViewHost.NavigationDirections nd)
                 //if (DynamicViewHost.GetNavigateTo(Buttons[i]) is string ntstr &&
                 //    DynamicViewHost.GetNavigationDirection(Buttons[i]) is DynamicViewHost.NavigationDirections nd)
                 {
-                    _buttons[i].Clicked -= MultiButtonDV_Clicked;
-                    _buttons[i].Clicked += MultiButtonDV_Clicked;
+                    Buttons[i].Clicked -= MultiButtonDV_Clicked;
+                    Buttons[i].Clicked += MultiButtonDV_Clicked;
                     //Buttons[i].Clicked -= MultiButtonDV_Clicked;
                     //Buttons[i].Clicked += MultiButtonDV_Clicked;
                 }
