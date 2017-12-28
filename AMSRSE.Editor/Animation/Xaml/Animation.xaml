@@ -60,7 +60,7 @@
     <!--#endregion Pick Profile Animations-->
 
     
-    <anim:SequentialStoryboard x:Key="Animations.Common">
+    <anim:SequentialStoryboard x:Key="Animations.Common" x:Shared="False">
         <anim:StoryboardSequence Name="FadeIn">
             <Storyboard SpeedRatio="4">
                 <DoubleAnimation
@@ -117,7 +117,7 @@
         </anim:StoryboardSequence>
     </anim:SequentialStoryboard>
     
-    <anim:SequentialStoryboard x:Key="Animations.PickProfile.ProfilesControl">
+    <anim:SequentialStoryboard x:Key="Animations.PickProfile.ProfilesControl" x:Shared="False">
         <anim:SequentialStoryboard Name="ExpandProfile0">
             <anim:StoryboardSequence Name="HideProfiles1-2" Index="0">
                 <Storyboard SpeedRatio="4">
@@ -259,7 +259,7 @@
                         anim:StoryboardSequence.AnimationTargetName="PART_ProfileItem1" />
                 </Storyboard>
             </anim:StoryboardSequence>
-            <anim:StoryboardSequence Name="ExpandProfile1" Index="1">
+            <anim:StoryboardSequence Name="ExpandProfile2" Index="1">
                 <Storyboard SpeedRatio="4">
                     <DoubleAnimation
                         anim:AnimationTemplate.Template="{StaticResource Animations.PickProfile.Templates.Profile.Collapse}"
@@ -273,7 +273,7 @@
                 </Storyboard>
             </anim:StoryboardSequence>
         </anim:SequentialStoryboard>
-        <anim:SequentialStoryboard Name="RetractProfile1">
+        <anim:SequentialStoryboard Name="RetractProfile2">
             <anim:StoryboardSequence Name="RestoreProfiles" Index="0">
                 <Storyboard SpeedRatio="4">
                     <DoubleAnimation

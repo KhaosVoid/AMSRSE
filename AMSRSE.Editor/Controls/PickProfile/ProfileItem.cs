@@ -120,6 +120,7 @@ namespace AMSRSE.Editor.Controls.PickProfile
             {
                 var test1 = this;
                 var test2 = _templatePart_PkprflDecisionView;
+                var test3 = System.Windows.Media.Animation.Storyboard.GetTarget(((StoryboardSequence)ssbi).Storyboard.Children[0]);
             };
 
             _templatePart_PkprflDecisionView.Animations["FadeIn"].Start();
