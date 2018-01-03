@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AMSRSE.Editor"
+        xmlns:fx="clr-namespace:AMSRSE.Editor.Effects"
         xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
         xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
         xmlns:nvbtn="clr-namespace:AMSRSE.Editor.Controls.NavButton"
@@ -18,7 +19,101 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <pkprfl:ProfilesControl />
+        <Rectangle
+            Fill="#FF233B56"
+            Width="320"
+            Height="240">
+            <Rectangle.Effect>
+                <fx:OverlayEffect>
+                    <fx:OverlayEffect.Input>
+                        <ImageBrush ImageSource="{StaticResource Images.UI.Background2}" />
+                    </fx:OverlayEffect.Input>
+                </fx:OverlayEffect>
+            </Rectangle.Effect>
+        </Rectangle>
+        <UniformGrid Columns="1">
+            <Grid
+                Width="281"
+                Height="61">
+                <!--<Grid
+                    Background="Transparent"
+                    Width="271"
+                    Height="51">
+                    <TextBlock
+                        Background="Transparent"
+                        Foreground="Yellow"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="Hello World" />
+                </Grid>-->
+                <Rectangle
+                    Fill="#FF52A3FF"
+                    Width="281"
+                    Height="61">
+                    <Rectangle.Effect>
+                        <fx:MultiplyEffect>
+                            <fx:MultiplyEffect.Input>
+                                <ImageBrush ImageSource="{StaticResource Images.UI.PickProfile.ProfileCollapsed-Hover}" />
+                            </fx:MultiplyEffect.Input>
+                        </fx:MultiplyEffect>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <TextBlock
+                    Foreground="#FF52A3FF"
+                    VerticalAlignment="Center"
+                    Margin="8,0,0,0"
+                    Text="Hello World" />
+                <Rectangle
+                    Fill="#FFAFCFFF"
+                    Width="281"
+                    Height="61">
+                    <Rectangle.Effect>
+                        <fx:OverlayEffect>
+                            <fx:OverlayEffect.Input>
+                                <ImageBrush ImageSource="{StaticResource Images.UI.PickProfile.ProfileCollapsed-Hover}" />
+                            </fx:OverlayEffect.Input>
+                        </fx:OverlayEffect>
+                    </Rectangle.Effect>
+                </Rectangle>
+            </Grid>
+            <Rectangle
+                Fill="#FF52A3FF"
+                Width="281"
+                Height="61">
+                <Rectangle.Effect>
+                    <fx:MultiplyEffect>
+                        <fx:MultiplyEffect.Input>
+                            <ImageBrush ImageSource="{StaticResource Images.UI.PickProfile.ProfileCollapsed-Hover}" />
+                        </fx:MultiplyEffect.Input>
+                    </fx:MultiplyEffect>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle
+                Fill="#FF52A3FF"
+                Width="281"
+                Height="61">
+                <Rectangle.Effect>
+                    <fx:MultiplyEffect>
+                        <fx:MultiplyEffect.Input>
+                            <ImageBrush ImageSource="{StaticResource Images.UI.PickProfile.ProfileCollapsed-Hover}" />
+                        </fx:MultiplyEffect.Input>
+                    </fx:MultiplyEffect>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle
+                Fill="#FF52A3FF"
+                Width="281"
+                Height="61">
+                <Rectangle.Effect>
+                    <fx:MultiplyEffect>
+                        <fx:MultiplyEffect.Input>
+                            <ImageBrush ImageSource="{StaticResource Images.UI.PickProfile.ProfileCollapsed-Hover}" />
+                        </fx:MultiplyEffect.Input>
+                    </fx:MultiplyEffect>
+                </Rectangle.Effect>
+            </Rectangle>
+        </UniformGrid>
+        <!--<pkprfl:ProfilesControl />-->
         <!--<pkprfl:ProfilesControl Grid.Row="1" />-->
         <!--<ppdv:SelectedProfileActionsDV />-->
     </Grid>

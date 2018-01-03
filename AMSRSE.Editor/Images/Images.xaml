@@ -14,10 +14,13 @@
 
     <!--#region UI-->
     <!--#region PickProfile-->
+    <ImageSource x:Key="Images.UI.PickProfile.ProfileCollapsed">/AMSRSE.Editor;component/Images/UI/PickProfile/profileCollapsed.png</ImageSource>
+    <ImageSource x:Key="Images.UI.PickProfile.ProfileCollapsed-Hover">/AMSRSE.Editor;component/Images/UI/PickProfile/profileCollapsed-hover.png</ImageSource>
     <ImageSource x:Key="Images.UI.PickProfile.SamusProfileHelmet">/AMSRSE.Editor;component/Images/UI/PickProfile/samusProfileHelmet.png</ImageSource>
     <!--#endregion PickProfile-->
     
     <ImageSource x:Key="Images.UI.Background">/AMSRSE.Editor;component/Images/UI/background.png</ImageSource>
+    <ImageSource x:Key="Images.UI.Background2">/AMSRSE.Editor;component/Images/UI/background2.png</ImageSource>
     <ImageSource x:Key="Images.UI.MSRButton-Normal">/AMSRSE.Editor;component/Images/UI/msrButton-normal.png</ImageSource>
     <ImageSource x:Key="Images.UI.MSRButton-Active">/AMSRSE.Editor;component/Images/UI/msrButton-active.png</ImageSource>
     <!--#endregion UI-->

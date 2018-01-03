@@ -5,14 +5,14 @@ using System.Windows.Media.Effects;
 
 namespace AMSRSE.Editor.Effects
 {
-	public class ScreenEffect : BlendModeEffect
+	public class GlowEffect : BlendModeEffect
 	{
-		static ScreenEffect()
+		static GlowEffect()
 		{
-			_pixelShader.UriSource = new Uri("/AMSRSE.Editor;component/Effects/ScreenEffect.ps", UriKind.Relative);
+			_pixelShader.UriSource = new Uri("/AMSRSE.Editor;component/Effects/GlowEffect.ps", UriKind.Relative);
 		}
 
-		public ScreenEffect()
+		public GlowEffect()
 		{
 			this.PixelShader = _pixelShader;
 		}

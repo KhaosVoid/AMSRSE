@@ -70,6 +70,8 @@
     <Compile Include="Controls\NavButton\NavButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
+    <Compile Include="Effects\GlowEffect.cs" />
+    <Compile Include="Effects\OverlayEffect.cs" />
     <Compile Include="Views\Dynamic\MessageDV.cs" />
     <Compile Include="Views\Dynamic\MultiButtonDV.cs" />
     <Compile Include="Views\Dynamic\YesNoDV.cs" />
@@ -181,6 +183,8 @@
     <Resource Include="Effects\MultiplyEffect.ps" />
     <Resource Include="Effects\ScreenEffect.ps" />
     <Resource Include="Fonts\metroidsr_pixel_regular.ttf" />
+    <Resource Include="Effects\GlowEffect.ps" />
+    <Resource Include="Effects\OverlayEffect.ps" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -392,6 +396,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\SlidingButtons\Xaml\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UI\PickProfile\profileCollapsed.png" />
+    <Resource Include="Images\UI\PickProfile\profileCollapsed-hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UI\background2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
