@@ -68,6 +68,8 @@
     <Compile Include="Collections\XamlSafeObservableCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\NavButton\NavButton.cs" />
+    <Compile Include="Controls\NineGrid\NGSize.cs" />
+    <Compile Include="Controls\NineGrid\NineGrid.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
     <Compile Include="Effects\GlowEffect.cs" />
@@ -80,6 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NineGrid\Xaml\NineGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

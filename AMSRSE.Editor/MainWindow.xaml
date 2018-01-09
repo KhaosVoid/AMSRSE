@@ -13,13 +13,17 @@
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
         Title="MainWindow">
-    <Grid Width="640" Background="#FF000000">
+    <Grid Background="#FF000000">
+        <Grid.LayoutTransform>
+            <ScaleTransform ScaleX="1" ScaleY="1" />
+        </Grid.LayoutTransform>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Rectangle
+            Grid.Row="1"
             Fill="#FF233B56"
             Width="320"
             Height="240">
@@ -31,11 +35,11 @@
                 </fx:OverlayEffect>
             </Rectangle.Effect>
         </Rectangle>
-        <UniformGrid Columns="1">
+        <!--<UniformGrid Columns="1">
             <Grid
                 Width="281"
                 Height="61">
-                <!--<Grid
+                --><!--<Grid
                     Background="Transparent"
                     Width="271"
                     Height="51">
@@ -45,7 +49,7 @@
                         Margin="8,0,0,0"
                         VerticalAlignment="Center"
                         Text="Hello World" />
-                </Grid>-->
+                </Grid>--><!--
                 <Rectangle
                     Fill="#FF52A3FF"
                     Width="281"
@@ -58,12 +62,17 @@
                         </fx:MultiplyEffect>
                     </Rectangle.Effect>
                 </Rectangle>
-                <TextBlock
+                --><!--<TextBlock
                     Foreground="#FF52A3FF"
                     VerticalAlignment="Center"
                     Margin="8,0,0,0"
+                    Text="Hello World" />--><!--
+                <TextBlock
+                    Foreground="#7FAFCFFF"
+                    VerticalAlignment="Center"
+                    Margin="8,0,0,0"
                     Text="Hello World" />
-                <Rectangle
+                --><!--<Rectangle
                     Fill="#FFAFCFFF"
                     Width="281"
                     Height="61">
@@ -74,7 +83,7 @@
                             </fx:OverlayEffect.Input>
                         </fx:OverlayEffect>
                     </Rectangle.Effect>
-                </Rectangle>
+                </Rectangle>--><!--
             </Grid>
             <Rectangle
                 Fill="#FF52A3FF"
@@ -100,21 +109,10 @@
                     </fx:MultiplyEffect>
                 </Rectangle.Effect>
             </Rectangle>
-            <Rectangle
-                Fill="#FF52A3FF"
-                Width="281"
-                Height="61">
-                <Rectangle.Effect>
-                    <fx:MultiplyEffect>
-                        <fx:MultiplyEffect.Input>
-                            <ImageBrush ImageSource="{StaticResource Images.UI.PickProfile.ProfileCollapsed-Hover}" />
-                        </fx:MultiplyEffect.Input>
-                    </fx:MultiplyEffect>
-                </Rectangle.Effect>
-            </Rectangle>
-        </UniformGrid>
+            <Image Width="64" Height="64" />
+        </UniformGrid>-->
         <!--<pkprfl:ProfilesControl />-->
-        <!--<pkprfl:ProfilesControl Grid.Row="1" />-->
+        <pkprfl:ProfilesControl Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <!--<ppdv:SelectedProfileActionsDV />-->
     </Grid>
 </Window>

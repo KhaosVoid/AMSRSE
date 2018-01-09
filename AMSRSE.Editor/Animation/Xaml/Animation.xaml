@@ -43,19 +43,19 @@
     <!--#region Pick Profile Animations-->
     <anim:AnimationTemplate x:Key="Animations.PickProfile.Templates.Profile.Expand">
         <Setter Property="Storyboard.TargetProperty" Value="Height" />
-        <Setter Property="DoubleAnimation.From" Value="140" />
-        <Setter Property="DoubleAnimation.To" Value="420" />
+        <Setter Property="DoubleAnimation.From" Value="61" />
+        <Setter Property="DoubleAnimation.To" Value="183" />
     </anim:AnimationTemplate>
     
     <anim:AnimationTemplate x:Key="Animations.PickProfile.Templates.Profile.Collapse">
         <Setter Property="Storyboard.TargetProperty" Value="Height" />
-        <Setter Property="DoubleAnimation.From" Value="140" />
+        <Setter Property="DoubleAnimation.From" Value="61" />
         <Setter Property="DoubleAnimation.To" Value="0" />
     </anim:AnimationTemplate>
     
     <anim:AnimationTemplate x:Key="Animations.PickProfile.Templates.Profile.Restore">
         <Setter Property="Storyboard.TargetProperty" Value="Height" />
-        <Setter Property="DoubleAnimation.To" Value="140" />
+        <Setter Property="DoubleAnimation.To" Value="61" />
     </anim:AnimationTemplate>
     <!--#endregion Pick Profile Animations-->
 
