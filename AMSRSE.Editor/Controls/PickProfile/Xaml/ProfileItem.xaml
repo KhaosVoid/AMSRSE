@@ -6,7 +6,6 @@
                     xmlns:ppdv="clr-namespace:AMSRSE.Editor.Views.Dynamic.PickProfile"
                     xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
                     xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
-                    xmlns:nvbtn="clr-namespace:AMSRSE.Editor.Controls.NavButton"
                     xmlns:anim="clr-namespace:AMSRSE.Editor.Animation">
     <Style TargetType="{x:Type pkprfl:ProfileItem}">
         <Setter Property="Animations" Value="{StaticResource Animations.Common}" />
@@ -163,15 +162,15 @@
                                         CurrentDynamicViewName="pkprflDecisionView">
                                         <dv:MultiButtonDV x:Name="pkprflDecisionView">
                                             <dv:MultiButtonDV.Buttons>
-                                                <!--<nvbtn:NavButton
+                                                <!--<sb:SpriteButton
                                                     Style="{DynamicResource MSRButton}"
                                                     Text="Edit Profile" />-->
-                                                <nvbtn:NavButton
+                                                <sb:SpriteButton
                                                     Style="{DynamicResource MSRButton}"
                                                     Text="New Game"
                                                     dv:DynamicViewHost.NavigateTo="newGameWarningView"
                                                     dv:DynamicViewHost.NavigationDirection="Forward"/>
-                                                <nvbtn:NavButton
+                                                <sb:SpriteButton
                                                     Style="{DynamicResource MSRButton}"
                                                     Text="Options"
                                                     dv:DynamicViewHost.NavigateTo="optionsView"
@@ -186,24 +185,25 @@
                                                 x:Name="newGameWarningView" Style="{DynamicResource MessageDVStyle}"
                                                 Message="Starting a new game will cause you to lose all of your current progress. All unlocked features and Options settings will remain.">
                                                 <dv:MessageDV.OKButton>
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="OK"
                                                         dv:DynamicViewHost.NavigateTo="newGameYNView"
+                                                        dv:ContentTransitionView.Transition="SwipeLeft"
                                                         dv:DynamicViewHost.NavigationDirection="Forward" />
                                                 </dv:MessageDV.OKButton>
                                             </dv:MessageDV>
 
                                             <dv:YesNoDV x:Name="newGameYNView" Style="{DynamicResource YesNoDVStyle}" Message="Start a new game?">
                                                 <dv:YesNoDV.YesButton>
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="Yes"
                                                         dv:DynamicViewHost.NavigateTo="gameModeSelectView"
                                                         dv:DynamicViewHost.NavigationDirection="Forward" />
                                                 </dv:YesNoDV.YesButton>
                                                 <dv:YesNoDV.NoButton>
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="No"
                                                         dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
@@ -212,22 +212,22 @@
 
                                                 <dv:MultiButtonDV x:Name="gameModeSelectView">
                                                     <dv:MultiButtonDV.Buttons>
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Normal"
                                                             dv:DynamicViewHost.NavigateTo="confirmNewGameView"
                                                             dv:DynamicViewHost.NavigationDirection="Forward" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Hard"
                                                             dv:DynamicViewHost.NavigateTo="newHardGameWarningView"
                                                             dv:DynamicViewHost.NavigationDirection="Forward" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Fusion"
                                                             dv:DynamicViewHost.NavigateTo="newFusionGameWarningView"
                                                             dv:DynamicViewHost.NavigationDirection="Forward" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Back"
                                                             dv:DynamicViewHost.NavigateTo="newGameYNView"
@@ -239,7 +239,7 @@
                                                         Style="{DynamicResource MessageDVStyle}"
                                                         Message="In Hard mode, enemies are more powerful.">
                                                         <dv:MessageDV.OKButton>
-                                                            <nvbtn:NavButton
+                                                            <sb:SpriteButton
                                                                 Style="{DynamicResource MSRButton}"
                                                                 Text="OK"
                                                                 dv:DynamicViewHost.NavigateTo="confirmNewGameView"
@@ -252,7 +252,7 @@
                                                         Style="{DynamicResource MessageDVStyle}"
                                                         Message="In Fusion mode, enemies are even more powerful, and you can play as Fusion Suit Samus.">
                                                         <dv:MessageDV.OKButton>
-                                                            <nvbtn:NavButton
+                                                            <sb:SpriteButton
                                                                 Style="{DynamicResource MSRButton}"
                                                                 Text="OK"
                                                                 dv:DynamicViewHost.NavigateTo="confirmNewGameView"
@@ -265,14 +265,14 @@
                                                         Style="{DynamicResource YesNoDVStyle}"
                                                         Message="Current data will be erased. Start a new game in #S.MODE# mode?">
                                                         <dv:YesNoDV.YesButton>
-                                                            <nvbtn:NavButton
+                                                            <sb:SpriteButton
                                                                 Style="{DynamicResource MSRButton}"
                                                                 Text="Yes"
                                                                 dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
                                                                 dv:DynamicViewHost.NavigationDirection="Backward" />
                                                         </dv:YesNoDV.YesButton>
                                                         <dv:YesNoDV.NoButton>
-                                                            <nvbtn:NavButton
+                                                            <sb:SpriteButton
                                                                 Style="{DynamicResource MSRButton}"
                                                                 Text="No"
                                                                 dv:DynamicViewHost.NavigateTo="gameModeSelectView"
@@ -283,21 +283,21 @@
                                             </dv:YesNoDV>
                                             <dv:MultiButtonDV x:Name="optionsView">
                                                 <dv:MultiButtonDV.Buttons>
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="Controls" />
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="Gallery"
                                                         dv:DynamicViewHost.NavigateTo="galleryOptionsView"
                                                         dv:DynamicViewHost.NavigationDirection="Forward" />
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="amiibo" />
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="Staff Credits" />
-                                                    <nvbtn:NavButton
+                                                    <sb:SpriteButton
                                                         Style="{DynamicResource MSRButton}"
                                                         Text="Back"
                                                         dv:DynamicViewHost.NavigateTo="pkprflDecisionView"
@@ -306,19 +306,19 @@
 
                                                 <dv:MultiButtonDV x:Name="galleryOptionsView">
                                                     <dv:MultiButtonDV.Buttons>
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Unlock Chozo Memories" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Unlock Metroid II Art" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Unlock Concept Art" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Unlock Music" />
-                                                        <nvbtn:NavButton
+                                                        <sb:SpriteButton
                                                             Style="{DynamicResource MSRButton}"
                                                             Text="Back"
                                                             dv:DynamicViewHost.NavigateTo="optionsView"

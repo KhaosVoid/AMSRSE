@@ -67,15 +67,16 @@
     <Compile Include="Collections\XamlSafeCollection.cs" />
     <Compile Include="Collections\XamlSafeObservableCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Controls\NavButton\NavButton.cs" />
     <Compile Include="Controls\NineGrid\NGSize.cs" />
     <Compile Include="Controls\NineGrid\NineGrid.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButton.cs" />
     <Compile Include="Controls\SpriteButton\SpriteButtonCollection.cs" />
     <Compile Include="Effects\GlowEffect.cs" />
     <Compile Include="Effects\OverlayEffect.cs" />
+    <Compile Include="Views\Dynamic\ContentTransitionView.cs" />
     <Compile Include="Views\Dynamic\MessageDV.cs" />
     <Compile Include="Views\Dynamic\MultiButtonDV.cs" />
+    <Compile Include="Views\Dynamic\ScreenTransitionView.cs" />
     <Compile Include="Views\Dynamic\YesNoDV.cs" />
     <Page Include="Animation\Xaml\Animation.xaml">
       <SubType>Designer</SubType>
@@ -143,6 +144,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dynamic\Xaml\ContentTransitionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dynamic\Xaml\DynamicViewBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dynamic\Xaml\MultiButtonDV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dynamic\Xaml\ScreenTransitionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -116,6 +116,68 @@
             </Storyboard>
         </anim:StoryboardSequence>
     </anim:SequentialStoryboard>
+
+    <anim:SequentialStoryboard x:Key="Animations.DynamicViews.ScreenTransitionView">
+        <anim:StoryboardSequence Name="SlideFadeIn" />
+        <anim:StoryboardSequence Name="SlideFadeOut" />
+    </anim:SequentialStoryboard>
+
+    <anim:SequentialStoryboard x:Key="Animations.DynamicViews.ContentTransitionView">
+        <anim:StoryboardSequence Name="FadeIn">
+            <Storyboard SpeedRatio="4">
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeInLeft">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInLeft}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeInRight">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeInRight}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeIn}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeOut">
+            <Storyboard SpeedRatio="4">
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeOutLeft">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutLeft}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+        <anim:StoryboardSequence Name="FadeOutRight">
+            <Storyboard SpeedRatio="4">
+                <ThicknessAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.SwipeOutRight}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+                <DoubleAnimation
+                    anim:AnimationTemplate.Template="{StaticResource Animations.Common.Templates.FadeOut}"
+                    anim:StoryboardSequence.AnimationTargetName="Self" />
+            </Storyboard>
+        </anim:StoryboardSequence>
+    </anim:SequentialStoryboard>
     
     <anim:SequentialStoryboard x:Key="Animations.PickProfile.ProfilesControl" x:Shared="False">
         <anim:SequentialStoryboard Name="ExpandProfile0">

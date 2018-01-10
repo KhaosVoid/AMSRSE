@@ -8,14 +8,13 @@
         xmlns:fx="clr-namespace:AMSRSE.Editor.Effects"
         xmlns:pkprfl="clr-namespace:AMSRSE.Editor.Controls.PickProfile"
         xmlns:sb="clr-namespace:AMSRSE.Editor.Controls.SpriteButton"
-        xmlns:nvbtn="clr-namespace:AMSRSE.Editor.Controls.NavButton"
         xmlns:dv="clr-namespace:AMSRSE.Editor.Views.Dynamic"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
         Title="MainWindow">
     <Grid Background="#FF000000">
         <Grid.LayoutTransform>
-            <ScaleTransform ScaleX="1" ScaleY="1" />
+            <ScaleTransform ScaleX="2" ScaleY="2" />
         </Grid.LayoutTransform>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

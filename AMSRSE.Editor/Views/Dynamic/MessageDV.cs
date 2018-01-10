@@ -1,5 +1,4 @@
-﻿using AMSRSE.Editor.Controls.NavButton;
-using AMSRSE.Editor.Controls.SpriteButton;
+﻿using AMSRSE.Editor.Controls.SpriteButton;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,12 +52,12 @@ namespace AMSRSE.Editor.Views.Dynamic
         {
             if (d is MessageDV mdv)
             {
-                if (e.OldValue is NavButton oob)
-                    oob.Clicked -= mdv.NavButton_Clicked;
+                if (e.OldValue is SpriteButton oob)
+                    oob.Clicked -= mdv.SpriteButton_Clicked;
 
-                if (e.NewValue is NavButton nob &&
+                if (e.NewValue is SpriteButton nob &&
                     DynamicViewHost.GetNavigateTo(nob) is string)
-                    nob.Clicked += mdv.NavButton_Clicked;
+                    nob.Clicked += mdv.SpriteButton_Clicked;
             }
         }
 
@@ -75,14 +74,14 @@ namespace AMSRSE.Editor.Views.Dynamic
 
         private void SubscribeButtonNavigation()
         {
-            if (OKButton is NavButton)
+            if (OKButton is SpriteButton)
             {
-                OKButton.Clicked -= NavButton_Clicked;
-                OKButton.Clicked += NavButton_Clicked;
+                OKButton.Clicked -= SpriteButton_Clicked;
+                OKButton.Clicked += SpriteButton_Clicked;
             }
         }
 
-        private void NavButton_Clicked(SpriteButton sender)
+        private void SpriteButton_Clicked(SpriteButton sender)
         {
             var navigateTo = DynamicViewHost.GetNavigateTo(sender);
             var navigationDirection = DynamicViewHost.GetNavigationDirection(sender);
