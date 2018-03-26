@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSRSE.BMSSV", "AMSRSE.BMSS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSRSE.Editor", "AMSRSE.Editor\AMSRSE.Editor.csproj", "{55C36E67-71E9-4922-9DC0-44C94590BB47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSRSE.DataViewer", "AMSRSE.DataViewer\AMSRSE.DataViewer.csproj", "{6E8C8B27-40A1-4A83-B5A5-3125C6702EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMSRSE.InfoXml", "AMSRSE.InfoXml\AMSRSE.InfoXml.csproj", "{81F1E2FD-769C-4A8A-8FE8-7C98BCBA7B47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{55C36E67-71E9-4922-9DC0-44C94590BB47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55C36E67-71E9-4922-9DC0-44C94590BB47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55C36E67-71E9-4922-9DC0-44C94590BB47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E8C8B27-40A1-4A83-B5A5-3125C6702EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E8C8B27-40A1-4A83-B5A5-3125C6702EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E8C8B27-40A1-4A83-B5A5-3125C6702EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E8C8B27-40A1-4A83-B5A5-3125C6702EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F1E2FD-769C-4A8A-8FE8-7C98BCBA7B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F1E2FD-769C-4A8A-8FE8-7C98BCBA7B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F1E2FD-769C-4A8A-8FE8-7C98BCBA7B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F1E2FD-769C-4A8A-8FE8-7C98BCBA7B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
