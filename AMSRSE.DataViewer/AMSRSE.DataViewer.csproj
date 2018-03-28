@@ -93,5 +93,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMSRSE.InfoXml\AMSRSE.InfoXml.csproj">
+      <Project>{81f1e2fd-769c-4a8a-8fe8-7c98bcba7b47}</Project>
+      <Name>AMSRSE.InfoXml</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
