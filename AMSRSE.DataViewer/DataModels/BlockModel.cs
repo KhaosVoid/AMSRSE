@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
-    public class BlockListViewItemDM : DependencyObject
+    public class BlockModel : DependencyObject
     {
         #region Enums
 
@@ -20,26 +20,27 @@ namespace AMSRSE.DataViewer.DataModels
 
         #region Dependency Properties
 
-        public static readonly DependencyProperty ChunkCountProperty =
-            DependencyProperty.Register("ChunkCount", typeof(int), typeof(BlockListViewItemDM));
+        public static readonly DependencyProperty BlockIdProperty =
+            DependencyProperty.Register("BlockId", typeof(uint), typeof(BlockModel));
 
         public static readonly DependencyProperty BlockNameProperty =
-            DependencyProperty.Register("BlockName", typeof(string), typeof(BlockListViewItemDM));
+            DependencyProperty.Register("BlockName", typeof(string), typeof(BlockModel));
 
-        public static readonly DependencyProperty BlockIdProperty =
-            DependencyProperty.Register("BlockId", typeof(uint), typeof(BlockListViewItemDM));
+        //TODO: Create ChunksModel
+        public static readonly DependencyProperty ChunksProperty =
+            DependencyProperty.Register("Chunks", typeof(int), typeof(BlockModel));
 
         public static readonly DependencyProperty ChangeTypeProperty =
-            DependencyProperty.Register("ChangeType", typeof(ChangeTypes), typeof(BlockListViewItemDM));
+            DependencyProperty.Register("ChangeType", typeof(ChangeTypes), typeof(BlockModel));
 
         #endregion Dependency Properties
 
         #region Properties
 
-        public int ChunkCount
+        public uint BlockId
         {
-            get { return (int)GetValue(ChunkCountProperty); }
-            set { SetValue(ChunkCountProperty, value); }
+            get { return (uint)GetValue(BlockIdProperty); }
+            set { SetValue(BlockIdProperty, value); }
         }
 
         public string BlockName
@@ -48,10 +49,10 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(BlockNameProperty, value); }
         }
 
-        public uint BlockId
+        public int Chunks
         {
-            get { return (uint)GetValue(BlockIdProperty); }
-            set { SetValue(BlockIdProperty, value); }
+            get { return (int)GetValue(ChunksProperty); }
+            set { SetValue(ChunksProperty, value); }
         }
 
         public ChangeTypes ChangeType
@@ -64,7 +65,7 @@ namespace AMSRSE.DataViewer.DataModels
 
         #region Ctor
 
-        public BlockListViewItemDM()
+        public BlockModel()
         {
 
         }

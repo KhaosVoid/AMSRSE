@@ -1,0 +1,76 @@
+﻿<ctrls:BlockListView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     mc:Ignorable="d"
+                     xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
+                     xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
+                     d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewMock.xaml, IsDesignTimeCreatable=True}"
+                     Items="{Binding}">
+    <ctrls:BlockListView.Template>
+        <ControlTemplate TargetType="ctrls:BlockListView">
+            <ListView
+                Background="#FF333333"
+                ItemTemplate="{StaticResource AMSRSE.DataModels.Templates.BlockListViewItem}"
+                ItemsSource="{TemplateBinding Items}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="FocusVisualStyle">
+                            <Setter.Value>
+                                <Style>
+                                    <Setter Property="Control.Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="#FF000000" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border x:Name="Bd" BorderThickness="1" Padding="2,1" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsPresenter}}, Path=ActualWidth}">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="#1F26A0DA"/>
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="#A826A0DA"/>
+                                        </MultiTrigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" TargetName="Bd" Value="#3D26A0DA"/>
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="#FF26A0DA"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <!--<dm:BlockListViewItemDM ChunkCount="10" BlockName="Items Collected (By Area)" BlockId="0xD97207D2" />
+                <dm:BlockListViewItemDM ChunkCount="30" BlockName="Unknown" BlockId="0xCB17C79F" ChangeType="Added" />
+                <dm:BlockListViewItemDM ChunkCount="73" BlockName="Misc Data" BlockId="0xC72341EA" />
+                <dm:BlockListViewItemDM ChunkCount="41" BlockName="Unknown" BlockId="0x68E39AC0" ChangeType="Added" />
+                <dm:BlockListViewItemDM ChunkCount="5" BlockName="Save and Spawn Location" BlockId="0x1C421E97" />
+                <dm:BlockListViewItemDM ChunkCount="30" BlockName="Cutscenes / Tutorial Messages?" BlockId="0x6F49393E" ChangeType="Removed" />
+                <dm:BlockListViewItemDM ChunkCount="28" BlockName="Unknown" BlockId="0xC1BED709" ChangeType="Added" />
+                <dm:BlockListViewItemDM ChunkCount="36" BlockName="Unknown" BlockId="0xBDBE58A1" ChangeType="Added" />
+                <dm:BlockListViewItemDM ChunkCount="7" BlockName="Metroids Killed (By Type)" BlockId="0x3814CFC7" />
+                <dm:BlockListViewItemDM ChunkCount="24" BlockName="Teleport Stations Visited or Unlocked" BlockId="0xBC6C23CE" ChangeType="Removed" />
+                <dm:BlockListViewItemDM ChunkCount="63" BlockName="Unknown" BlockId="0x63580F44" ChangeType="Added" />
+                <dm:BlockListViewItemDM ChunkCount="34" BlockName="Inventory" BlockId="0xFEBC51D5" />-->
+            </ListView>
+        </ControlTemplate>
+    </ctrls:BlockListView.Template>
+</ctrls:BlockListView>

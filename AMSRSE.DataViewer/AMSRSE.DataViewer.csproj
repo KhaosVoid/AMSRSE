@@ -54,12 +54,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\TestView.xaml.cs" />
-    <Page Include="Controls\Xaml\BlockListView.xaml">
+    <Compile Include="Controls\BlockListView.xaml.cs">
+      <DependentUpon>BlockListView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ContentControlBase.cs" />
+    <Compile Include="Controls\ControlBase.cs" />
+    <Compile Include="DataModels\BlockModel.cs" />
+    <Compile Include="DataModels\FileModel.cs" />
+    <Compile Include="Designer\DesignerCompatible.cs" />
+    <Compile Include="Designer\IDesignerCompatible.cs" />
+    <Compile Include="Views\BMSSVExplorerView.xaml.cs">
+      <DependentUpon>BMSSVExplorerView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ViewBase.xaml.cs" />
+    <Page Include="Controls\BlockListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Xaml\BlockListViewItem.xaml">
+    <Page Include="DataModels\Templates\BlockListViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\Mocks\BlockListViewMock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Mocks\BMSSVExplorerViewMock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,17 +97,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\BlockListView.cs" />
-    <Compile Include="Controls\BlockListViewItem.cs" />
-    <Compile Include="DataModels\BlockDM.cs" />
-    <Compile Include="DataModels\BlockListViewItemDM.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\TestView.xaml">
+    <Page Include="Views\BMSSVExplorerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -120,8 +146,6 @@
       <Name>AMSRSE.InfoXml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Xaml\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

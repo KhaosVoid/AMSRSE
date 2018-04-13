@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels">
+    <DataTemplate x:Key="AMSRSE.DataModels.Templates.BlockListViewItem"
+                  DataType="dm:BlockModel">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                x:Name="txtChunkCount"
+                FontFamily="Consolas"
+                FontSize="12"
+                Text="{Binding Chunks, StringFormat=[{0:00}]}" />
+            <TextBlock
+                x:Name="txtBlockName"
+                Grid.Column="2"
+                FontFamily="Consolas"
+                FontSize="12"
+                Text="{Binding BlockName}"
+                TextTrimming="CharacterEllipsis" />
+            <TextBlock
+                x:Name="txtBlockId"
+                Grid.Column="4"
+                FontFamily="Consolas"
+                FontSize="12"
+                Text="{Binding BlockId, StringFormat=[{0:X}]}" />
+        </Grid>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding ChangeType}" Value="None">
+                <Setter TargetName="txtChunkCount" Property="Foreground" Value="#FFFFFFFF" />
+                <Setter TargetName="txtBlockName" Property="Foreground" Value="#FFFFFFFF" />
+                <Setter TargetName="txtBlockId" Property="Foreground" Value="#FFFFFFFF" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ChangeType}" Value="Added">
+                <Setter TargetName="txtChunkCount" Property="FontWeight" Value="Bold" />
+                <Setter TargetName="txtBlockName" Property="FontWeight" Value="Bold" />
+                <Setter TargetName="txtBlockId" Property="FontWeight" Value="Bold" />
+
+                <Setter TargetName="txtChunkCount" Property="Foreground" Value="#FF00CF00" />
+                <Setter TargetName="txtBlockName" Property="Foreground" Value="#FF00CF00" />
+                <Setter TargetName="txtBlockId" Property="Foreground" Value="#FF00CF00" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ChangeType}" Value="Removed">
+                <Setter TargetName="txtChunkCount" Property="FontWeight" Value="Bold" />
+                <Setter TargetName="txtBlockName" Property="FontWeight" Value="Bold" />
+                <Setter TargetName="txtBlockId" Property="FontWeight" Value="Bold" />
+
+                <Setter TargetName="txtChunkCount" Property="Foreground" Value="#FFDF0000" />
+                <Setter TargetName="txtBlockName" Property="Foreground" Value="#FFDF0000" />
+                <Setter TargetName="txtBlockId" Property="Foreground" Value="#FFDF0000" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</ResourceDictionary>

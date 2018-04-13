@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace AMSRSE.DataViewer.Views
 {
-    public class TestView : Control
+    public class TestView : ViewBase
     {
         #region Dependency Properties
 
@@ -29,13 +29,15 @@ namespace AMSRSE.DataViewer.Views
 
         #region Ctor
 
+        static TestView()
+        {
+            TestStringProperty.OverrideMetadata(typeof(TestView), new PropertyMetadata("Hello World"));
+        }
+
         public TestView()
         {
-            TestString = "Hello World";
-
-            Uri resourceLocater = new Uri("/AMSRSE.DataViewer;component/Views/TestView.xaml", UriKind.Relative);
-
-            Application.LoadComponent(this, resourceLocater);
+            InitializeComponent(
+                xamlPath: new Uri("/AMSRSE.DataViewer;component/Views/TestView.xaml", UriKind.Relative));
         }
 
         #endregion Ctor

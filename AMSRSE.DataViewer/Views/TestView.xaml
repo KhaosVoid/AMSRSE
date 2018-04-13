@@ -1,12 +1,8 @@
-﻿<local:TestView x:Class="AMSRSE.Views.TestView"
+﻿<local:TestView x:Name="testView"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:local="clr-namespace:AMSRSE.DataViewer.Views">
-    <local:TestView.Template>
-        <ControlTemplate TargetType="local:TestView">
-            <Border Width="320" Height="240" Background="Red">
-                <TextBlock Text="{TemplateBinding TestString}" />
-            </Border>
-        </ControlTemplate>
-    </local:TestView.Template>
+    <Border Width="320" Height="240" Background="Red">
+        <TextBlock Text="{Binding ElementName=testView, Path=TestString}" />
+    </Border>
 </local:TestView>

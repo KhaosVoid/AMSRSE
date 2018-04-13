@@ -6,8 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/AMSRSE.DataViewer;component/Controls/Xaml/BlockListView.xaml" />
-                <ResourceDictionary Source="/AMSRSE.DataViewer;component/Controls/Xaml/BlockListViewItem.xaml" />
+                <ResourceDictionary Source="/AMSRSE.DataViewer;component/DataModels/Templates/BlockListViewItem.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

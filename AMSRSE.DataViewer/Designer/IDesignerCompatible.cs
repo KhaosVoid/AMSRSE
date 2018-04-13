@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AMSRSE.DataViewer.DataModels
+namespace AMSRSE.DataViewer.Designer
 {
-    public class BlockDM
+    public interface IDesignerCompatible
     {
-
+        void InitializeComponent(Uri xamlPath);
     }
 }
