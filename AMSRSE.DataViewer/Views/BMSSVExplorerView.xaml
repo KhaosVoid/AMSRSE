@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ctrls:BlockListView Items="{Binding Blocks}" />
+        <ctrls:BlockListView DataContext="{Binding Blocks}" />
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch">
             <GridSplitter.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
