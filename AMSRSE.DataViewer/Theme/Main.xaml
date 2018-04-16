@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls">
+    <Style TargetType="ctrls:BlockListView">
+        <Setter Property="Background" Value="#FF202020" />
+    </Style>
+    <Style TargetType="ctrls:BlockListViewItem">
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="AddedColor" Value="#FF00CF00" />
+        <Setter Property="RemovedColor" Value="#FFDF0000" />
+    </Style>
+    <Style TargetType="ctrls:ChunkListView">
+        <Setter Property="Background" Value="#FF202020" />
+    </Style>
+    <Style TargetType="ctrls:ChunkListViewItem">
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+    </Style>
+</ResourceDictionary>

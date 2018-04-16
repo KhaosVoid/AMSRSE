@@ -1,0 +1,110 @@
+﻿<ctrls:BlockListViewItem 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" 
+    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
+    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewItemMock.xaml, IsDesignTimeCreatable=True}">
+    <ctrls:BlockListViewItem.Template>
+        <ControlTemplate TargetType="ctrls:BlockListViewItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6" />
+                    <ColumnDefinition Width="2" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="4" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    x:Name="rChangeType" />
+                <StackPanel
+                    Grid.Column="2"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="Consolas"
+                        FontSize="12"
+                        Text="[" />
+                    <TextBlock
+                        x:Name="txtChunkCount"
+                        VerticalAlignment="Center"
+                        FontFamily="Consolas"
+                        FontSize="12"
+                        Foreground="#FFFFFF00"
+                        Text="{Binding Path=Chunks.Count, Mode=OneWay, BindsDirectlyToSource=True, StringFormat={}{0:00}}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="Consolas"
+                        FontSize="12"
+                        Text="]" />
+                </StackPanel>
+                <TextBlock
+                    x:Name="txtBlockName"
+                    Grid.Column="4"
+                    VerticalAlignment="Center"
+                    FontFamily="Consolas"
+                    FontSize="12"
+                    Text="{Binding BlockName}"
+                    TextTrimming="CharacterEllipsis" />
+                <StackPanel
+                    Grid.Column="6"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="Consolas"
+                        FontSize="12"
+                        Text="[" />
+                    <TextBlock
+                        x:Name="txtBlockId"
+                        VerticalAlignment="Center"
+                        FontFamily="Consolas"
+                        FontSize="12"
+                        Foreground="#FF3E60FD"
+                        Text="{Binding BlockId, StringFormat={}{0:X}}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="Consolas"
+                        FontSize="12"
+                        Text="]" />
+                </StackPanel>
+            </Grid>
+
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding ChangeType}" Value="None">
+                    <!--<Setter TargetName="txtChunkCount" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NormalColor}" />
+                    <Setter TargetName="txtBlockName" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NormalColor}" />
+                    <Setter TargetName="txtBlockId" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NormalColor}" />-->
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Added">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
+
+                    <!--<Setter TargetName="txtChunkCount" Property="FontWeight" Value="Bold" />
+                    <Setter TargetName="txtBlockName" Property="FontWeight" Value="Bold" />
+                    <Setter TargetName="txtBlockId" Property="FontWeight" Value="Bold" />
+
+                    <Setter TargetName="txtChunkCount" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
+                    <Setter TargetName="txtBlockName" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
+                    <Setter TargetName="txtBlockId" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />-->
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Removed">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
+
+                    <!--<Setter TargetName="txtChunkCount" Property="FontWeight" Value="Bold" />
+                    <Setter TargetName="txtBlockName" Property="FontWeight" Value="Bold" />
+                    <Setter TargetName="txtBlockId" Property="FontWeight" Value="Bold" />
+
+                    <Setter TargetName="txtChunkCount" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
+                    <Setter TargetName="txtBlockName" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
+                    <Setter TargetName="txtBlockId" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />-->
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChunksChanged}" Value="True">
+                    <Setter TargetName="txtBlockName" Property="Foreground" Value="#FFFF5F5F" />
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </ctrls:BlockListViewItem.Template>
+</ctrls:BlockListViewItem>

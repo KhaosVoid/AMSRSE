@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,12 +28,14 @@ namespace AMSRSE.DataViewer.DataModels
         public static readonly DependencyProperty BlockNameProperty =
             DependencyProperty.Register("BlockName", typeof(string), typeof(BlockModel));
 
-        //TODO: Create ChunksModel
         public static readonly DependencyProperty ChunksProperty =
-            DependencyProperty.Register("Chunks", typeof(int), typeof(BlockModel));
+            DependencyProperty.Register("Chunks", typeof(IList), typeof(BlockModel));
 
         public static readonly DependencyProperty ChangeTypeProperty =
             DependencyProperty.Register("ChangeType", typeof(ChangeTypes), typeof(BlockModel));
+
+        public static readonly DependencyProperty ChunksChangedProperty =
+            DependencyProperty.Register("ChunksChanged", typeof(bool), typeof(BlockModel));
 
         #endregion Dependency Properties
 
@@ -49,9 +53,9 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(BlockNameProperty, value); }
         }
 
-        public int Chunks
+        public IList Chunks
         {
-            get { return (int)GetValue(ChunksProperty); }
+            get { return (IList)GetValue(ChunksProperty); }
             set { SetValue(ChunksProperty, value); }
         }
 
@@ -61,13 +65,19 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(ChangeTypeProperty, value); }
         }
 
+        public bool ChunksChanged
+        {
+            get { return (bool)GetValue(ChunksChangedProperty); }
+            set { SetValue(ChunksChangedProperty, value); }
+        }
+
         #endregion Properties
 
         #region Ctor
 
         public BlockModel()
         {
-
+            Chunks = new ObservableCollection<ChunkModel>();
         }
 
         #endregion Ctor

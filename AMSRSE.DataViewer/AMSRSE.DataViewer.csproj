@@ -58,9 +58,21 @@
       <DependentUpon>BlockListView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\BlockListViewItem.xaml.cs">
+      <DependentUpon>BlockListViewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChunkListView.xaml.cs">
+      <DependentUpon>ChunkListView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ChunkListViewItem.xaml.cs">
+      <DependentUpon>ChunkListViewItem.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controls\ContentControlBase.cs" />
     <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="DataModels\BlockModel.cs" />
+    <Compile Include="DataModels\ChunkModel.cs" />
     <Compile Include="DataModels\FileModel.cs" />
     <Compile Include="Designer\DesignerCompatible.cs" />
     <Compile Include="Designer\IDesignerCompatible.cs" />
@@ -77,15 +89,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataModels\Templates\BlockListViewItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Controls\BlockListViewItem.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ChunkListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ChunkListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Mocks\BlockListViewItemMock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Designer\Mocks\BlockListViewMock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Designer\Mocks\BMSSVExplorerViewMock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Mocks\ChunkListViewItemMock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Mocks\ChunkListViewMock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,6 +133,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Theme\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BMSSVExplorerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +182,8 @@
       <Name>AMSRSE.InfoXml</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DataModels\Templates\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

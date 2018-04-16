@@ -1,16 +1,144 @@
 ﻿<CompositeCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels">
-    <dm:BlockModel Chunks="10" BlockName="Items Collected (By Area)" BlockId="0xD97207D2" />
-    <dm:BlockModel Chunks="30" BlockName="Unknown" BlockId="0xCB17C79F" ChangeType="Added" />
-    <dm:BlockModel Chunks="73" BlockName="Misc Data" BlockId="0xC72341EA" />
-    <dm:BlockModel Chunks="41" BlockName="Unknown" BlockId="0x68E39AC0" ChangeType="Added" />
-    <dm:BlockModel Chunks="5" BlockName="Save and Spawn Location" BlockId="0x1C421E97" />
-    <dm:BlockModel Chunks="30" BlockName="Cutscenes / Tutorial Messages?" BlockId="0x6F49393E" ChangeType="Removed" />
-    <dm:BlockModel Chunks="28" BlockName="Unknown" BlockId="0xC1BED709" ChangeType="Added" />
-    <dm:BlockModel Chunks="36" BlockName="Unknown" BlockId="0xBDBE58A1" ChangeType="Added" />
-    <dm:BlockModel Chunks="7" BlockName="Metroids Killed (By Type)" BlockId="0x3814CFC7" />
-    <dm:BlockModel Chunks="24" BlockName="Teleport Stations Visited or Unlocked" BlockId="0xBC6C23CE" ChangeType="Removed" />
-    <dm:BlockModel Chunks="63" BlockName="Unknown" BlockId="0x63580F44" ChangeType="Added" />
-    <dm:BlockModel Chunks="34" BlockName="Inventory" BlockId="0xFEBC51D5" />
+                     xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels">
+    <dm:BlockModel BlockName="Items Collected (By Area)" BlockId="0xD97207D2">
+        <dm:BlockModel.Chunks>
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x1F6E32DA" ChunkName="Surface" Value="14" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x1DD4CC59" ChunkName="Area 1" Value="14" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x9A3461E1" ChunkName="Area 2" Value="18" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xE7940589" ChunkName="Area 3" Value="21" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xD5F34B4B" ChunkName="Area 4" Value="21" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Area 5" Value="23" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x5213E6F3" ChunkName="Area 6" Value="12" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x77DB0BAC" ChunkName="Area 7" Value="13" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xDED6C283" ChunkName="Area 8" Value="14" />
+        </dm:BlockModel.Chunks>
+    </dm:BlockModel>
+    <dm:BlockModel BlockName="Unknown" BlockId="0xCB17C79F" ChangeType="Added" />
+    <dm:BlockModel BlockName="Misc Data" BlockId="0xC72341EA">
+        <dm:BlockModel.Chunks>
+            <dm:ChunkModel DataType="Float32" ChunkId="0xA58344FD" Value="99" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xCF1F63A9" Value="500" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x02C9EFE3" Value="30" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xD48F6F4D" Value="10" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xA0155E8F" Value="2" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0x0DD64AC8" Value="1" />
+            <dm:ChunkModel DataType="String" ChunkId="0xAC804A60" Value="samus" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xCD978BA7" Value="0" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x8E60825E" Value="773604" />
+            <dm:ChunkModel DataType="String" ChunkId="0x0E308714" ChunkName="StringFmt for Load Screen?" Value="[!:#GUI_MISC003] / 08:36:42 / 0%" />
+            <dm:ChunkModel DataType="String" ChunkId="0x740158CE" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x1D484F69" ChunkName="Mission Time (seconds)" Value="31002.07421875" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xC6834964" ChunkName="Amiibo functionality unlocked" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xD91DFDA0" ChunkName="Energy Reserve Tank unlocked" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0x6F73FBEA" ChunkName="Is Energy Reserve Tank full" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xBC1556C6" ChunkName="Aeion Energy Reserve Tank full" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0x05EFDCBE" ChunkName="Is Aeion Energy Reserve Tank full" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xD281B2D7" ChunkName="Missile Reserve Tank unlocked" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xC83950F4" ChunkName="Is Missile Reserve Tank full" Value="1" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x1F6E32DA" ChunkName="Surface Collected Items Count" Value="14" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x1DD4CC59" ChunkName="Area 1 Collected Items Count" Value="14" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x9A3461E1" ChunkName="Area 2 Collected Items Count" Value="18" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xE7940589" ChunkName="Area 3 Collected Items Count" Value="21" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xD5F34B4B" ChunkName="Area 4 Collected Items Count" Value="21" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Area 5 Collected Items Count" Value="23" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x5213E6F3" ChunkName="Area 6 Collected Items Count" Value="12" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x77DB0BAC" ChunkName="Area 7 Collected Items Count" Value="13" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xDED6C283" ChunkName="Area 8 Collected Items Count" Value="14" />
+            <dm:ChunkModel DataType="String" ChunkId="0x40012D3D" ChunkName="Current Event" Value="LE_ChozoUnlockAreaDNA" />
+            <dm:ChunkModel DataType="String" ChunkId="0xB7DF5468" ChunkName="Current Event Location" Value="s000_surface" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0xA4EDC5C7" ChunkName="Metroids to Kill in Current Area" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0x1A0AC730" ChunkName="Surface: Alpha Metroid Killed" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xF0618E15" ChunkName="Area 1: Alpha Metroid 1 Killed" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0x4A30878C" ChunkName="Area 2: Alpha Metroid 1 Killed" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0xDC0080FB" ChunkName="Area 3: Alpha Metroid 1 Killed" Value="1" />
+            <dm:ChunkModel DataType="UInt8" ChunkId="0x7F95E465" ChunkName="Area 4: Alpha Metroid 1 Killed" Value="1" />
+        </dm:BlockModel.Chunks>
+    </dm:BlockModel>
+    <dm:BlockModel BlockName="Unknown" BlockId="0x68E39AC0" ChangeType="Added" />
+    <dm:BlockModel BlockName="Save and Spawn Location" BlockId="0x1C421E97">
+        <dm:BlockModel.Chunks>
+            <dm:ChunkModel DataType="String" ChunkId="0xBAF0ACD2" Value="c10_samus" />
+            <dm:ChunkModel DataType="String" ChunkId="0xC5A42F7D" Value="s110_surfaceb" />
+            <dm:ChunkModel DataType="String" ChunkId="0xD63D5AA4" Value="ST_SaveStation_004" />
+            <dm:ChunkModel DataType="String" ChunkId="0x7A9F1793" Value="LE_SaveStation_004" />
+        </dm:BlockModel.Chunks>
+    </dm:BlockModel>
+    <dm:BlockModel BlockName="Cutscenes / Tutorial Messages?" BlockId="0x6F49393E" ChangeType="Removed" />
+    <dm:BlockModel BlockName="Unknown" BlockId="0xC1BED709" ChangeType="Added" />
+    <dm:BlockModel BlockName="Unknown" BlockId="0xBDBE58A1" ChangeType="Added" />
+    <dm:BlockModel BlockName="Metroids Killed (By Type)" BlockId="0x3814CFC7">
+        <dm:BlockModel.Chunks>
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Alpha Metroids Killed" Value="17" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Gamma Metroids Killed" Value="14" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Zeta Metroids Killed" Value="4" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Omega Metroids Killed" Value="4" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Normal Metroids Killed" Value="10" />
+            <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Metroid Queen Killed" Value="1" />
+        </dm:BlockModel.Chunks>
+    </dm:BlockModel>
+    <dm:BlockModel BlockName="Teleport Stations Visited or Unlocked" BlockId="0xBC6C23CE" ChangeType="Removed">
+        <dm:BlockModel.Chunks>
+            <dm:ChunkModel DataType="String" ChunkId="0x2CF2329C" Value="s000_surface" />
+            <dm:ChunkModel DataType="String" ChunkId="0x49958E24" Value="s010_area1" />
+            <dm:ChunkModel DataType="String" ChunkId="0xA73A3B36" Value="s028_area2c" />
+            <dm:ChunkModel DataType="String" ChunkId="0x1D6B32AF" Value="s020_area2" />
+            <dm:ChunkModel DataType="String" ChunkId="0x28CE5146" Value="s025_area2b" />
+            <dm:ChunkModel DataType="String" ChunkId="0x8B5B35D8" Value="s020_area2" />
+            <dm:ChunkModel DataType="String" ChunkId="0xF0D5D046" Value="s030_area3" />
+            <dm:ChunkModel DataType="String" ChunkId="0xC25D878E" Value="s036_area3c" />
+            <dm:ChunkModel DataType="String" ChunkId="0x9AFE7998" Value="s033_area3b" />
+            <dm:ChunkModel DataType="String" ChunkId="0x20AF7001" Value="s033_area3b" />
+            <dm:ChunkModel DataType="String" ChunkId="0x7B655013" Value="s040_area4" />
+            <dm:ChunkModel DataType="String" ChunkId="0x1E02ECAB" Value="s050_area5" />
+            <dm:ChunkModel DataType="String" ChunkId="0xF915148F" Value="s060_area6" />
+            <dm:ChunkModel DataType="String" ChunkId="0x9946D4F5" Value="s067_area6c" />
+            <dm:ChunkModel DataType="String" ChunkId="0x296FB4C8" Value="s065_area6b" />
+            <dm:ChunkModel DataType="String" ChunkId="0x43441D16" Value="s060_area6" />
+            <dm:ChunkModel DataType="String" ChunkId="0x2F9BEC98" Value="s070_area7" />
+            <dm:ChunkModel DataType="String" ChunkId="0x95CAE501" Value="s070_area7" />
+            <dm:ChunkModel DataType="String" ChunkId="0xA6BD3AE1" Value="s090_area9" />
+            <dm:ChunkModel DataType="String" ChunkId="0x1CEC3378" Value="s090_area9" />
+            <dm:ChunkModel DataType="String" ChunkId="0x268A5B38" Value="s100_area10" />
+            <dm:ChunkModel DataType="String" ChunkId="0x9CDB52A1" Value="s100_area10" />
+            <dm:ChunkModel DataType="String" ChunkId="0x0BC34B3B" Value="s000_surface" />
+        </dm:BlockModel.Chunks>
+    </dm:BlockModel>
+    <dm:BlockModel BlockName="Unknown" BlockId="0x63580F44" ChangeType="Added" />
+    <dm:BlockModel BlockName="Inventory" BlockId="0xFEBC51D5">
+        <dm:BlockModel.Chunks>
+            <dm:ChunkModel DataType="Float32" ChunkId="0x09E50EEE" ChunkName="Total Metroids" Value="50" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x55F1D6B6" ChunkName="Max Missiles" Value="264" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xFE981519" ChunkName="Metroids Killed" Value="50" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x70833890" ChunkName="Max Energy" Value="1099" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xE9877735" ChunkName="Max Power Bombs" Value="20" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xCBA0FFDF" ChunkName="Max Super Missiles" Value="35" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x77561E39" ChunkName="Ice Beam" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x9BD12C5A" ChunkName="Max Aeion Energy" Value="2200" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x733C15CE" ChunkName="Current Energy" Value="1099" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x42CED42A" ChunkName="Current Missiles" Value="264" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x455A1D6A" ChunkName="Current Super Missiles" Value="35" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xB074A1EE" ChunkName="Current Power Bombs" Value="20" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x634DC541" ChunkName="High Jump Boots" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x20046296" ChunkName="Screw Attack" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x194F3BAA" ChunkName="Space Jump" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xEA9E382B" ChunkName="Morph Ball" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x576E4803" ChunkName="Scan Pulse" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xB9805F37" ChunkName="Current Aeion Energy" Value="2200" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xA9FB0778" ChunkName="Spring Ball" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x462D2463" ChunkName="Current Metroid DNA" Value="0" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xA34423D9" ChunkName="Charge Beam" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x03FDA58A" ChunkName="Morph Ball Bomb" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x06F58B9C" ChunkName="Spider Ball" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x7D145810" ChunkName="Lightning Armor" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xF7E06C74" ChunkName="Varia Suit" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x8E7272BA" ChunkName="Wave Beam" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x5CBD3A2B" ChunkName="Beam Burst" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xCBB372C9" ChunkName="Grapple Beam" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xCB790519" ChunkName="Spazer Beam" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x4871DBB7" ChunkName="Phase Drift" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xD55B9714" ChunkName="Plasma Beam" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0x999DACAD" ChunkName="Gravity Suit" Value="1" />
+            <dm:ChunkModel DataType="Float32" ChunkId="0xE6E8ECB4" ChunkName="Baby Metroid" Value="1" />
+        </dm:BlockModel.Chunks>
+    </dm:BlockModel>
 </CompositeCollection>

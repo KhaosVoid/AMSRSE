@@ -1,0 +1,15 @@
+﻿<dm:BlockModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
+    BlockName="Block Name"
+    BlockId="0xDEADBEEF"
+    ChangeType="Added"
+    ChunksChanged="True">
+    <dm:BlockModel.Chunks>
+        <dm:ChunkModel />
+        <dm:ChunkModel />
+        <dm:ChunkModel />
+        <dm:ChunkModel />
+        <dm:ChunkModel />
+    </dm:BlockModel.Chunks>
+</dm:BlockModel>

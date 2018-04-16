@@ -30,14 +30,9 @@ namespace AMSRSE.DataViewer.DataModels
 
         #region Ctor
 
-        static FileModel()
-        {
-            BlocksProperty.OverrideMetadata(typeof(FileModel), new PropertyMetadata(new ObservableCollection<BlockModel>()));
-        }
-
         public FileModel()
         {
-
+            Blocks = new ObservableCollection<BlockModel>();
         }
 
         #endregion Ctor

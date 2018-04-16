@@ -7,19 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace AMSRSE.DataViewer.Controls
 {
-    public class BlockListView : ControlBase
+    public class ChunkListView : ControlBase
     {
         #region Dependency Properties
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(IList), typeof(BlockListView));
-
-        public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedItem", typeof(BlockModel), typeof(BlockListView));
+            DependencyProperty.Register("Items", typeof(IList), typeof(ChunkListView));
 
         #endregion Dependency Properties
 
@@ -31,22 +27,19 @@ namespace AMSRSE.DataViewer.Controls
             set { SetValue(ItemsProperty, value); }
         }
 
-        public BlockModel SelectedItem
-        {
-            get { return (BlockModel)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
-        }
-
         #endregion Properties
 
         #region Ctor
 
-        public BlockListView()
+        static ChunkListView()
         {
-            Items = new ObservableCollection<BlockModel>();
+            ItemsProperty.OverrideMetadata(typeof(ChunkListView), new PropertyMetadata(new ObservableCollection<ChunkModel>()));
+        }
 
+        public ChunkListView()
+        {
             InitializeComponent(
-                xamlPath: new Uri("/AMSRSE.DataViewer;component/Controls/BlockListView.xaml", UriKind.Relative));
+                xamlPath: new Uri("/AMSRSE.DataViewer;component/Controls/ChunkListView.xaml", UriKind.Relative));
         }
 
         #endregion Ctor

@@ -8,14 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}">
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="240" Width="Auto" MaxWidth="480" />
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ctrls:BlockListView DataContext="{Binding Blocks}" />
+        <ctrls:BlockListView x:Name="blv" Items="{Binding Blocks}" />
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch">
             <GridSplitter.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
@@ -26,6 +26,6 @@
                 </LinearGradientBrush>
             </GridSplitter.Background>
         </GridSplitter>
-        <views:TestView Grid.Column="2" />
+        <ctrls:ChunkListView Grid.Column="2" />
     </Grid>
 </views:BMSSVExplorerView>

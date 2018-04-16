@@ -4,15 +4,16 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      mc:Ignorable="d"
                      xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
-                     xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
                      d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewMock.xaml, IsDesignTimeCreatable=True}"
                      Items="{Binding}">
     <ctrls:BlockListView.Template>
         <ControlTemplate TargetType="ctrls:BlockListView">
             <ListView
-                Background="#FF333333"
-                ItemTemplate="{StaticResource AMSRSE.DataModels.Templates.BlockListViewItem}"
-                ItemsSource="{TemplateBinding Items}">
+                x:Name="lv"
+                Background="{TemplateBinding Background}"
+                ItemsSource="{TemplateBinding Items}"
+                SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem}"
+                SelectionMode="Single">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />
@@ -36,9 +37,19 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="ListViewItem">
-                                    <Border x:Name="Bd" BorderThickness="1" Padding="2,1" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsPresenter}}, Path=ActualWidth}">
-                                        <ContentPresenter />
-                                    </Border>
+                                    <!--<Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsPresenter}}, Path=ActualWidth}">-->
+                                        <!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="6" />
+                                            <ColumnDefinition Width="2" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>-->
+                                        <!--<Rectangle x:Name="rSelectedHandle" />-->
+                                        <Border Grid.Column="2" x:Name="Bd" BorderThickness="1" Padding="2,1" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsPresenter}}, Path=ActualWidth}">
+                                        <!--<Border Grid.Column="2" Padding="2,1">-->
+                                            <ContentPresenter />
+                                        <!--</Border>-->
+                                        </Border>
+                                    <!--</Grid>-->
                                     <ControlTemplate.Triggers>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -46,10 +57,12 @@
                                             </MultiTrigger.Conditions>
                                             <Setter Property="Background" TargetName="Bd" Value="#1F26A0DA"/>
                                             <Setter Property="BorderBrush" TargetName="Bd" Value="#A826A0DA"/>
+                                            <!--<Setter TargetName="rSelectedHandle" Property="Fill" Value="#7F00A0FF" />-->
                                         </MultiTrigger>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="Background" TargetName="Bd" Value="#3D26A0DA"/>
                                             <Setter Property="BorderBrush" TargetName="Bd" Value="#FF26A0DA"/>
+                                            <!--<Setter TargetName="rSelectedHandle" Property="Fill" Value="#FF00A0FF" />-->
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -57,6 +70,11 @@
                         </Setter>
                     </Style>
                 </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <ItemContainerTemplate>
+                        <ctrls:BlockListViewItem DataContext="{Binding}" />
+                    </ItemContainerTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </ControlTemplate>
     </ctrls:BlockListView.Template>
