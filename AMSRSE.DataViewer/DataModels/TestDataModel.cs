@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -19,6 +20,18 @@ namespace AMSRSE.DataViewer.DataModels
 
         public static readonly DependencyProperty InfoProperty =
             RegisterTracked("Info", typeof(string), typeof(TestDataModel), new PropertyMetadata("Hello World", OnInfoPropertyChangedCallback));
+
+        public static readonly DependencyProperty PhoneNumberProperty =
+            RegisterTracked("PhoneNumber", typeof(string), typeof(TestDataModel), new PropertyMetadata(PhoneNumberPropertyChanged));
+
+        public static readonly DependencyProperty Int32ValueProperty =
+            RegisterTracked("Int32Value", typeof(int), typeof(TestDataModel));
+
+        public static readonly DependencyProperty UInt32ValueProperty =
+            RegisterTracked("UInt32ValueProperty", typeof(uint), typeof(TestDataModel));
+
+        public static readonly DependencyProperty FloatValueProperty =
+            RegisterTracked("FloatValue", typeof(float), typeof(TestDataModel));
 
         #endregion Dependency Properties
 
@@ -42,6 +55,30 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(InfoProperty, value); }
         }
 
+        public string PhoneNumber
+        {
+            get { return (string)GetValue(PhoneNumberProperty); }
+            set { SetValue(PhoneNumberProperty, value); }
+        }
+
+        public int Int32Value
+        {
+            get { return (int)GetValue(Int32ValueProperty); }
+            set { SetValue(Int32ValueProperty, value); }
+        }
+
+        public uint UInt32Value
+        {
+            get { return (uint)GetValue(UInt32ValueProperty); }
+            set { SetValue(UInt32ValueProperty, value); }
+        }
+
+        public float FloatValue
+        {
+            get { return (float)GetValue(FloatValueProperty); }
+            set { SetValue(FloatValueProperty, value); }
+        }
+
         #endregion Properties
 
         #region Ctor
@@ -61,6 +98,34 @@ namespace AMSRSE.DataViewer.DataModels
             var test2 = test.HasChanges;
         }
 
+        private static void PhoneNumberPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TestDataModel testDataModel)
+            {
+                string oldValue = e.OldValue as string;
+                string newValue = e.NewValue as string;
+
+                if (!Regex.IsMatch(newValue, ""))
+                    testDataModel.PhoneNumber = oldValue;
+
+            }
+        }
+
         #endregion Dependency Property Callbacks
+
+        #region Dependency Property Validation
+
+        private static bool ValidatePhoneNumberProperty(object value)
+        {
+            if (value is null)
+                return true;
+
+            if (value is string phoneNumber)
+                return Regex.IsMatch(phoneNumber, "^\\d{10}$");
+
+            return false;
+        }
+
+        #endregion Dependency Property Validation
     }
 }

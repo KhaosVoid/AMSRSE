@@ -22,7 +22,7 @@
                             FontFamily="Consolas"
                             FontSize="12"
                             Text="Value:" />
-                        <TextBox Grid.Column="2" Text="{Binding Value}" />
+                        <TextBox Grid.Column="2" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </ControlTemplate>
                 <ControlTemplate x:Key="UInt8ArrayChunkValueTemplate">

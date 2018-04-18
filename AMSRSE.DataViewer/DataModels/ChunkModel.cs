@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
-    public class ChunkModel : DependencyObject
+    public class ChunkModel : EditableModel
     {
         #region Enums
 
@@ -25,16 +25,16 @@ namespace AMSRSE.DataViewer.DataModels
         #region Dependency Properties
 
         public static readonly DependencyProperty ChunkIdProperty =
-            DependencyProperty.Register("ChunkId", typeof(uint), typeof(ChunkModel));
+            RegisterTracked("ChunkId", typeof(uint), typeof(ChunkModel));
 
         public static readonly DependencyProperty ChunkNameProperty =
-            DependencyProperty.Register("ChunkName", typeof(string), typeof(ChunkModel));
+            RegisterTracked("ChunkName", typeof(string), typeof(ChunkModel));
 
         public static readonly DependencyProperty DataTypeProperty =
-            DependencyProperty.Register("DataType", typeof(DataTypes), typeof(ChunkModel));
+            RegisterTracked("DataType", typeof(DataTypes), typeof(ChunkModel));
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(object), typeof(ChunkModel));
+            RegisterTracked("Value", typeof(object), typeof(ChunkModel));
 
         #endregion Dependency Properties
 

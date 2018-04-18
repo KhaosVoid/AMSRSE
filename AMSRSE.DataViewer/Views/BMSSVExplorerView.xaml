@@ -8,7 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignWidth="768" d:DesignHeight="320"
-    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}">
+    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}"
+    SelectedBlock="{Binding ElementName=blv, Path=SelectedItem}">
     <Grid Background="{Binding ElementName=bmssvExplorerView, Path=Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -30,6 +31,8 @@
                 <Button Margin="4,2" Width="48" Content="Load" Command="{Binding ElementName=bmssvExplorerView, Path=LoadFileCommand}" />
                 <Button Margin="4,2" Width="48" Content="Save" />
                 <Button Margin="4,2" Width="48" Content="Revert" />
+                <TextBlock Text="{Binding HasChanges, StringFormat='FileModelHasChanges: {0}'}" />
+                <TextBlock Text="{Binding ElementName=bmssvExplorerView, Path=SelectedBlock.HasChanges, StringFormat='SelectedBlockHasChanges: {0}'}" />
             </StackPanel>
             <TextBlock x:Name="txtFilePath" Grid.Row="1" Text="{Binding FilePath, StringFormat='Path: {0}', TargetNullValue='No file selected'}" />
         </Grid>
