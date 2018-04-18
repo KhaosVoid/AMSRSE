@@ -100,10 +100,15 @@ namespace AMSRSE.BMSSV
             numberOfChunks = BitConverter.ToUInt32(numberOfChunksBytes/*.Reverse().ToArray()*/, 0);
 
             for (int c = 0; c < numberOfChunks; c++)
-                block.AddChunk(ReadChunk(fileStream));
+            {
+                IChunk chunk = ReadChunk(fileStream);
+
+                if (chunk != null)
+                    block.AddChunk(chunk);
+            }
 
             block.BlockID = ((BlockIDChunk)block.Chunks.First(c => c.ChunkID == ChunkIDs.BlockID)).Value;
-            block.Name = BMSSVNameTable.BlockNames[block.BlockID];
+            //block.Name = BMSSVNameTable.BlockNames[block.BlockID];
 
             return block;
         }
@@ -141,6 +146,13 @@ namespace AMSRSE.BMSSV
 
                 case DataTypes.String:
                     return ReadStringChunk(fileStream, chunkId);
+
+                case DataTypes.DataType76:
+                    //Currently not handling 0x76
+                    //Unknown as to what this data type is
+                    //As it seems to always be 12 bytes long, for now we'll skip over it
+                    fileStream.Position = fileStream.Position + 12;
+                    return null;
 
                 default:
                     throw new Exception("Unknown chunk type!");

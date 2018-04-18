@@ -21,6 +21,9 @@ namespace AMSRSE.DataViewer.Controls
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(BlockModel), typeof(BlockListView));
 
+        public static readonly DependencyProperty CanEditProperty =
+            DependencyProperty.Register("CanEdit", typeof(bool), typeof(BlockListView));
+
         #endregion Dependency Properties
 
         #region Properties
@@ -35,6 +38,12 @@ namespace AMSRSE.DataViewer.Controls
         {
             get { return (BlockModel)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
+        }
+
+        public bool CanEdit
+        {
+            get { return (bool)GetValue(CanEditProperty); }
+            set { SetValue(CanEditProperty, value); }
         }
 
         #endregion Properties

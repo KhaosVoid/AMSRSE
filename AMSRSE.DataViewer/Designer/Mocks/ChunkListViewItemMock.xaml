@@ -3,6 +3,6 @@
     xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
     ChunkId="0xDEADBEEF"
     ChunkName="Chunk Name"
-    DataType="String"
+    DataType="UInt8Array"
     Value="Chunk Value">
 </dm:ChunkModel>

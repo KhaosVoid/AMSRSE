@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
+    d:DesignHeight="320"
     d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/ChunkListViewMock.xaml, IsDesignTimeCreatable=True}"
     Items="{Binding}">
     <ctrls:ChunkListView.Template>
@@ -58,7 +59,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
-                        <ctrls:ChunkListViewItem DataContext="{Binding}" />
+                        <ctrls:ChunkListViewItem DataContext="{Binding}" CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:ChunkListView}, Path=CanEdit}" />
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
             </ListView>

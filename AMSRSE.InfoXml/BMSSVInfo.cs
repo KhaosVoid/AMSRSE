@@ -44,7 +44,7 @@ namespace AMSRSE.InfoXml
 
         public void AddName(string sectionName, uint id, string value = null)
         {
-            AddName(sectionName, id.ToString("X"), value);
+            AddName(sectionName, id.ToString("X8"), value);
         }
 
         public void AddName(string sectionName, string id, string value = null)
@@ -67,7 +67,7 @@ namespace AMSRSE.InfoXml
 
         public string GetName(string sectionName, uint id)
         {
-            return GetName(sectionName, id.ToString("X"));
+            return GetName(sectionName, id.ToString("X8"));
         }
 
         public string GetName(string sectionName, string id)
@@ -79,7 +79,7 @@ namespace AMSRSE.InfoXml
 
         public void SetName(string sectionName, uint id, string value)
         {
-            SetName(sectionName, id.ToString("X"), value);
+            SetName(sectionName, id.ToString("X8"), value);
         }
 
         public void SetName(string sectionName, string id, string value)
@@ -93,7 +93,7 @@ namespace AMSRSE.InfoXml
 
         public void RemoveName(string sectionName, uint id)
         {
-            RemoveName(sectionName, id.ToString("X"));
+            RemoveName(sectionName, id.ToString("X8"));
         }
 
         public void RemoveName(string sectionName, string id)

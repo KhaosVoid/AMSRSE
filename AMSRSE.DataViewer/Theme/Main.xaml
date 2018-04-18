@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls">
+                    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
+                    xmlns:views="clr-namespace:AMSRSE.DataViewer.Views">
+    <Style TargetType="views:BMSSVExplorerView">
+        <Setter Property="Background" Value="#FF202020" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+    </Style>
     <Style TargetType="ctrls:BlockListView">
         <Setter Property="Background" Value="#FF202020" />
     </Style>

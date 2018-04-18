@@ -25,6 +25,9 @@ namespace AMSRSE.DataViewer.Controls
         public static readonly DependencyProperty RemovedColorProperty =
             DependencyProperty.Register("RemovedColor", typeof(SolidColorBrush), typeof(BlockListViewItem));
 
+        public static readonly DependencyProperty CanEditProperty =
+            DependencyProperty.Register("CanEdit", typeof(bool), typeof(BlockListViewItem));
+
         #endregion Dependency Properties
 
         #region Properties
@@ -39,6 +42,12 @@ namespace AMSRSE.DataViewer.Controls
         {
             get { return (SolidColorBrush)GetValue(RemovedColorProperty); }
             set { SetValue(RemovedColorProperty, value); }
+        }
+
+        public bool CanEdit
+        {
+            get { return (bool)GetValue(CanEditProperty); }
+            set { SetValue(CanEditProperty, value); }
         }
 
         #endregion Properties

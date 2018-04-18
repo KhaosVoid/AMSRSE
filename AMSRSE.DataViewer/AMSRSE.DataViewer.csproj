@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\BlockListView.xaml.cs">
       <DependentUpon>BlockListView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -73,7 +74,9 @@
     <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="DataModels\BlockModel.cs" />
     <Compile Include="DataModels\ChunkModel.cs" />
+    <Compile Include="DataModels\EditableModel.cs" />
     <Compile Include="DataModels\FileModel.cs" />
+    <Compile Include="DataModels\TestDataModel.cs" />
     <Compile Include="Designer\DesignerCompatible.cs" />
     <Compile Include="Designer\IDesignerCompatible.cs" />
     <Compile Include="Views\BMSSVExplorerView.xaml.cs">
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Designer\Mocks\ChunkListViewMock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Mocks\TestViewMock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

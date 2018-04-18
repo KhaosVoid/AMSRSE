@@ -7,16 +7,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    d:DesignWidth="768" d:DesignHeight="320"
     d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}">
-    <Grid x:Name="grid">
+    <Grid Background="{Binding ElementName=bmssvExplorerView, Path=Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="240" Width="Auto" MaxWidth="480" />
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ctrls:BlockListView x:Name="blv" Items="{Binding Blocks}" />
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch">
+        <Grid Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="4,2" Width="48" Content="Load" Command="{Binding ElementName=bmssvExplorerView, Path=LoadFileCommand}" />
+                <Button Margin="4,2" Width="48" Content="Save" />
+                <Button Margin="4,2" Width="48" Content="Revert" />
+            </StackPanel>
+            <TextBlock x:Name="txtFilePath" Grid.Row="1" Text="{Binding FilePath, StringFormat='Path: {0}', TargetNullValue='No file selected'}" />
+        </Grid>
+        
+        <ctrls:BlockListView x:Name="blv" Grid.Row="1" Items="{Binding Blocks}" CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=views:BMSSVExplorerView}, Path=CanEdit}" />
+        <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
             <GridSplitter.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
                     <GradientStop Offset="0" Color="#FF0F0F0F" />
@@ -26,6 +45,12 @@
                 </LinearGradientBrush>
             </GridSplitter.Background>
         </GridSplitter>
-        <ctrls:ChunkListView Grid.Column="2" />
+        <Border
+            Grid.Row="1"
+            Grid.Column="2"
+            d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/ChunkListViewMock.xaml, IsDesignTimeCreatable=True}"
+            DataContext="{Binding ElementName=blv, Path=SelectedItem.Chunks}">
+            <ctrls:ChunkListView Items="{Binding}" CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=views:BMSSVExplorerView}, Path=CanEdit}" />
+        </Border>
     </Grid>
 </views:BMSSVExplorerView>

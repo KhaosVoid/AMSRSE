@@ -1,8 +1,34 @@
-﻿<local:TestView x:Name="testView"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:local="clr-namespace:AMSRSE.DataViewer.Views">
+﻿<local:TestView
+    x:Name="testView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:local="clr-namespace:AMSRSE.DataViewer.Views"
+    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/TestViewMock.xaml, IsDesignTimeCreatable=True}">
     <Border Width="320" Height="240" Background="Red">
-        <TextBlock Text="{Binding ElementName=testView, Path=TestString}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock TextAlignment="Right" Text="FirstName" />
+            <TextBlock Grid.Row="1" TextAlignment="Right" Text="LastName" />
+            <TextBlock Grid.Row="2" TextAlignment="Right" Text="Info" />
+            <TextBlock Grid.Row="3" TextAlignment="Right" Text="HasChanges" />
+
+            <TextBlock Grid.Column="1" Text="{Binding FirstName}" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Info, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding HasChanges}" />
+        </Grid>
     </Border>
 </local:TestView>

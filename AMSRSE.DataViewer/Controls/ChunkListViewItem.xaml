@@ -9,10 +9,7 @@
     <ctrls:ChunkListViewItem.Template>
         <ControlTemplate TargetType="ctrls:ChunkListViewItem">
             <ControlTemplate.Resources>
-                <ControlTemplate x:Key="Float32ChunkValueTemplate">
-                    
-                </ControlTemplate>
-                <ControlTemplate x:Key="StringChunkValueTemplate">
+                <ControlTemplate x:Key="ChunkValueTemplate">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -28,17 +25,14 @@
                         <TextBox Grid.Column="2" Text="{Binding Value}" />
                     </Grid>
                 </ControlTemplate>
-                <ControlTemplate x:Key="UInt32ChunkValueTemplate">
-                    
-                </ControlTemplate>
                 <ControlTemplate x:Key="UInt8ArrayChunkValueTemplate">
-                    
+                    <TextBlock Text="Not yet implemented . . ." />
                 </ControlTemplate>
-                <ControlTemplate x:Key="UInt8ChunkValueTemplate">
-                    
+                <ControlTemplate x:Key="ReadOnlyChunkValueTemplate">
+                    <TextBlock Text="{Binding Value}" />
                 </ControlTemplate>
             </ControlTemplate.Resources>
-            <Grid>
+            <Grid Margin="2,2,2,6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="4" />
@@ -63,7 +57,7 @@
                         FontFamily="Consolas"
                         FontSize="12"
                         Foreground="#FF3E60FD"
-                        Text="{Binding ChunkId, StringFormat={}{0:X}}" />
+                        Text="{Binding ChunkId, StringFormat={}{0:X8}}" />
                     <TextBlock
                         VerticalAlignment="Center"
                         FontFamily="Consolas"
@@ -84,11 +78,26 @@
                     Foreground="#FF00FF00"
                     Text="{Binding DataType}" />
                 <Rectangle Grid.Row="1" Grid.ColumnSpan="5" Margin="0,2" Height="1" Fill="#FF3E60FD" />
-                <ContentControl Grid.Row="2" Grid.ColumnSpan="5" x:Name="chunkValueContent" />
+                <ContentControl x:Name="chunkValueContent" Grid.Row="2" Grid.ColumnSpan="5" Margin="8,0,0,0" />
             </Grid>
             <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding DataType}" Value="Float32">
+                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource ChunkValueTemplate}" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding DataType}" Value="String">
-                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource StringChunkValueTemplate}" />
+                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource ChunkValueTemplate}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding DataType}" Value="UInt32">
+                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource ChunkValueTemplate}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding DataType}" Value="UInt8">
+                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource ChunkValueTemplate}" />
+                </DataTrigger>
+                <Trigger Property="CanEdit" Value="False">
+                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource ReadOnlyChunkValueTemplate}" />
+                </Trigger>
+                <DataTrigger Binding="{Binding DataType}" Value="UInt8Array">
+                    <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource UInt8ArrayChunkValueTemplate}" />
                 </DataTrigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

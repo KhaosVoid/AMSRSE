@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AMSRSE.Editor.Commands
+namespace AMSRSE.DataViewer.Commands
 {
     public class DelegateCommand : ICommand
     {

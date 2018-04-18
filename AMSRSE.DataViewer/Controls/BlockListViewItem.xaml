@@ -64,7 +64,7 @@
                         FontFamily="Consolas"
                         FontSize="12"
                         Foreground="#FF3E60FD"
-                        Text="{Binding BlockId, StringFormat={}{0:X}}" />
+                        Text="{Binding BlockId, StringFormat={}{0:X8}}" />
                     <TextBlock
                         VerticalAlignment="Center"
                         FontFamily="Consolas"

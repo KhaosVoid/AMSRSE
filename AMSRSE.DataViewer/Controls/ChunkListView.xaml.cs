@@ -17,6 +17,9 @@ namespace AMSRSE.DataViewer.Controls
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(IList), typeof(ChunkListView));
 
+        public static readonly DependencyProperty CanEditProperty =
+            DependencyProperty.Register("CanEdit", typeof(bool), typeof(ChunkListView));
+
         #endregion Dependency Properties
 
         #region Properties
@@ -25,6 +28,12 @@ namespace AMSRSE.DataViewer.Controls
         {
             get { return (IList)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
+        }
+
+        public bool CanEdit
+        {
+            get { return (bool)GetValue(CanEditProperty); }
+            set { SetValue(CanEditProperty, value); }
         }
 
         #endregion Properties

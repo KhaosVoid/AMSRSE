@@ -14,6 +14,7 @@ namespace AMSRSE.BMSSV.Enums
         UInt8Array = 0x63,
         UInt32     = 0x69,
         Float32    = 0x66,
-        String     = 0x73
+        String     = 0x73,
+        DataType76 = 0x76
     }
 }

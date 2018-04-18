@@ -1,11 +1,12 @@
-﻿<ctrls:BlockListView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     mc:Ignorable="d"
-                     xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
-                     d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewMock.xaml, IsDesignTimeCreatable=True}"
-                     Items="{Binding}">
+﻿<ctrls:BlockListView
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
+    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewMock.xaml, IsDesignTimeCreatable=True}"
+    Items="{Binding}">
     <ctrls:BlockListView.Template>
         <ControlTemplate TargetType="ctrls:BlockListView">
             <ListView
@@ -72,7 +73,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
-                        <ctrls:BlockListViewItem DataContext="{Binding}" />
+                        <ctrls:BlockListViewItem DataContext="{Binding}" CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:BlockListView}, Path=CanEdit}" />
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
             </ListView>
