@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -76,7 +78,13 @@
     <Compile Include="DataModels\ChunkModel.cs" />
     <Compile Include="DataModels\EditableModel.cs" />
     <Compile Include="DataModels\FileModel.cs" />
+    <Compile Include="DataModels\Validation\IValidator.cs" />
+    <Compile Include="DataModels\Validation\ModelValidation.cs" />
+    <Compile Include="DataModels\TestDataDerivedModel.cs" />
     <Compile Include="DataModels\TestDataModel.cs" />
+    <Compile Include="DataModels\Validation\PropertyValidator.cs" />
+    <Compile Include="DataModels\Validation\RegexValidator.cs" />
+    <Compile Include="DataModels\Validation\TypeValidator.cs" />
     <Compile Include="Designer\DesignerCompatible.cs" />
     <Compile Include="Designer\IDesignerCompatible.cs" />
     <Compile Include="Views\BMSSVExplorerView.xaml.cs">

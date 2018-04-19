@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace AMSRSE.DataViewer.DataModels.Validation
+{
+    public class TypeValidator : IValidator
+    {
+        #region Properties
+
+        public string ErrorText { get; set; }
+
+        #endregion Properties
+
+        #region Ctor
+
+        public TypeValidator()
+        {
+
+        }
+
+        #endregion Ctor
+
+        #region Methods
+
+        public string Validate(DependencyObject d, DependencyProperty p)
+        {
+            var valueType = d.GetValue(p).GetType();
+
+            if (valueType == p.PropertyType)
+                return null;
+
+            return string.IsNullOrWhiteSpace(ErrorText) ?
+                $"{p.Name} value is not the correct type. Type expected: '{p.PropertyType.FullName}'" :
+                ErrorText;
+        }
+
+        #endregion Methods
+    }
+}

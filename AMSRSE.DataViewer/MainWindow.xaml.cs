@@ -26,9 +26,6 @@ namespace AMSRSE.DataViewer
         public MainWindow()
         {
             InitializeComponent();
-
-            TestDataModel test = new TestDataModel();
-            test.PhoneNumber = "918851994";
         }
     }
 }

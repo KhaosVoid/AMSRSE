@@ -1,7 +1,9 @@
 ﻿<dm:TestDataModel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
+                  xmlns:validation="clr-namespace:AMSRSE.DataViewer.DataModels.Validation"
                   FirstName="First Name"
                   LastName="Last Name"
-                  Info="Hello World!">
+                  Info="Hello World!"
+                  validation:ModelValidation.ModelValidation="{StaticResource TestDataModelValidation}">
     
 </dm:TestDataModel>

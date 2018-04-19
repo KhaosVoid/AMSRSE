@@ -9,16 +9,17 @@
         xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
         xmlns:enums="clr-namespace:AMSRSE.BMSSV.Enums;assembly=AMSRSE.BMSSV"
         xmlns:views="clr-namespace:AMSRSE.DataViewer.Views"
+        xmlns:validation="clr-namespace:AMSRSE.DataViewer.DataModels.Validation"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!--<views:TestView d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/TestViewMock.xaml, IsDesignTimeCreatable=True}">
+    <views:TestView d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/TestViewMock.xaml, IsDesignTimeCreatable=True}">
         <views:TestView.DataContext>
-            <dm:TestDataModel>
+            <dm:TestDataModel validation:ModelValidation.ModelValidation="{StaticResource TestDataModelValidation}">
                 <dm:TestDataModel.FirstName>Zach</dm:TestDataModel.FirstName>
                 <dm:TestDataModel.LastName>Tommey</dm:TestDataModel.LastName>
                 <dm:TestDataModel.Info>Hello World!</dm:TestDataModel.Info>
             </dm:TestDataModel>
         </views:TestView.DataContext>
-    </views:TestView>-->
-    <views:BMSSVExplorerView CanEdit="True" x:Name="bmssvExplorerView" d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}" />
+    </views:TestView>
+    <!--<views:BMSSVExplorerView CanEdit="True" x:Name="bmssvExplorerView" d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}" />-->
 </Window>

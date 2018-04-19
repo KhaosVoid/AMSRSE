@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMSRSE.DataViewer.DataModels.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
-    public abstract class EditableModel : DependencyObject
+    public abstract class EditableModel : DependencyObject, IDataErrorInfo
     {
         #region Dependency Properties
 
@@ -26,6 +27,11 @@ namespace AMSRSE.DataViewer.DataModels
         {
             get { return (bool)GetValue(HasChangesProperty); }
             protected set { SetValue(HasChangesPropertyKey, value); }
+        }
+
+        public bool IsValid
+        {
+            get { return ModelValidation.GetModelValidation(this).IsValid; }
         }
 
         #endregion Properties
@@ -47,10 +53,32 @@ namespace AMSRSE.DataViewer.DataModels
 
         public EditableModel()
         {
+            ModelValidation.SetModelValidation(this, new ModelValidation());
             _originalPropertyValues = new Dictionary<DependencyProperty, object>();
         }
 
         #endregion Ctor
+
+        #region IDataErrorInfo
+
+        string IDataErrorInfo.Error
+        {
+            get { return null; }
+        }
+
+        string IDataErrorInfo.this[string propertyName]
+        {
+            get
+            {
+                var modelValidation = ModelValidation.GetModelValidation(this);
+                var validationResult = modelValidation.ValidateProperty(this, propertyName);
+                modelValidation.Validate(this);
+
+                return validationResult;
+            }
+        }
+
+        #endregion IDataErrorInfo
 
         #region Methods
 

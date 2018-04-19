@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,7 +23,7 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("Info", typeof(string), typeof(TestDataModel), new PropertyMetadata("Hello World", OnInfoPropertyChangedCallback));
 
         public static readonly DependencyProperty PhoneNumberProperty =
-            RegisterTracked("PhoneNumber", typeof(string), typeof(TestDataModel), new PropertyMetadata(PhoneNumberPropertyChanged));
+            RegisterTracked("PhoneNumber", typeof(string), typeof(TestDataModel));
 
         public static readonly DependencyProperty Int32ValueProperty =
             RegisterTracked("Int32Value", typeof(int), typeof(TestDataModel));
@@ -98,34 +99,6 @@ namespace AMSRSE.DataViewer.DataModels
             var test2 = test.HasChanges;
         }
 
-        private static void PhoneNumberPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is TestDataModel testDataModel)
-            {
-                string oldValue = e.OldValue as string;
-                string newValue = e.NewValue as string;
-
-                if (!Regex.IsMatch(newValue, ""))
-                    testDataModel.PhoneNumber = oldValue;
-
-            }
-        }
-
         #endregion Dependency Property Callbacks
-
-        #region Dependency Property Validation
-
-        private static bool ValidatePhoneNumberProperty(object value)
-        {
-            if (value is null)
-                return true;
-
-            if (value is string phoneNumber)
-                return Regex.IsMatch(phoneNumber, "^\\d{10}$");
-
-            return false;
-        }
-
-        #endregion Dependency Property Validation
     }
 }
