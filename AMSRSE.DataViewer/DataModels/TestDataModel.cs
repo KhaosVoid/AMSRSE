@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AMSRSE.DataViewer.DataModels.Validation.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -56,6 +58,8 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(InfoProperty, value); }
         }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Phone number is required.")]
+        [PhoneNumberValidator]
         public string PhoneNumber
         {
             get { return (string)GetValue(PhoneNumberProperty); }
@@ -85,6 +89,11 @@ namespace AMSRSE.DataViewer.DataModels
         #region Ctor
 
         public TestDataModel()
+        {
+
+        }
+
+        protected override void Test()
         {
 
         }

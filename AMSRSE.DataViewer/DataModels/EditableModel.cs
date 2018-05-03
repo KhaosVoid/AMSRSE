@@ -1,7 +1,9 @@
 ﻿using AMSRSE.DataViewer.DataModels.Validation;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,7 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
-    public abstract class EditableModel : DependencyObject, IDataErrorInfo
+    public abstract class EditableModel : DependencyObject, IDataErrorInfo, ISupportInitialize
     {
         #region Dependency Properties
 
@@ -18,6 +20,18 @@ namespace AMSRSE.DataViewer.DataModels
 
         public static readonly DependencyProperty HasChangesProperty =
             HasChangesPropertyKey.DependencyProperty;
+
+        public static readonly DependencyPropertyKey IsValidPropertyKey =
+            DependencyProperty.RegisterReadOnly("IsValid", typeof(bool), typeof(EditableModel), null);
+
+        public static readonly DependencyProperty IsValidProperty =
+            IsValidPropertyKey.DependencyProperty;
+
+        public static readonly DependencyPropertyKey ValidationErrorsPropertyKey =
+            DependencyProperty.RegisterReadOnly("ValidationErrors", typeof(IDictionary), typeof(EditableModel), null);
+
+        public static readonly DependencyProperty ValidationErrorsProperty =
+            ValidationErrorsPropertyKey.DependencyProperty;
 
         #endregion Dependency Properties
 
@@ -31,7 +45,15 @@ namespace AMSRSE.DataViewer.DataModels
 
         public bool IsValid
         {
-            get { return ModelValidation.GetModelValidation(this).IsValid; }
+            //get { return ModelValidation.GetModelValidation(this).IsValid; }
+            get { return (bool)GetValue(IsValidProperty); }
+            private set { SetValue(IsValidPropertyKey, value); }
+        }
+
+        public IDictionary ValidationErrors
+        {
+            get { return (IDictionary)GetValue(ValidationErrorsProperty); }
+            private set { SetValue(ValidationErrorsPropertyKey, value); }
         }
 
         #endregion Properties
@@ -53,9 +75,12 @@ namespace AMSRSE.DataViewer.DataModels
 
         public EditableModel()
         {
-            ModelValidation.SetModelValidation(this, new ModelValidation());
+            //ModelValidation.SetModelValidation(this, new ModelValidation());
+            ValidationErrors = new Dictionary<string, string>();
             _originalPropertyValues = new Dictionary<DependencyProperty, object>();
         }
+
+        
 
         #endregion Ctor
 
@@ -70,15 +95,66 @@ namespace AMSRSE.DataViewer.DataModels
         {
             get
             {
-                var modelValidation = ModelValidation.GetModelValidation(this);
-                var validationResult = modelValidation.ValidateProperty(this, propertyName);
-                modelValidation.Validate(this);
+                //var modelValidation = ModelValidation.GetModelValidation(this);
+                //var validationResult = modelValidation.ValidateProperty(this, propertyName);
+                //modelValidation.Validate(this);
 
-                return validationResult;
+                //return validationResult;
+
+                string error = string.Empty;
+                var dpDescriptor = DependencyPropertyDescriptor.FromName(propertyName, this.GetType(), this.GetType());
+
+                if (dpDescriptor != null)
+                {
+                    var results = new List<ValidationResult>(1);
+
+                    var result = Validator.TryValidateProperty(
+                        value: this.GetValue(dpDescriptor.DependencyProperty),
+                        validationContext: new ValidationContext(this)
+                        {
+                            MemberName = propertyName
+                        },
+                        validationResults: results);
+
+                    if (!result)
+                    {
+                        var validationResult = results.First();
+                        error = validationResult.ErrorMessage;
+
+                        if (ValidationErrors.Contains(propertyName))
+                            ValidationErrors[propertyName] = error;
+
+                        else
+                            ValidationErrors.Add(propertyName, error);
+                    }
+
+                    else
+                    {
+                        if (ValidationErrors.Contains(propertyName))
+                            ValidationErrors.Remove(propertyName);
+                    }
+                }
+
+                IsValid = ValidationErrors.Count > 0 ? false : true;
+                return error;
             }
         }
 
         #endregion IDataErrorInfo
+
+        #region ISupportInitialize
+
+        public void BeginInit()
+        {
+            Test();
+        }
+
+        public void EndInit()
+        {
+            Test();
+        }
+
+        #endregion ISupportInitialize
 
         #region Methods
 
@@ -182,6 +258,11 @@ namespace AMSRSE.DataViewer.DataModels
         }
 
         protected virtual void OnRevertChanges()
+        {
+
+        }
+
+        protected virtual void Test()
         {
 
         }

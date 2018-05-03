@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,9 @@
     <Compile Include="DataModels\ChunkModel.cs" />
     <Compile Include="DataModels\EditableModel.cs" />
     <Compile Include="DataModels\FileModel.cs" />
+    <Compile Include="DataModels\TestData2Model.cs" />
+    <Compile Include="DataModels\Validation\Attributes\PhoneNumberValidatorAttribute.cs" />
+    <Compile Include="DataModels\Validation\Attributes\RegexValidatorAttribute.cs" />
     <Compile Include="DataModels\Validation\IValidator.cs" />
     <Compile Include="DataModels\Validation\ModelValidation.cs" />
     <Compile Include="DataModels\TestDataDerivedModel.cs" />
