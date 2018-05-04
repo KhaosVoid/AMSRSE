@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AMSRSE.DataViewer.Commands;
+using AMSRSE.DataViewer.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,12 @@ namespace AMSRSE.DataViewer.Views
         public static readonly DependencyProperty TestStringProperty =
             DependencyProperty.Register("TestString", typeof(string), typeof(TestView));
 
+        public static readonly DependencyPropertyKey RevertChangesCommandPropertyKey =
+            DependencyProperty.RegisterReadOnly("RevertChangesCommand", typeof(DelegateCommand), typeof(TestView), null);
+
+        public static readonly DependencyProperty RevertChangesCommandProperty =
+            RevertChangesCommandPropertyKey.DependencyProperty;
+
         #endregion Dependency Properties
 
         #region Properties
@@ -23,6 +31,12 @@ namespace AMSRSE.DataViewer.Views
         {
             get { return (string)GetValue(TestStringProperty); }
             set { SetValue(TestStringProperty, value); }
+        }
+
+        public DelegateCommand RevertChangesCommand
+        {
+            get { return (DelegateCommand)GetValue(RevertChangesCommandProperty); }
+            private set { SetValue(RevertChangesCommandPropertyKey, value); }
         }
 
         #endregion Properties
@@ -36,6 +50,8 @@ namespace AMSRSE.DataViewer.Views
 
         public TestView()
         {
+            RevertChangesCommand = new DelegateCommand((o) => { RevertChanges(); });
+
             InitializeComponent(
                 xamlPath: new Uri("/AMSRSE.DataViewer;component/Views/TestView.xaml", UriKind.Relative));
         }
@@ -44,7 +60,11 @@ namespace AMSRSE.DataViewer.Views
 
         #region Methods
 
-
+        private void RevertChanges()
+        {
+            if (DataContext is EditableModel editableModel)
+                editableModel.RevertChanges();
+        }
 
         #endregion Methods
     }

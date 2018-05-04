@@ -34,9 +34,6 @@ namespace AMSRSE.DataViewer.DataModels.Validation.Attributes
                     return new ValidationResult(
                         errorMessage: !string.IsNullOrWhiteSpace(ErrorMessage) ?
                             ErrorMessage : VRESULT_INCORRECT_VALUE);
-
-                //if (!Regex.IsMatch(rValue, RegexPattern))
-                //    return new ValidationResult(VRESULT_INCORRECT_VALUE);
             }
 
             return ValidationResult.Success;

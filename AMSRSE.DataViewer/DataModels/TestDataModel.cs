@@ -25,7 +25,7 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("Info", typeof(string), typeof(TestDataModel), new PropertyMetadata("Hello World", OnInfoPropertyChangedCallback));
 
         public static readonly DependencyProperty PhoneNumberProperty =
-            RegisterTracked("PhoneNumber", typeof(string), typeof(TestDataModel));
+            RegisterTracked("PhoneNumber", typeof(string), typeof(TestDataModel), new PropertyMetadata(""));
 
         public static readonly DependencyProperty Int32ValueProperty =
             RegisterTracked("Int32Value", typeof(int), typeof(TestDataModel));
@@ -89,11 +89,6 @@ namespace AMSRSE.DataViewer.DataModels
         #region Ctor
 
         public TestDataModel()
-        {
-
-        }
-
-        protected override void Test()
         {
 
         }

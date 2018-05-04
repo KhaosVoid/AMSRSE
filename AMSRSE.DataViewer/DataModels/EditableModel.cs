@@ -45,7 +45,6 @@ namespace AMSRSE.DataViewer.DataModels
 
         public bool IsValid
         {
-            //get { return ModelValidation.GetModelValidation(this).IsValid; }
             get { return (bool)GetValue(IsValidProperty); }
             private set { SetValue(IsValidPropertyKey, value); }
         }
@@ -60,7 +59,9 @@ namespace AMSRSE.DataViewer.DataModels
 
         #region Members
 
+        private static List<DependencyProperty> _trackedProperties;
         protected Dictionary<DependencyProperty, object> _originalPropertyValues;
+        private bool _canTrack;
 
         #endregion Members
 
@@ -73,14 +74,16 @@ namespace AMSRSE.DataViewer.DataModels
 
         #region Ctor
 
+        static EditableModel()
+        {
+            _trackedProperties = new List<DependencyProperty>();
+        }
+
         public EditableModel()
         {
-            //ModelValidation.SetModelValidation(this, new ModelValidation());
             ValidationErrors = new Dictionary<string, string>();
             _originalPropertyValues = new Dictionary<DependencyProperty, object>();
         }
-
-        
 
         #endregion Ctor
 
@@ -95,12 +98,6 @@ namespace AMSRSE.DataViewer.DataModels
         {
             get
             {
-                //var modelValidation = ModelValidation.GetModelValidation(this);
-                //var validationResult = modelValidation.ValidateProperty(this, propertyName);
-                //modelValidation.Validate(this);
-
-                //return validationResult;
-
                 string error = string.Empty;
                 var dpDescriptor = DependencyPropertyDescriptor.FromName(propertyName, this.GetType(), this.GetType());
 
@@ -146,12 +143,16 @@ namespace AMSRSE.DataViewer.DataModels
 
         public void BeginInit()
         {
-            Test();
+            _originalPropertyValues = new Dictionary<DependencyProperty, object>();
+            _canTrack = false;
         }
 
         public void EndInit()
         {
-            Test();
+            for (int i = 0; i < _trackedProperties.Count; i++)
+                _originalPropertyValues.Add(_trackedProperties[i], GetValue(_trackedProperties[i]));
+
+            _canTrack = true;
         }
 
         #endregion ISupportInitialize
@@ -189,7 +190,10 @@ namespace AMSRSE.DataViewer.DataModels
                 },
                 coerceValueCallback: typeMetadata?.CoerceValueCallback);
 
-            return DependencyProperty.Register(name, propertyType, ownerType, metadata, validateValueCallback);
+            DependencyProperty dp = DependencyProperty.Register(name, propertyType, ownerType, metadata, validateValueCallback);
+            _trackedProperties.Add(dp);
+
+            return dp;
         }
 
         protected static DependencyPropertyKey RegisterReadOnlyTracked(string name, Type propertyType, Type ownerType, PropertyMetadata typeMetadata)
@@ -218,25 +222,32 @@ namespace AMSRSE.DataViewer.DataModels
                 },
                 coerceValueCallback: typeMetadata?.CoerceValueCallback);
 
-            return DependencyProperty.RegisterReadOnly(name, propertyType, ownerType, metadata, validateValueCallback);
+            DependencyPropertyKey dpk = DependencyProperty.RegisterReadOnly(name, propertyType, ownerType, metadata, validateValueCallback);
+            _trackedProperties.Add(dpk.DependencyProperty);
+
+            return dpk;
         }
 
-        //TODO: Try to find a way to call this for dependency properties that have a default value.
-        //      Currently, the default value does not get added to the original values dictionary
-        //      because the property changed callback never gets fired.
         private static void CheckDependencyPropertyChanges(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is EditableModel editableModel &&
-                !DesignerProperties.GetIsInDesignMode(editableModel))
+                !DesignerProperties.GetIsInDesignMode(editableModel) &&
+                editableModel._canTrack)
             {
-                if (editableModel._originalPropertyValues.ContainsKey(e.Property))
-                {
-                    if (!editableModel.HasChanges && editableModel._originalPropertyValues[e.Property] != e.NewValue)
-                        editableModel.HasChanges = true;
-                }
+                if (editableModel._originalPropertyValues.Where(i => i.Value != editableModel.GetValue(i.Key)).Count() > 0)
+                    editableModel.HasChanges = true;
 
                 else
-                    editableModel._originalPropertyValues.Add(e.Property, e.NewValue);
+                    editableModel.HasChanges = false;
+
+                //if (editableModel._originalPropertyValues.ContainsKey(e.Property))
+                //{
+                //    if (!editableModel.HasChanges && editableModel._originalPropertyValues[e.Property] != e.NewValue)
+                //        editableModel.HasChanges = true;
+                //}
+
+                //else
+                //    editableModel._originalPropertyValues.Add(e.Property, e.NewValue);
 
                 editableModel.RaiseModelPropertyChanged(e.Property, e.NewValue);
             }
@@ -258,11 +269,6 @@ namespace AMSRSE.DataViewer.DataModels
         }
 
         protected virtual void OnRevertChanges()
-        {
-
-        }
-
-        protected virtual void Test()
         {
 
         }
