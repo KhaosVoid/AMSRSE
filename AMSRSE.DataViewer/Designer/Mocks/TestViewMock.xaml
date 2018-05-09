@@ -4,6 +4,11 @@
                   LastName="Last Name"
                   Info="Hello World!"
                   PhoneNumber="">
+    <dm:TestDataModel.TestList>
+        <dm:TestDataModel />
+        <dm:TestDataModel />
+        <dm:TestDataModel />
+    </dm:TestDataModel.TestList>
 <!--<dm:TestData2Model xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
                    PhoneNumber="9188519946">-->

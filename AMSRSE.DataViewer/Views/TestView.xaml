@@ -22,6 +22,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!--<TextBlock TextAlignment="Right" Text="FirstName" />-->
@@ -38,7 +39,25 @@
             <TextBox x:Name="txtPhoneNumber" Grid.Row="4" Grid.Column="1" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding HasChanges}" />
             <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding IsValid}" />
-            <Button Grid.Row="7" Grid.Column="1" Content="Revert" Command="{Binding ElementName=testView, Path=RevertChangesCommand}" />
+            <Grid Grid.Row="7" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock TextAlignment="Right" Text="Item 1" />
+                <TextBlock Grid.Row="1" TextAlignment="Right" Text="Item 2" />
+                <TextBlock Grid.Row="2" TextAlignment="Right" Text="Item 3" />
+
+                <TextBox Grid.Column="1" Text="{Binding TestList[0].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TestList[1].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TestList[2].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+            </Grid>
+            <Button Grid.Row="8" Grid.Column="1" Content="Revert" Command="{Binding ElementName=testView, Path=RevertChangesCommand}" />
         </Grid>
     </Border>
 </local:TestView>

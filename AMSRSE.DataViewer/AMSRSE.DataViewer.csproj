@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Collections\ObservableModelCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\BlockListView.xaml.cs">
       <DependentUpon>BlockListView.xaml</DependentUpon>

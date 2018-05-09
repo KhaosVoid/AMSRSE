@@ -1,6 +1,8 @@
 ﻿using AMSRSE.DataViewer.DataModels.Validation.Attributes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -35,6 +37,9 @@ namespace AMSRSE.DataViewer.DataModels
 
         public static readonly DependencyProperty FloatValueProperty =
             RegisterTracked("FloatValue", typeof(float), typeof(TestDataModel));
+
+        public static readonly DependencyProperty TestListProperty =
+            RegisterTracked("TestList", typeof(IList), typeof(TestDataModel), null);
 
         #endregion Dependency Properties
 
@@ -84,13 +89,19 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(FloatValueProperty, value); }
         }
 
+        public IList TestList
+        {
+            get { return (IList)GetValue(TestListProperty); }
+            set { SetValue(TestListProperty, value); }
+        }
+
         #endregion Properties
 
         #region Ctor
 
         public TestDataModel()
         {
-
+            TestList = new ObservableCollection<TestDataModel>();
         }
 
         #endregion Ctor

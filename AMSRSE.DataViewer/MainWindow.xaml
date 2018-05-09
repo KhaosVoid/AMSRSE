@@ -18,6 +18,9 @@
                 <dm:TestDataModel.FirstName>Zach</dm:TestDataModel.FirstName>
                 <dm:TestDataModel.LastName>Tommey</dm:TestDataModel.LastName>
                 <dm:TestDataModel.Info>Hello World!</dm:TestDataModel.Info>
+                <dm:TestDataModel.TestList>
+                    <dm:TestDataModel Info="Hello World" />
+                </dm:TestDataModel.TestList>
             </dm:TestDataModel>
         </views:TestView.DataContext>
     </views:TestView>

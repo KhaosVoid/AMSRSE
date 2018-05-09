@@ -2,9 +2,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -149,10 +151,39 @@ namespace AMSRSE.DataViewer.DataModels
 
         public void EndInit()
         {
-            for (int i = 0; i < _trackedProperties.Count; i++)
-                _originalPropertyValues.Add(_trackedProperties[i], GetValue(_trackedProperties[i]));
+            for (int p = 0; p < _trackedProperties.Count; p++)
+            {
+                var value = GetValue(_trackedProperties[p]);
+
+                if (value is INotifyCollectionChanged observableCollection)
+                {
+                    observableCollection.CollectionChanged -= Collection_CollectionChanged;
+                    observableCollection.CollectionChanged += Collection_CollectionChanged;
+
+                    if (value is IEnumerable<EditableModel> collection)
+                    {
+                        for (int m = 0; m < collection.Count(); m++)
+                        {
+                            collection.ElementAt(m).ModelPropertyChanged -= EditableModel_ModelPropertyChanged;
+                            collection.ElementAt(m).ModelPropertyChanged += EditableModel_ModelPropertyChanged;
+                        }
+                    }
+                }
+
+                _originalPropertyValues.Add(_trackedProperties[p], DeepCopyPropertyValue(value));
+            }
 
             _canTrack = true;
+        }
+
+        private void EditableModel_ModelPropertyChanged(DependencyProperty property, object newValue)
+        {
+            CheckChanges();
+        }
+
+        private void Collection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            CheckChanges();
         }
 
         #endregion ISupportInitialize
@@ -234,20 +265,13 @@ namespace AMSRSE.DataViewer.DataModels
                 !DesignerProperties.GetIsInDesignMode(editableModel) &&
                 editableModel._canTrack)
             {
-                if (editableModel._originalPropertyValues.Where(i => i.Value != editableModel.GetValue(i.Key)).Count() > 0)
-                    editableModel.HasChanges = true;
+                editableModel.CheckChanges();
 
-                else
-                    editableModel.HasChanges = false;
-
-                //if (editableModel._originalPropertyValues.ContainsKey(e.Property))
-                //{
-                //    if (!editableModel.HasChanges && editableModel._originalPropertyValues[e.Property] != e.NewValue)
-                //        editableModel.HasChanges = true;
-                //}
+                //if (editableModel._originalPropertyValues.Where(i => i.Value != editableModel.GetValue(i.Key)).Count() > 0)
+                //    editableModel.HasChanges = true;
 
                 //else
-                //    editableModel._originalPropertyValues.Add(e.Property, e.NewValue);
+                //    editableModel.HasChanges = false;
 
                 editableModel.RaiseModelPropertyChanged(e.Property, e.NewValue);
             }
@@ -256,6 +280,48 @@ namespace AMSRSE.DataViewer.DataModels
         protected void RaiseModelPropertyChanged(DependencyProperty p, object newValue)
         {
             ModelPropertyChanged?.Invoke(p, newValue);
+        }
+
+        private void CheckChanges()
+        {
+            bool hasChanges = false;
+
+            if (_originalPropertyValues.Where(i => i.Value != GetValue(i.Key)).Count() > 0)
+                hasChanges = true;
+
+            else
+            {
+                var observableCollections = _originalPropertyValues.Where(i => i.Value is INotifyCollectionChanged).ToDictionary(k => k.Key, v => v.Value);
+
+                for (int c = 0; c < observableCollections.Count(); c++)
+                {
+                    var originalCollection = (IList)observableCollections.ElementAt(c).Value;
+                    var collection = (IList)GetValue(observableCollections.ElementAt(c).Key);
+
+                    if (originalCollection.Count != collection.Count)
+                    {
+                        hasChanges = true;
+                        break;
+                    }
+
+                    for (int i = 0; i < collection.Count; i++)
+                    {
+                        if (collection[i] is EditableModel editableModel && editableModel.HasChanges)
+                        {
+                            hasChanges = true;
+                            break;
+                        }
+
+                        if (collection[i] != originalCollection[i])
+                        {
+                            hasChanges = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            HasChanges = hasChanges;
         }
 
         public void RevertChanges()
@@ -271,6 +337,62 @@ namespace AMSRSE.DataViewer.DataModels
         protected virtual void OnRevertChanges()
         {
 
+        }
+
+        //WIP
+        private object DeepCopyPropertyValue(object objSource)
+        {
+            if (objSource == null)
+                return null;
+
+            Type typeSource = objSource.GetType();
+
+            if (typeSource.IsValueType ||
+                typeSource.IsEnum ||
+                typeSource.Equals(typeof(String)))
+            {
+                return objSource;
+            }
+
+            object objTarget = Activator.CreateInstance(typeSource);
+
+            PropertyInfo[] propertyInfo = typeSource.GetProperties(
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (PropertyInfo property in propertyInfo)
+            {
+                if(property.CanWrite)
+                {
+                    if (property.PropertyType.IsValueType ||
+                        property.PropertyType.IsEnum ||
+                        property.PropertyType.Equals(typeof(String)))
+                    {
+                        property.SetValue(objTarget, property.GetValue(objSource, null), null);
+                    }
+
+                    else
+                    {
+                        if (objSource is IList objSourceList)
+                        {
+                            //TODO: WIP
+                            object[] objSourceItems = new object[objSourceList.Count];
+                            objSourceList.CopyTo(objSourceItems, 0);
+                            
+                            IList objSourceListTarget = Activator.CreateInstance(objSourceList.GetType(), objSourceItems) as IList;
+                        }
+
+                        object objPropertyValue = property.GetValue(objSource);
+
+                        if (objPropertyValue == null)
+                            property.SetValue(objTarget, null, null);
+
+                        else
+                            property.SetValue(objTarget, DeepCopyPropertyValue(objPropertyValue), null);
+                    }
+                }
+            }
+
+            return objTarget;
         }
 
         #endregion Methods
