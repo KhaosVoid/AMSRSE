@@ -23,11 +23,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!--<TextBlock TextAlignment="Right" Text="FirstName" />-->
             <!--<TextBlock Grid.Row="1" TextAlignment="Right" Text="LastName" />-->
             <!--<TextBlock Grid.Row="2" TextAlignment="Right" Text="Info" />-->
+            <TextBlock Grid.Row="2" TextAlignment="Right" Text="Int32Value" />
             <TextBlock Grid.Row="4" TextAlignment="Right" Text="PhoneNumber" />
             <TextBlock Grid.Row="5" TextAlignment="Right" Text="HasChanges" />
             <TextBlock Grid.Row="6" TextAlignment="Right" Text="IsValid" />
@@ -35,6 +37,7 @@
             <!--<TextBlock Grid.Column="1" Text="{Binding FirstName}" />-->
             <!--<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" />-->
             <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Info, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Int32Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, ElementName=txtPhoneNumber}" />
             <TextBox x:Name="txtPhoneNumber" Grid.Row="4" Grid.Column="1" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding HasChanges}" />
@@ -57,7 +60,8 @@
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TestList[1].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TestList[2].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
             </Grid>
-            <Button Grid.Row="8" Grid.Column="1" Content="Revert" Command="{Binding ElementName=testView, Path=RevertChangesCommand}" />
+            <Button Grid.Row="8" Grid.Column="1" Content="Add Item" Command="{Binding ElementName=testView, Path=AddItemCommand}" />
+            <Button Grid.Row="9" Grid.Column="1" Content="Revert" Command="{Binding ElementName=testView, Path=RevertChangesCommand}" />
         </Grid>
     </Border>
 </local:TestView>

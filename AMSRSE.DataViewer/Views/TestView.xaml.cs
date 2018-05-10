@@ -17,6 +17,12 @@ namespace AMSRSE.DataViewer.Views
         public static readonly DependencyProperty TestStringProperty =
             DependencyProperty.Register("TestString", typeof(string), typeof(TestView));
 
+        public static readonly DependencyPropertyKey AddItemCommandPropertyKey =
+            DependencyProperty.RegisterReadOnly("AddItemCommand", typeof(DelegateCommand), typeof(TestView), null);
+
+        public static readonly DependencyProperty AddItemCommandProperty =
+            AddItemCommandPropertyKey.DependencyProperty;
+
         public static readonly DependencyPropertyKey RevertChangesCommandPropertyKey =
             DependencyProperty.RegisterReadOnly("RevertChangesCommand", typeof(DelegateCommand), typeof(TestView), null);
 
@@ -31,6 +37,12 @@ namespace AMSRSE.DataViewer.Views
         {
             get { return (string)GetValue(TestStringProperty); }
             set { SetValue(TestStringProperty, value); }
+        }
+
+        public DelegateCommand AddItemCommand
+        {
+            get { return (DelegateCommand)GetValue(AddItemCommandProperty); }
+            private set { SetValue(AddItemCommandPropertyKey, value); }
         }
 
         public DelegateCommand RevertChangesCommand
@@ -50,6 +62,7 @@ namespace AMSRSE.DataViewer.Views
 
         public TestView()
         {
+            AddItemCommand = new DelegateCommand((o) => { AddItem(); });
             RevertChangesCommand = new DelegateCommand((o) => { RevertChanges(); });
 
             InitializeComponent(
@@ -59,6 +72,17 @@ namespace AMSRSE.DataViewer.Views
         #endregion Ctor
 
         #region Methods
+
+        private void AddItem()
+        {
+            if (DataContext is TestDataModel tdm)
+            {
+                tdm.TestList.Add(new TestDataModel()
+                {
+                    Info = "!!Hello World!!"
+                });
+            }
+        }
 
         private void RevertChanges()
         {

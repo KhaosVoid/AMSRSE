@@ -71,6 +71,7 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(PhoneNumberProperty, value); }
         }
 
+        [Required(ErrorMessage = "Value is required.")]
         public int Int32Value
         {
             get { return (int)GetValue(Int32ValueProperty); }

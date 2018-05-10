@@ -100,6 +100,7 @@ namespace AMSRSE.DataViewer.DataModels
         {
             get
             {
+
                 string error = string.Empty;
                 var dpDescriptor = DependencyPropertyDescriptor.FromName(propertyName, this.GetType(), this.GetType());
 
@@ -284,54 +285,80 @@ namespace AMSRSE.DataViewer.DataModels
 
         private void CheckChanges()
         {
-            bool hasChanges = false;
-
-            if (_originalPropertyValues.Where(i => i.Value != GetValue(i.Key)).Count() > 0)
-                hasChanges = true;
-
-            else
+            if (_canTrack)
             {
-                var observableCollections = _originalPropertyValues.Where(i => i.Value is INotifyCollectionChanged).ToDictionary(k => k.Key, v => v.Value);
+                bool hasChanges = false;
 
-                for (int c = 0; c < observableCollections.Count(); c++)
+                if (_originalPropertyValues.Where(i => i.Value != GetValue(i.Key)).Count() > 0)
+                    hasChanges = true;
+
+                else
                 {
-                    var originalCollection = (IList)observableCollections.ElementAt(c).Value;
-                    var collection = (IList)GetValue(observableCollections.ElementAt(c).Key);
+                    var observableCollections = _originalPropertyValues.Where(i => i.Value is INotifyCollectionChanged).ToDictionary(k => k.Key, v => v.Value);
 
-                    if (originalCollection.Count != collection.Count)
+                    for (int c = 0; c < observableCollections.Count(); c++)
                     {
-                        hasChanges = true;
-                        break;
-                    }
+                        var originalCollection = (IList)observableCollections.ElementAt(c).Value;
+                        var collection = (IList)GetValue(observableCollections.ElementAt(c).Key);
 
-                    for (int i = 0; i < collection.Count; i++)
-                    {
-                        if (collection[i] is EditableModel editableModel && editableModel.HasChanges)
+                        if (originalCollection.Count != collection.Count)
                         {
                             hasChanges = true;
                             break;
                         }
 
-                        if (collection[i] != originalCollection[i])
+                        for (int i = 0; i < collection.Count; i++)
                         {
-                            hasChanges = true;
-                            break;
+                            if (collection[i] is EditableModel editableModel && editableModel.HasChanges)
+                            {
+                                hasChanges = true;
+                                break;
+                            }
+
+                            if (collection[i] != originalCollection[i])
+                            {
+                                hasChanges = true;
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            HasChanges = hasChanges;
+                HasChanges = hasChanges;
+            }
         }
 
         public void RevertChanges()
         {
+            _canTrack = false;
+
             for (int p = 0; p < _originalPropertyValues.Count; p++)
-                SetValue(_originalPropertyValues.ElementAt(p).Key, _originalPropertyValues.ElementAt(p).Value);
+            {
+                var value = DeepCopyPropertyValue(_originalPropertyValues.ElementAt(p).Value);
+
+                if (value is INotifyCollectionChanged observableCollection)
+                {
+                    observableCollection.CollectionChanged -= Collection_CollectionChanged;
+                    observableCollection.CollectionChanged += Collection_CollectionChanged;
+
+                    if (value is IEnumerable<EditableModel> collection)
+                    {
+                        for (int m = 0; m < collection.Count(); m++)
+                        {
+                            collection.ElementAt(m).ModelPropertyChanged -= EditableModel_ModelPropertyChanged;
+                            collection.ElementAt(m).ModelPropertyChanged += EditableModel_ModelPropertyChanged;
+                        }
+                    }
+                }
+
+                SetValue(_originalPropertyValues.ElementAt(p).Key, value);
+            }
 
             OnRevertChanges();
 
             HasChanges = false;
+
+            _canTrack = true;
         }
 
         protected virtual void OnRevertChanges()
@@ -339,7 +366,18 @@ namespace AMSRSE.DataViewer.DataModels
 
         }
 
-        //WIP
+        private EditableModel DeepCopy()
+        {
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+            {
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                formatter.Serialize(stream, this);
+                stream.Position = 0;
+
+                return formatter.Deserialize(stream) as EditableModel;
+            }
+        }
+
         private object DeepCopyPropertyValue(object objSource)
         {
             if (objSource == null)
@@ -353,6 +391,9 @@ namespace AMSRSE.DataViewer.DataModels
             {
                 return objSource;
             }
+
+            //if (objSource is EditableModel editableModel)
+            //    return editableModel.DeepCopy();
 
             object objTarget = Activator.CreateInstance(typeSource);
 
@@ -374,22 +415,28 @@ namespace AMSRSE.DataViewer.DataModels
                     {
                         if (objSource is IList objSourceList)
                         {
-                            //TODO: WIP
-                            object[] objSourceItems = new object[objSourceList.Count];
-                            objSourceList.CopyTo(objSourceItems, 0);
-                            
-                            IList objSourceListTarget = Activator.CreateInstance(objSourceList.GetType(), objSourceItems) as IList;
+                            for (int i = 0; i < objSourceList.Count; i++)
+                                ((IList)objTarget).Add(DeepCopyPropertyValue(objSourceList[i]));
                         }
 
-                        object objPropertyValue = property.GetValue(objSource);
-
-                        if (objPropertyValue == null)
-                            property.SetValue(objTarget, null, null);
-
                         else
-                            property.SetValue(objTarget, DeepCopyPropertyValue(objPropertyValue), null);
+                        {
+                            object objPropertyValue = property.GetValue(objSource);
+
+                            if (objPropertyValue == null)
+                                property.SetValue(objTarget, null, null);
+
+                            else
+                                property.SetValue(objTarget, DeepCopyPropertyValue(objPropertyValue), null);
+                        }
                     }
                 }
+            }
+
+            if (objTarget is EditableModel editableModel)
+            {
+                editableModel._canTrack = true;
+                editableModel.EndInit();
             }
 
             return objTarget;
