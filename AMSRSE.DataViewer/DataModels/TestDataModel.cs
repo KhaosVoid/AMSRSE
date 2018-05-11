@@ -30,7 +30,7 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("PhoneNumber", typeof(string), typeof(TestDataModel), new PropertyMetadata(""));
 
         public static readonly DependencyProperty Int32ValueProperty =
-            RegisterTracked("Int32Value", typeof(int), typeof(TestDataModel));
+            RegisterTracked("Int32Value", typeof(string), typeof(TestDataModel));
 
         public static readonly DependencyProperty UInt32ValueProperty =
             RegisterTracked("UInt32ValueProperty", typeof(uint), typeof(TestDataModel));
@@ -72,9 +72,10 @@ namespace AMSRSE.DataViewer.DataModels
         }
 
         [Required(ErrorMessage = "Value is required.")]
-        public int Int32Value
+        [NumberValidator(NumberType = NumberValidatorAttribute.NumberTypes.Int, NumberStyle = System.Globalization.NumberStyles.Any)]
+        public string Int32Value
         {
-            get { return (int)GetValue(Int32ValueProperty); }
+            get { return (string)GetValue(Int32ValueProperty); }
             set { SetValue(Int32ValueProperty, value); }
         }
 

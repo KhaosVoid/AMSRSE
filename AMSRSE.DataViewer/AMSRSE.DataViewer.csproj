@@ -81,8 +81,10 @@
     <Compile Include="DataModels\EditableModel.cs" />
     <Compile Include="DataModels\FileModel.cs" />
     <Compile Include="DataModels\TestData2Model.cs" />
+    <Compile Include="DataModels\Validation\Attributes\NumberValidatorAttribute.cs" />
     <Compile Include="DataModels\Validation\Attributes\PhoneNumberValidatorAttribute.cs" />
     <Compile Include="DataModels\Validation\Attributes\RegexValidatorAttribute.cs" />
+    <Compile Include="DataModels\Validation\Attributes\TypeValidatorAttribute.cs" />
     <Compile Include="DataModels\Validation\IValidator.cs" />
     <Compile Include="DataModels\Validation\ModelValidation.cs" />
     <Compile Include="DataModels\TestDataDerivedModel.cs" />
