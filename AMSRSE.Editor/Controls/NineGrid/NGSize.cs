@@ -23,6 +23,7 @@ namespace AMSRSE.Editor.Controls.NineGrid
 
         public NGSize(double left, double top, double right, double bottom)
         {
+            int test;
             Left = left > 1 ? 1 : left;
             Top = top > 1 ? 1 : top;
             Right = right > 1 ? 1 : right;
