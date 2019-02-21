@@ -1,67 +1,74 @@
-﻿<local:TestView
-    x:Name="testView"
+﻿<views:TestView
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:views="clr-namespace:AMSRSE.DataViewer.Views"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    xmlns:local="clr-namespace:AMSRSE.DataViewer.Views"
-    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/TestViewMock.xaml, IsDesignTimeCreatable=True}">
-    <Border Width="320" Height="240" Background="Red">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+    mc:Ignorable="d">
+    <views:TestView.Template>
+        <ControlTemplate TargetType="views:TestView">
+            <Border
+                d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/TestViewMock.xaml, IsDesignTimeCreatable=True}"
+                DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                Width="320"
+                Height="240"
+                Background="Red">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-            <!--<TextBlock TextAlignment="Right" Text="FirstName" />-->
-            <!--<TextBlock Grid.Row="1" TextAlignment="Right" Text="LastName" />-->
-            <!--<TextBlock Grid.Row="2" TextAlignment="Right" Text="Info" />-->
-            <TextBlock Grid.Row="2" TextAlignment="Right" Text="Int32Value" />
-            <TextBlock Grid.Row="4" TextAlignment="Right" Text="PhoneNumber" />
-            <TextBlock Grid.Row="5" TextAlignment="Right" Text="HasChanges" />
-            <TextBlock Grid.Row="6" TextAlignment="Right" Text="IsValid" />
+                    <!--<TextBlock TextAlignment="Right" Text="FirstName" />-->
+                    <!--<TextBlock Grid.Row="1" TextAlignment="Right" Text="LastName" />-->
+                    <!--<TextBlock Grid.Row="2" TextAlignment="Right" Text="Info" />-->
+                    <TextBlock Grid.Row="2" TextAlignment="Right" Text="Int32Value" />
+                    <TextBlock Grid.Row="4" TextAlignment="Right" Text="PhoneNumber" />
+                    <TextBlock Grid.Row="5" TextAlignment="Right" Text="HasChanges" />
+                    <TextBlock Grid.Row="6" TextAlignment="Right" Text="IsValid" />
 
-            <!--<TextBlock Grid.Column="1" Text="{Binding FirstName}" />-->
-            <!--<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" />-->
-            <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Info, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Int32Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, ElementName=txtPhoneNumber}" />
-            <TextBox x:Name="txtPhoneNumber" Grid.Row="4" Grid.Column="1" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding HasChanges}" />
-            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding IsValid}" />
-            <Grid Grid.Row="7" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock TextAlignment="Right" Text="Item 1" />
-                <TextBlock Grid.Row="1" TextAlignment="Right" Text="Item 2" />
-                <TextBlock Grid.Row="2" TextAlignment="Right" Text="Item 3" />
+                    <!--<TextBlock Grid.Column="1" Text="{Binding FirstName}" />-->
+                    <!--<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" />-->
+                    <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Info, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Int32Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, ElementName=txtPhoneNumber}" />
+                    <TextBox x:Name="txtPhoneNumber" Grid.Row="4" Grid.Column="1" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding HasChanges}" />
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding IsValid}" />
+                    <Grid Grid.Row="7" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock TextAlignment="Right" Text="Item 1" />
+                        <TextBlock Grid.Row="1" TextAlignment="Right" Text="Item 2" />
+                        <TextBlock Grid.Row="2" TextAlignment="Right" Text="Item 3" />
 
-                <TextBox Grid.Column="1" Text="{Binding TestList[0].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TestList[1].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TestList[2].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-            </Grid>
-            <Button Grid.Row="8" Grid.Column="1" Content="Add Item" Command="{Binding ElementName=testView, Path=AddItemCommand}" />
-            <Button Grid.Row="9" Grid.Column="1" Content="Revert" Command="{Binding ElementName=testView, Path=RevertChangesCommand}" />
-        </Grid>
-    </Border>
-</local:TestView>
+                        <TextBox Grid.Column="1" Text="{Binding TestList[0].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TestList[1].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TestList[2].Info, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+                    </Grid>
+                    <Button Grid.Row="8" Grid.Column="1" Content="Add Item" Command="{Binding AddItemCommand}" />
+                    <Button Grid.Row="9" Grid.Column="1" Content="Revert" Command="{Binding RevertChangesCommand}" />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </views:TestView.Template>
+</views:TestView>

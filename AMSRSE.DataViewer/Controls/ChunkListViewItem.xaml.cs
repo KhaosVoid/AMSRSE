@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Magatama.Core.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

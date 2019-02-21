@@ -1,4 +1,5 @@
 ﻿using AMSRSE.DataViewer.DataModels;
+using Magatama.Core.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace AMSRSE.DataViewer.Controls
 {
@@ -16,7 +16,7 @@ namespace AMSRSE.DataViewer.Controls
         #region Dependency Properties
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(IList), typeof(BlockListView));
+            DependencyProperty.Register("Items", typeof(ObservableCollection<BlockModel>), typeof(BlockListView), new PropertyMetadata(defaultValue: new ObservableCollection<BlockModel>()));
 
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(BlockModel), typeof(BlockListView));
@@ -52,8 +52,6 @@ namespace AMSRSE.DataViewer.Controls
 
         public BlockListView()
         {
-            Items = new ObservableCollection<BlockModel>();
-
             InitializeComponent(
                 xamlPath: new Uri("/AMSRSE.DataViewer;component/Controls/BlockListView.xaml", UriKind.Relative));
         }

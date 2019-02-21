@@ -1,4 +1,5 @@
 ﻿using AMSRSE.DataViewer.DataModels;
+using Magatama.Core.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;

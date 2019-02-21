@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>AMSRSE.DataViewer</RootNamespace>
     <AssemblyName>AMSRSE.DataViewer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Magatama.Core">
+      <HintPath>..\..\Magatama.Core\Magatama.Core\bin\Debug\Magatama.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -74,8 +78,6 @@
       <DependentUpon>ChunkListViewItem.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\ContentControlBase.cs" />
-    <Compile Include="Controls\ControlBase.cs" />
     <Compile Include="DataModels\BlockModel.cs" />
     <Compile Include="DataModels\ChunkModel.cs" />
     <Compile Include="DataModels\EditableModel.cs" />
@@ -92,8 +94,6 @@
     <Compile Include="DataModels\Validation\PropertyValidator.cs" />
     <Compile Include="DataModels\Validation\RegexValidator.cs" />
     <Compile Include="DataModels\Validation\TypeValidator.cs" />
-    <Compile Include="Designer\DesignerCompatible.cs" />
-    <Compile Include="Designer\IDesignerCompatible.cs" />
     <Compile Include="Views\BMSSVExplorerView.xaml.cs">
       <DependentUpon>BMSSVExplorerView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -102,7 +102,6 @@
       <DependentUpon>TestView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\ViewBase.xaml.cs" />
     <Page Include="Controls\BlockListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

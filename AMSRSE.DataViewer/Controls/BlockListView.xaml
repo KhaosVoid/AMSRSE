@@ -4,16 +4,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
-    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewMock.xaml, IsDesignTimeCreatable=True}"
-    Items="{Binding}">
+    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls">
     <ctrls:BlockListView.Template>
         <ControlTemplate TargetType="ctrls:BlockListView">
             <ListView
                 x:Name="lv"
-                Background="{TemplateBinding Background}"
-                ItemsSource="{TemplateBinding Items}"
-                SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem}"
+                d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewMock.xaml, IsDesignTimeCreatable=True}"
+                DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                Background="{Binding Background}"
+                ItemsSource="{Binding Items}"
+                SelectedValue="{Binding SelectedItem}"
                 SelectionMode="Single">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -73,7 +73,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <ItemContainerTemplate>
-                        <ctrls:BlockListViewItem DataContext="{Binding}" CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:BlockListView}, Path=CanEdit}" />
+                        <ctrls:BlockListViewItem CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:BlockListView}, Path=CanEdit}" />
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
             </ListView>
