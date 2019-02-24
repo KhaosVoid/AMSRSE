@@ -1,20 +1,4 @@
-﻿using AMSRSE.BMSSV.Enums;
-using AMSRSE.DataViewer.DataModels;
-using AMSRSE.InfoXml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace AMSRSE.DataViewer
 {
@@ -23,9 +7,49 @@ namespace AMSRSE.DataViewer
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static readonly DependencyProperty TestStringProperty =
+            DependencyProperty.Register("TestString", typeof(string), typeof(MainWindow), new PropertyMetadata(TestStringPropertyChanged));
+
+        public static readonly DependencyProperty TestArrayProperty =
+            DependencyProperty.Register("TestArray", typeof(byte[]), typeof(MainWindow), new PropertyMetadata(TestArrayPropertyChanged));
+
+        public string TestString
+        {
+            get { return (string)GetValue(TestStringProperty); }
+            set { SetValue(TestStringProperty, value); }
+        }
+
+        public byte[] TestArray
+        {
+            get { return (byte[])GetValue(TestArrayProperty); }
+            set { SetValue(TestArrayProperty, value); }
+        }
+
+        private static void TestStringPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is MainWindow)
+            {
+
+            }
+        }
+
+        private static void TestArrayPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is MainWindow)
+            {
+
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            TestString = "Hello World";
+
+            TestArray = new byte[8];
+
+            TestArray[0] = 0xFF;
         }
     }
 }

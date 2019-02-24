@@ -5,14 +5,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
-    d:DesignHeight="320"
-    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/ChunkListViewMock.xaml, IsDesignTimeCreatable=True}"
-    Items="{Binding}">
+    d:DesignHeight="320">
     <ctrls:ChunkListView.Template>
         <ControlTemplate TargetType="ctrls:ChunkListView">
             <ListView
-                Background="{TemplateBinding Background}"
-                ItemsSource="{TemplateBinding Items}">
+                d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/ChunkListViewMock.xaml, IsDesignTimeCreatable=True}"
+                DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                Background="{Binding Background}"
+                ItemsSource="{Binding Items}">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />
@@ -58,9 +58,10 @@
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
-                    <ItemContainerTemplate>
-                        <ctrls:ChunkListViewItem DataContext="{Binding}" CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:ChunkListView}, Path=CanEdit}" />
-                    </ItemContainerTemplate>
+                    <DataTemplate>
+                        <!--<TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:ChunkListView}, Path=CanEdit, StringFormat={}Test{0}}" />-->
+                        <ctrls:ChunkListViewItem CanEdit="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ctrls:ChunkListView}, Path=CanEdit}" />
+                    </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </ControlTemplate>

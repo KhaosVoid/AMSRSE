@@ -40,7 +40,7 @@
                     <TextBlock x:Name="txtFilePath" Grid.Row="1" Text="{Binding LoadedFile.FilePath, StringFormat='Path: {0}', TargetNullValue='No file selected'}" />
                 </Grid>
         
-                <ctrls:BlockListView x:Name="blv" Grid.Row="1" Items="{Binding LoadedFile.Blocks}" CanEdit="{Binding CanEdit}" />
+                <ctrls:BlockListView x:Name="blv" Grid.Row="1" Items="{Binding LoadedFile.Blocks}" SelectedBlock="{Binding SelectedBlock, Mode=TwoWay}" CanEdit="{Binding CanEdit}" />
                 <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
                     <GridSplitter.Background>
                         <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
@@ -53,10 +53,8 @@
                 </GridSplitter>
                 <Border
                     Grid.Row="1"
-                    Grid.Column="2"
-                    d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/ChunkListViewMock.xaml, IsDesignTimeCreatable=True}"
-                    DataContext="{Binding ElementName=blv, Path=SelectedItem.Chunks}">
-                    <ctrls:ChunkListView Items="{Binding}" CanEdit="{Binding CanEdit}" />
+                    Grid.Column="2">
+                    <ctrls:ChunkListView Items="{Binding SelectedBlock.Chunks}" CanEdit="{Binding CanEdit}" />
                 </Border>
             </Grid>
         </ControlTemplate>

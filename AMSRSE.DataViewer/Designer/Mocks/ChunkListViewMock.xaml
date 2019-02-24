@@ -1,39 +1,43 @@
-﻿<CompositeCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels">
-    <dm:ChunkModel DataType="Float32" ChunkId="0xA58344FD" Value="99" />
-    <dm:ChunkModel DataType="Float32" ChunkId="0xCF1F63A9" Value="500" />
-    <dm:ChunkModel DataType="Float32" ChunkId="0x02C9EFE3" Value="30" />
-    <dm:ChunkModel DataType="Float32" ChunkId="0xD48F6F4D" Value="10" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0xA0155E8F" Value="2" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0x0DD64AC8" Value="1" />
-    <dm:ChunkModel DataType="String" ChunkId="0xAC804A60" Value="samus" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0xCD978BA7" Value="0" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x8E60825E" Value="773604" />
-    <dm:ChunkModel DataType="String" ChunkId="0x0E308714" ChunkName="StringFmt for Load Screen?" Value="[!:#GUI_MISC003] / 08:36:42 / 0%" />
-    <dm:ChunkModel DataType="String" ChunkId="0x740158CE" />
-    <dm:ChunkModel DataType="Float32" ChunkId="0x1D484F69" ChunkName="Mission Time (seconds)" Value="31002.07421875" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xC6834964" ChunkName="Amiibo functionality unlocked" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xD91DFDA0" ChunkName="Energy Reserve Tank unlocked" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0x6F73FBEA" ChunkName="Is Energy Reserve Tank full" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xBC1556C6" ChunkName="Aeion Energy Reserve Tank full" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0x05EFDCBE" ChunkName="Is Aeion Energy Reserve Tank full" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xD281B2D7" ChunkName="Missile Reserve Tank unlocked" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xC83950F4" ChunkName="Is Missile Reserve Tank full" Value="1" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x1F6E32DA" ChunkName="Surface Collected Items Count" Value="14" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x1DD4CC59" ChunkName="Area 1 Collected Items Count" Value="14" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x9A3461E1" ChunkName="Area 2 Collected Items Count" Value="18" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0xE7940589" ChunkName="Area 3 Collected Items Count" Value="21" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0xD5F34B4B" ChunkName="Area 4 Collected Items Count" Value="21" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Area 5 Collected Items Count" Value="23" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x5213E6F3" ChunkName="Area 6 Collected Items Count" Value="12" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0x77DB0BAC" ChunkName="Area 7 Collected Items Count" Value="13" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0xDED6C283" ChunkName="Area 8 Collected Items Count" Value="14" />
-    <dm:ChunkModel DataType="String" ChunkId="0x40012D3D" ChunkName="Current Event" Value="LE_ChozoUnlockAreaDNA" />
-    <dm:ChunkModel DataType="String" ChunkId="0xB7DF5468" ChunkName="Current Event Location" Value="s000_surface" />
-    <dm:ChunkModel DataType="UInt32" ChunkId="0xA4EDC5C7" ChunkName="Metroids to Kill in Current Area" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0x1A0AC730" ChunkName="Surface: Alpha Metroid Killed" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xF0618E15" ChunkName="Area 1: Alpha Metroid 1 Killed" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0x4A30878C" ChunkName="Area 2: Alpha Metroid 1 Killed" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0xDC0080FB" ChunkName="Area 3: Alpha Metroid 1 Killed" Value="1" />
-    <dm:ChunkModel DataType="UInt8" ChunkId="0x7F95E465" ChunkName="Area 4: Alpha Metroid 1 Killed" Value="1" />
-</CompositeCollection>
+﻿<ctrls:ChunkListView
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
+    xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls">
+    <ctrls:ChunkListView.Items>
+        <dm:ChunkModel DataType="Float32" ChunkId="0xA58344FD" Value="99" />
+        <dm:ChunkModel DataType="Float32" ChunkId="0xCF1F63A9" Value="500" />
+        <dm:ChunkModel DataType="Float32" ChunkId="0x02C9EFE3" Value="30" />
+        <dm:ChunkModel DataType="Float32" ChunkId="0xD48F6F4D" Value="10" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0xA0155E8F" Value="2" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0x0DD64AC8" Value="1" />
+        <dm:ChunkModel DataType="String" ChunkId="0xAC804A60" Value="samus" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0xCD978BA7" Value="0" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x8E60825E" Value="773604" />
+        <dm:ChunkModel DataType="String" ChunkId="0x0E308714" ChunkName="StringFmt for Load Screen?" Value="[!:#GUI_MISC003] / 08:36:42 / 0%" />
+        <dm:ChunkModel DataType="String" ChunkId="0x740158CE" />
+        <dm:ChunkModel DataType="Float32" ChunkId="0x1D484F69" ChunkName="Mission Time (seconds)" Value="31002.07421875" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xC6834964" ChunkName="Amiibo functionality unlocked" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xD91DFDA0" ChunkName="Energy Reserve Tank unlocked" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0x6F73FBEA" ChunkName="Is Energy Reserve Tank full" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xBC1556C6" ChunkName="Aeion Energy Reserve Tank full" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0x05EFDCBE" ChunkName="Is Aeion Energy Reserve Tank full" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xD281B2D7" ChunkName="Missile Reserve Tank unlocked" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xC83950F4" ChunkName="Is Missile Reserve Tank full" Value="1" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x1F6E32DA" ChunkName="Surface Collected Items Count" Value="14" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x1DD4CC59" ChunkName="Area 1 Collected Items Count" Value="14" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x9A3461E1" ChunkName="Area 2 Collected Items Count" Value="18" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0xE7940589" ChunkName="Area 3 Collected Items Count" Value="21" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0xD5F34B4B" ChunkName="Area 4 Collected Items Count" Value="21" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Area 5 Collected Items Count" Value="23" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x5213E6F3" ChunkName="Area 6 Collected Items Count" Value="12" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0x77DB0BAC" ChunkName="Area 7 Collected Items Count" Value="13" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0xDED6C283" ChunkName="Area 8 Collected Items Count" Value="14" />
+        <dm:ChunkModel DataType="String" ChunkId="0x40012D3D" ChunkName="Current Event" Value="LE_ChozoUnlockAreaDNA" />
+        <dm:ChunkModel DataType="String" ChunkId="0xB7DF5468" ChunkName="Current Event Location" Value="s000_surface" />
+        <dm:ChunkModel DataType="UInt32" ChunkId="0xA4EDC5C7" ChunkName="Metroids to Kill in Current Area" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0x1A0AC730" ChunkName="Surface: Alpha Metroid Killed" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xF0618E15" ChunkName="Area 1: Alpha Metroid 1 Killed" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0x4A30878C" ChunkName="Area 2: Alpha Metroid 1 Killed" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0xDC0080FB" ChunkName="Area 3: Alpha Metroid 1 Killed" Value="1" />
+        <dm:ChunkModel DataType="UInt8" ChunkId="0x7F95E465" ChunkName="Area 4: Alpha Metroid 1 Killed" Value="1" />
+    </ctrls:ChunkListView.Items>
+</ctrls:ChunkListView>

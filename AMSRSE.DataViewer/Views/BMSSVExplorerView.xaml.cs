@@ -89,7 +89,7 @@ namespace AMSRSE.DataViewer.Views
             if (ofd.ShowDialog() == true)
             {
                 BMSSVFile bmssv = BMSSVFile.Open(ofd.FileName);
-                LoadedFile = new FileModel(bmssv);
+                LoadedFile = FileModel.FromBMSSV(bmssv);
 
                 //this.DataContext = LoadedFile;
             }

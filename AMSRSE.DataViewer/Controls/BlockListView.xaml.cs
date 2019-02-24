@@ -18,8 +18,8 @@ namespace AMSRSE.DataViewer.Controls
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(ObservableCollection<BlockModel>), typeof(BlockListView), new PropertyMetadata(defaultValue: new ObservableCollection<BlockModel>()));
 
-        public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedItem", typeof(BlockModel), typeof(BlockListView));
+        public static readonly DependencyProperty SelectedBlockProperty =
+            DependencyProperty.Register("SelectedBlock", typeof(BlockModel), typeof(BlockListView));
 
         public static readonly DependencyProperty CanEditProperty =
             DependencyProperty.Register("CanEdit", typeof(bool), typeof(BlockListView));
@@ -34,10 +34,10 @@ namespace AMSRSE.DataViewer.Controls
             set { SetValue(ItemsProperty, value); }
         }
 
-        public BlockModel SelectedItem
+        public BlockModel SelectedBlock
         {
-            get { return (BlockModel)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
+            get { return (BlockModel)GetValue(SelectedBlockProperty); }
+            set { SetValue(SelectedBlockProperty, value); }
         }
 
         public bool CanEdit

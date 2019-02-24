@@ -16,7 +16,7 @@ namespace AMSRSE.DataViewer.Controls
         #region Dependency Properties
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(IList), typeof(ChunkListView));
+            DependencyProperty.Register("Items", typeof(ObservableCollection<ChunkModel>), typeof(ChunkListView), new PropertyMetadata(defaultValue: new ObservableCollection<ChunkModel>()));
 
         public static readonly DependencyProperty CanEditProperty =
             DependencyProperty.Register("CanEdit", typeof(bool), typeof(ChunkListView));
@@ -41,10 +41,10 @@ namespace AMSRSE.DataViewer.Controls
 
         #region Ctor
 
-        static ChunkListView()
-        {
-            ItemsProperty.OverrideMetadata(typeof(ChunkListView), new PropertyMetadata(new ObservableCollection<ChunkModel>()));
-        }
+        //static ChunkListView()
+        //{
+        //    ItemsProperty.OverrideMetadata(typeof(ChunkListView), new PropertyMetadata(new ObservableCollection<ChunkModel>()));
+        //}
 
         public ChunkListView()
         {

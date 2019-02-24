@@ -1,4 +1,5 @@
-﻿using AMSRSE.DataViewer.DataModels.Validation.Attributes;
+﻿using Magatama.Core.DataModels;
+using Magatama.Core.DataModels.Validation.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;

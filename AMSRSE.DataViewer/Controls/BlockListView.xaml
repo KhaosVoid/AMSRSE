@@ -13,7 +13,7 @@
                 DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
                 Background="{Binding Background}"
                 ItemsSource="{Binding Items}"
-                SelectedValue="{Binding SelectedItem}"
+                SelectedValue="{Binding SelectedBlock}"
                 SelectionMode="Single">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>

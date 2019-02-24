@@ -13,24 +13,24 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
-    public abstract class EditableModel : DependencyObject, IDataErrorInfo, ISupportInitialize
+    public abstract class EditableModel_OLD : DependencyObject, IDataErrorInfo, ISupportInitialize
     {
         #region Dependency Properties
 
         public static readonly DependencyPropertyKey HasChangesPropertyKey =
-            DependencyProperty.RegisterReadOnly("HasChanges", typeof(bool), typeof(EditableModel), null);
+            DependencyProperty.RegisterReadOnly("HasChanges", typeof(bool), typeof(EditableModel_OLD), null);
 
         public static readonly DependencyProperty HasChangesProperty =
             HasChangesPropertyKey.DependencyProperty;
 
         public static readonly DependencyPropertyKey IsValidPropertyKey =
-            DependencyProperty.RegisterReadOnly("IsValid", typeof(bool), typeof(EditableModel), null);
+            DependencyProperty.RegisterReadOnly("IsValid", typeof(bool), typeof(EditableModel_OLD), null);
 
         public static readonly DependencyProperty IsValidProperty =
             IsValidPropertyKey.DependencyProperty;
 
         public static readonly DependencyPropertyKey ValidationErrorsPropertyKey =
-            DependencyProperty.RegisterReadOnly("ValidationErrors", typeof(IDictionary), typeof(EditableModel), null);
+            DependencyProperty.RegisterReadOnly("ValidationErrors", typeof(IDictionary), typeof(EditableModel_OLD), null);
 
         public static readonly DependencyProperty ValidationErrorsProperty =
             ValidationErrorsPropertyKey.DependencyProperty;
@@ -76,12 +76,12 @@ namespace AMSRSE.DataViewer.DataModels
 
         #region Ctor
 
-        static EditableModel()
+        static EditableModel_OLD()
         {
             _trackedProperties = new List<DependencyProperty>();
         }
 
-        public EditableModel()
+        public EditableModel_OLD()
         {
             ValidationErrors = new Dictionary<string, string>();
             _originalPropertyValues = new Dictionary<DependencyProperty, object>();
@@ -161,7 +161,7 @@ namespace AMSRSE.DataViewer.DataModels
                     observableCollection.CollectionChanged -= Collection_CollectionChanged;
                     observableCollection.CollectionChanged += Collection_CollectionChanged;
 
-                    if (value is IEnumerable<EditableModel> collection)
+                    if (value is IEnumerable<EditableModel_OLD> collection)
                     {
                         for (int m = 0; m < collection.Count(); m++)
                         {
@@ -262,7 +262,7 @@ namespace AMSRSE.DataViewer.DataModels
 
         private static void CheckDependencyPropertyChanges(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is EditableModel editableModel &&
+            if (d is EditableModel_OLD editableModel &&
                 !DesignerProperties.GetIsInDesignMode(editableModel) &&
                 editableModel._canTrack)
             {
@@ -309,7 +309,7 @@ namespace AMSRSE.DataViewer.DataModels
 
                         for (int i = 0; i < collection.Count; i++)
                         {
-                            if (collection[i] is EditableModel editableModel && editableModel.HasChanges)
+                            if (collection[i] is EditableModel_OLD editableModel && editableModel.HasChanges)
                             {
                                 hasChanges = true;
                                 break;
@@ -341,7 +341,7 @@ namespace AMSRSE.DataViewer.DataModels
                     observableCollection.CollectionChanged -= Collection_CollectionChanged;
                     observableCollection.CollectionChanged += Collection_CollectionChanged;
 
-                    if (value is IEnumerable<EditableModel> collection)
+                    if (value is IEnumerable<EditableModel_OLD> collection)
                     {
                         for (int m = 0; m < collection.Count(); m++)
                         {
@@ -366,7 +366,7 @@ namespace AMSRSE.DataViewer.DataModels
 
         }
 
-        private EditableModel DeepCopy()
+        private EditableModel_OLD DeepCopy()
         {
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
             {
@@ -374,7 +374,7 @@ namespace AMSRSE.DataViewer.DataModels
                 formatter.Serialize(stream, this);
                 stream.Position = 0;
 
-                return formatter.Deserialize(stream) as EditableModel;
+                return formatter.Deserialize(stream) as EditableModel_OLD;
             }
         }
 
@@ -433,7 +433,7 @@ namespace AMSRSE.DataViewer.DataModels
                 }
             }
 
-            if (objTarget is EditableModel editableModel)
+            if (objTarget is EditableModel_OLD editableModel)
             {
                 editableModel._canTrack = true;
                 editableModel.EndInit();

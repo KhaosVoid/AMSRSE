@@ -1,5 +1,6 @@
 ﻿using AMSRSE.BMSSV;
 using AMSRSE.InfoXml;
+using Magatama.Core.DataModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("FilePath", typeof(string), typeof(FileModel));
 
         public static readonly DependencyProperty BlocksProperty =
-            RegisterTracked("Blocks", typeof(IList), typeof(FileModel), new PropertyMetadata(BlocksPropertyChangedCallback));
+            RegisterTracked("Blocks", typeof(IList), typeof(FileModel)/*, new PropertyMetadata(BlocksPropertyChangedCallback)*/);
 
         #endregion Dependency Properties
 
@@ -47,38 +48,34 @@ namespace AMSRSE.DataViewer.DataModels
         {
             Blocks = new ObservableCollection<BlockModel>();
 
-            if (!DesignerProperties.GetIsInDesignMode(this))
-                ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
-        }
-
-        public FileModel(BMSSVFile bmssv)
-        {
-            IngestBMSSVFile(bmssv);
+            //if (!DesignerProperties.GetIsInDesignMode(this))
+            //    ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
         }
 
         #endregion Ctor
 
         #region Dependency Property Callbacks
 
-        private static void BlocksPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is FileModel fileModel &&
-                !DesignerProperties.GetIsInDesignMode(fileModel))
-            {
-                var blocks = fileModel.Blocks as ObservableCollection<BlockModel>;
-                blocks.CollectionChanged -= fileModel.Blocks_CollectionChanged;
-                blocks.CollectionChanged += fileModel.Blocks_CollectionChanged;
-            }
-        }
+        //private static void BlocksPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if (d is FileModel fileModel &&
+        //        !DesignerProperties.GetIsInDesignMode(fileModel))
+        //    {
+        //        var blocks = fileModel.Blocks as ObservableCollection<BlockModel>;
+        //        blocks.CollectionChanged -= fileModel.Blocks_CollectionChanged;
+        //        blocks.CollectionChanged += fileModel.Blocks_CollectionChanged;
+        //    }
+        //}
 
         #endregion Dependency Property Callbacks
 
         #region Methods
 
-        private void IngestBMSSVFile(BMSSVFile bmssv)
+        public static FileModel FromBMSSV(BMSSVFile bmssv)
         {
-            var blocks = new ObservableCollection<BlockModel>();
+            FileModel fileModel = new FileModel();
             BMSSVInfo bmssvInfo = BMSSVInfo.Load("bmssv-info.xml");
+            var blocks = new ObservableCollection<BlockModel>();
 
             for (int b = 0; b < bmssv.Blocks.Count; b++)
             {
@@ -136,7 +133,7 @@ namespace AMSRSE.DataViewer.DataModels
 
                         case BMSSV.Enums.DataTypes.UInt8Array:
                             chunkModel.DataType = ChunkModel.DataTypes.UInt8Array;
-                            chunkModel.Value = ((BMSSV.Chunks.UInt8ArrayChunk)chunk).Value;
+                            //chunkModel.Value = ((BMSSV.Chunks.UInt8ArrayChunk)chunk).Value;
                             break;
                     }
 
@@ -152,51 +149,53 @@ namespace AMSRSE.DataViewer.DataModels
                 blocks.Add(blockModel);
             }
 
-            Blocks = blocks;
-            FilePath = bmssv.FilePath;
-            ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
+            fileModel.Blocks = blocks;
+            fileModel.FilePath = bmssv.FilePath;
 
-            for (int b = 0; b < Blocks.Count; b++)
-                ((ObservableCollection<BlockModel>)Blocks)[b].ModelPropertyChanged += BlockModel_PropertyChanged;
+            return EditableModel.Initialize(fileModel);
+            //((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
+
+            //for (int b = 0; b < Blocks.Count; b++)
+            //    ((ObservableCollection<BlockModel>)Blocks)[b].ModelPropertyChanged += BlockModel_PropertyChanged;
         }
 
-        private void Blocks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            var blocks = Blocks as ObservableCollection<BlockModel>;
-            var originalBlocks = _originalPropertyValues[BlocksProperty] as ObservableCollection<BlockModel>;
+        //private void Blocks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    var blocks = Blocks as ObservableCollection<BlockModel>;
+        //    var originalBlocks = _originalPropertyValues[BlocksProperty] as ObservableCollection<BlockModel>;
 
-            if (e.Action == NotifyCollectionChangedAction.Add ||
-                e.Action == NotifyCollectionChangedAction.Replace)
-            {
-                for (int i = 0; i < e.NewItems.Count; i++)
-                {
-                    ((BlockModel)e.NewItems[i]).ModelPropertyChanged -= BlockModel_PropertyChanged;
-                    ((BlockModel)e.NewItems[i]).ModelPropertyChanged += BlockModel_PropertyChanged;
-                }
-            }
+        //    if (e.Action == NotifyCollectionChangedAction.Add ||
+        //        e.Action == NotifyCollectionChangedAction.Replace)
+        //    {
+        //        for (int i = 0; i < e.NewItems.Count; i++)
+        //        {
+        //            ((BlockModel)e.NewItems[i]).ModelPropertyChanged -= BlockModel_PropertyChanged;
+        //            ((BlockModel)e.NewItems[i]).ModelPropertyChanged += BlockModel_PropertyChanged;
+        //        }
+        //    }
 
-            if (e.Action == NotifyCollectionChangedAction.Remove ||
-                e.Action == NotifyCollectionChangedAction.Replace ||
-                e.Action == NotifyCollectionChangedAction.Reset)
-            {
-                for (int i = 0; i < e.OldItems.Count; i++)
-                    ((BlockModel)e.OldItems[i]).ModelPropertyChanged -= BlockModel_PropertyChanged;
-            }
+        //    if (e.Action == NotifyCollectionChangedAction.Remove ||
+        //        e.Action == NotifyCollectionChangedAction.Replace ||
+        //        e.Action == NotifyCollectionChangedAction.Reset)
+        //    {
+        //        for (int i = 0; i < e.OldItems.Count; i++)
+        //            ((BlockModel)e.OldItems[i]).ModelPropertyChanged -= BlockModel_PropertyChanged;
+        //    }
 
-            if (blocks.Count != originalBlocks.Count ||
-                blocks.Where(b => b.HasChanges).Count() > 0)
-                HasChanges = true;
-        }
+        //    if (blocks.Count != originalBlocks.Count ||
+        //        blocks.Where(b => b.HasChanges).Count() > 0)
+        //        HasChanges = true;
+        //}
 
-        private void BlockModel_PropertyChanged(DependencyProperty p, object newValue)
-        {
-            HasChanges = true;
-        }
+        //private void BlockModel_PropertyChanged(DependencyProperty p, object newValue)
+        //{
+        //    HasChanges = true;
+        //}
 
-        protected override void OnRevertChanges()
-        {
-            ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
-        }
+        //protected override void OnRevertChanges()
+        //{
+        //    ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
+        //}
 
         #endregion Methods
     }

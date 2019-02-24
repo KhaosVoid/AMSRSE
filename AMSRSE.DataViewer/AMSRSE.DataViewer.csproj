@@ -80,7 +80,7 @@
     </Compile>
     <Compile Include="DataModels\BlockModel.cs" />
     <Compile Include="DataModels\ChunkModel.cs" />
-    <Compile Include="DataModels\EditableModel.cs" />
+    <Compile Include="DataModels\EditableModel_OLD.cs" />
     <Compile Include="DataModels\FileModel.cs" />
     <Compile Include="DataModels\TestData2Model.cs" />
     <Compile Include="DataModels\Validation\Attributes\NumberValidatorAttribute.cs" />
