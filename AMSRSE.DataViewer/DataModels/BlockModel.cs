@@ -14,15 +14,6 @@ namespace AMSRSE.DataViewer.DataModels
 {
     public class BlockModel : EditableModel
     {
-        #region Enums
-
-        public enum ChangeTypes
-        {
-            None, Added, Removed
-        }
-
-        #endregion Enums
-
         #region Dependency Properties
 
         public static readonly DependencyProperty BlockIdProperty =
@@ -35,7 +26,7 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("Chunks", typeof(IList), typeof(BlockModel)/*, new PropertyMetadata(ChunksPropertyChangedCallback)*/);
 
         public static readonly DependencyProperty ChangeTypeProperty =
-            DependencyProperty.Register("ChangeType", typeof(ChangeTypes), typeof(BlockModel));
+            DependencyProperty.Register("ChangeType", typeof(FileModel.ChangeTypes), typeof(BlockModel));
 
         public static readonly DependencyProperty ChunksChangedProperty =
             DependencyProperty.Register("ChunksChanged", typeof(bool), typeof(BlockModel));
@@ -62,9 +53,9 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(ChunksProperty, value); }
         }
 
-        public ChangeTypes ChangeType
+        public FileModel.ChangeTypes ChangeType
         {
-            get { return (ChangeTypes)GetValue(ChangeTypeProperty); }
+            get { return (FileModel.ChangeTypes)GetValue(ChangeTypeProperty); }
             set { SetValue(ChangeTypeProperty, value); }
         }
 
@@ -154,5 +145,14 @@ namespace AMSRSE.DataViewer.DataModels
         //}
 
         #endregion Dependency Property Callbacks
+
+        #region Methods
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+        }
+
+        #endregion Methods
     }
 }

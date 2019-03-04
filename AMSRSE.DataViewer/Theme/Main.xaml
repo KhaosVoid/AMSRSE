@@ -4,7 +4,7 @@
                     xmlns:views="clr-namespace:AMSRSE.DataViewer.Views"
                     xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
                     xmlns:validation="clr-namespace:AMSRSE.DataViewer.DataModels.Validation">
-    <validation:ModelValidation x:Key="TestDataModelValidation">
+    <!--<validation:ModelValidation x:Key="TestDataModelValidation">
         <validation:PropertyValidator
             Property="dm:TestDataModel.PhoneNumber"
             IsRequired="True">
@@ -12,7 +12,7 @@
                 <validation:RegexValidator RegexPattern="^\d{10}$" ErrorText="Please enter a correct phone number." />
             </validation:PropertyValidator.Validators>
         </validation:PropertyValidator>
-    </validation:ModelValidation>
+    </validation:ModelValidation>-->
     
     <Style TargetType="views:BMSSVExplorerView">
         <Setter Property="Background" Value="#FF202020" />

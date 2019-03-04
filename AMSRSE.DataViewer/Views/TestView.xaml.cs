@@ -78,10 +78,10 @@ namespace AMSRSE.DataViewer.Views
         {
             if (DataContext is TestDataModel tdm)
             {
-                tdm.TestList.Add(new TestDataModel()
-                {
-                    Info = "!!Hello World!!"
-                });
+                //tdm.TestList.Add(new TestDataModel()
+                //{
+                //    Info = "!!Hello World!!"
+                //});
             }
         }
 

@@ -1,9 +1,5 @@
 ﻿<dm:TestDataModel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels"
-                  FirstName="First Name"
-                  LastName="Last Name"
-                  Info="Hello World!"
-                  PhoneNumber="">
+                  xmlns:dm="clr-namespace:AMSRSE.DataViewer.DataModels">
     <dm:TestDataModel.TestList>
         <dm:TestDataModel />
         <dm:TestDataModel />

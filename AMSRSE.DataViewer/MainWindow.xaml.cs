@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace AMSRSE.DataViewer
 {
@@ -44,6 +45,47 @@ namespace AMSRSE.DataViewer
         public MainWindow()
         {
             InitializeComponent();
+
+            DataModels.TestDataModel testModel = Magatama.Core.DataModels.EditableModel.Initialize(
+                new DataModels.TestDataModel()
+                {
+                    FirstName = "Test",
+                    LastName = "Employee",
+                    Info = "Parent Data Model",
+                    TestList = new ObservableCollection<string>()
+                    {
+                        "Item1",
+                        "Item2",
+                        "Item3"
+                    },
+                    TestList2 = new string[3]
+                    {
+                        "Item1",
+                        "Item2",
+                        "Item3"
+                    },
+                    TestList3 = new ObservableCollection<DataModels.TestDataModel>()
+                    {
+                        new DataModels.TestDataModel()
+                        {
+                            FirstName = "Test",
+                            LastName = "Employee",
+                            Info = "Child Data Model 1",
+                            TestList = new ObservableCollection<string>()
+                            {
+                                "String Item 1",
+                                "String Item 2",
+                                "String Item 3"
+                            },
+                            TestList2 = new string[3]
+                            {
+                                "String 1",
+                                "String 2",
+                                "String 3"
+                            }
+                        }
+                    }
+                });
 
             TestString = "Hello World";
 

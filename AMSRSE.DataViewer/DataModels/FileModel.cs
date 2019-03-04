@@ -16,6 +16,15 @@ namespace AMSRSE.DataViewer.DataModels
 {
     public class FileModel : EditableModel
     {
+        #region Enums
+
+        public enum ChangeTypes
+        {
+            None, Added, Modified, Removed
+        }
+
+        #endregion Enums
+
         #region Dependency Properties
 
         public static readonly DependencyProperty FilePathProperty =
@@ -133,7 +142,7 @@ namespace AMSRSE.DataViewer.DataModels
 
                         case BMSSV.Enums.DataTypes.UInt8Array:
                             chunkModel.DataType = ChunkModel.DataTypes.UInt8Array;
-                            //chunkModel.Value = ((BMSSV.Chunks.UInt8ArrayChunk)chunk).Value;
+                            chunkModel.Value = ((BMSSV.Chunks.UInt8ArrayChunk)chunk).Value;
                             break;
                     }
 

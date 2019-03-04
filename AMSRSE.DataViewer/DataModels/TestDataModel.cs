@@ -40,7 +40,13 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("FloatValue", typeof(float), typeof(TestDataModel));
 
         public static readonly DependencyProperty TestListProperty =
-            RegisterTracked("TestList", typeof(IList), typeof(TestDataModel), null);
+            RegisterTracked("TestList", typeof(ObservableCollection<string>), typeof(TestDataModel), null);
+
+        public static readonly DependencyProperty TestList2Property =
+            RegisterTracked("TestList2", typeof(string[]), typeof(TestDataModel));
+
+        public static readonly DependencyProperty TestList3Property =
+            RegisterTracked("TestList3", typeof(ObservableCollection<TestDataModel>), typeof(TestDataModel));
 
         #endregion Dependency Properties
 
@@ -98,13 +104,26 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(TestListProperty, value); }
         }
 
+        public string[] TestList2
+        {
+            get { return (string[])GetValue(TestList2Property); }
+            set { SetValue(TestList2Property, value); }
+        }
+
+        public IList TestList3
+        {
+            get { return (IList)GetValue(TestList3Property); }
+            set { SetValue(TestList3Property, value); }
+        }
+
         #endregion Properties
 
         #region Ctor
 
         public TestDataModel()
         {
-            TestList = new ObservableCollection<TestDataModel>();
+            TestList = new ObservableCollection<string>();
+            TestList3 = new ObservableCollection<TestDataModel>();
         }
 
         #endregion Ctor
