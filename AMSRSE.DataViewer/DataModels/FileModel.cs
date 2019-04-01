@@ -1,6 +1,7 @@
 ﻿using AMSRSE.BMSSV;
 using AMSRSE.InfoXml;
 using Magatama.Core.DataModels;
+using Magatama.Core.DataModels.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,22 +17,13 @@ namespace AMSRSE.DataViewer.DataModels
 {
     public class FileModel : EditableModel
     {
-        #region Enums
-
-        public enum ChangeTypes
-        {
-            None, Added, Modified, Removed
-        }
-
-        #endregion Enums
-
         #region Dependency Properties
 
         public static readonly DependencyProperty FilePathProperty =
             RegisterTracked("FilePath", typeof(string), typeof(FileModel));
 
         public static readonly DependencyProperty BlocksProperty =
-            RegisterTracked("Blocks", typeof(IList), typeof(FileModel)/*, new PropertyMetadata(BlocksPropertyChangedCallback)*/);
+            RegisterTracked("Blocks", typeof(IList), typeof(FileModel));
 
         #endregion Dependency Properties
 
@@ -56,27 +48,9 @@ namespace AMSRSE.DataViewer.DataModels
         public FileModel()
         {
             Blocks = new ObservableCollection<BlockModel>();
-
-            //if (!DesignerProperties.GetIsInDesignMode(this))
-            //    ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
         }
 
         #endregion Ctor
-
-        #region Dependency Property Callbacks
-
-        //private static void BlocksPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if (d is FileModel fileModel &&
-        //        !DesignerProperties.GetIsInDesignMode(fileModel))
-        //    {
-        //        var blocks = fileModel.Blocks as ObservableCollection<BlockModel>;
-        //        blocks.CollectionChanged -= fileModel.Blocks_CollectionChanged;
-        //        blocks.CollectionChanged += fileModel.Blocks_CollectionChanged;
-        //    }
-        //}
-
-        #endregion Dependency Property Callbacks
 
         #region Methods
 
@@ -161,50 +135,10 @@ namespace AMSRSE.DataViewer.DataModels
             fileModel.Blocks = blocks;
             fileModel.FilePath = bmssv.FilePath;
 
-            return EditableModel.Initialize(fileModel);
-            //((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
+            fileModel.Initialize();
 
-            //for (int b = 0; b < Blocks.Count; b++)
-            //    ((ObservableCollection<BlockModel>)Blocks)[b].ModelPropertyChanged += BlockModel_PropertyChanged;
+            return fileModel;
         }
-
-        //private void Blocks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    var blocks = Blocks as ObservableCollection<BlockModel>;
-        //    var originalBlocks = _originalPropertyValues[BlocksProperty] as ObservableCollection<BlockModel>;
-
-        //    if (e.Action == NotifyCollectionChangedAction.Add ||
-        //        e.Action == NotifyCollectionChangedAction.Replace)
-        //    {
-        //        for (int i = 0; i < e.NewItems.Count; i++)
-        //        {
-        //            ((BlockModel)e.NewItems[i]).ModelPropertyChanged -= BlockModel_PropertyChanged;
-        //            ((BlockModel)e.NewItems[i]).ModelPropertyChanged += BlockModel_PropertyChanged;
-        //        }
-        //    }
-
-        //    if (e.Action == NotifyCollectionChangedAction.Remove ||
-        //        e.Action == NotifyCollectionChangedAction.Replace ||
-        //        e.Action == NotifyCollectionChangedAction.Reset)
-        //    {
-        //        for (int i = 0; i < e.OldItems.Count; i++)
-        //            ((BlockModel)e.OldItems[i]).ModelPropertyChanged -= BlockModel_PropertyChanged;
-        //    }
-
-        //    if (blocks.Count != originalBlocks.Count ||
-        //        blocks.Where(b => b.HasChanges).Count() > 0)
-        //        HasChanges = true;
-        //}
-
-        //private void BlockModel_PropertyChanged(DependencyProperty p, object newValue)
-        //{
-        //    HasChanges = true;
-        //}
-
-        //protected override void OnRevertChanges()
-        //{
-        //    ((ObservableCollection<BlockModel>)Blocks).CollectionChanged += Blocks_CollectionChanged;
-        //}
 
         #endregion Methods
     }

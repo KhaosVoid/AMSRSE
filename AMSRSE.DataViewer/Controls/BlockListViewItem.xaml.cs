@@ -1,4 +1,5 @@
 ﻿using Magatama.Core.Controls;
+using Magatama.Core.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace AMSRSE.DataViewer.Controls
         public static readonly DependencyProperty AddedColorProperty =
             DependencyProperty.Register("AddedColor", typeof(SolidColorBrush), typeof(BlockListViewItem));
 
+        public static readonly DependencyProperty ModifiedColorProperty =
+            DependencyProperty.Register("ModifiedColor", typeof(SolidColorBrush), typeof(BlockListViewItem));
+
         public static readonly DependencyProperty RemovedColorProperty =
             DependencyProperty.Register("RemovedColor", typeof(SolidColorBrush), typeof(BlockListViewItem));
 
@@ -37,6 +41,12 @@ namespace AMSRSE.DataViewer.Controls
         {
             get { return (SolidColorBrush)GetValue(AddedColorProperty); }
             set { SetValue(AddedColorProperty, value); }
+        }
+
+        public SolidColorBrush ModifiedColor
+        {
+            get { return (SolidColorBrush)GetValue(ModifiedColorProperty); }
+            set { SetValue(ModifiedColorProperty, value); }
         }
 
         public SolidColorBrush RemovedColor

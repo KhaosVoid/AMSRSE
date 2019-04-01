@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" 
+    xmlns:mt="http://schemas.magatama-vdm.com/core/"
     xmlns:ctrls="clr-namespace:AMSRSE.DataViewer.Controls"
     d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BlockListViewItemMock.xaml, IsDesignTimeCreatable=True}">
     <ctrls:BlockListViewItem.Template>
@@ -79,7 +80,10 @@
                     <Setter TargetName="txtBlockName" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NormalColor}" />
                     <Setter TargetName="txtBlockId" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NormalColor}" />-->
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ChangeType}" Value="Added">
+                <!--<Trigger Property="ChangeType" Value="Added">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
+                </Trigger>-->
+                <DataTrigger Binding="{Binding ChangeHistory.ChangeType}" Value="Added">
                     <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
 
                     <!--<Setter TargetName="txtChunkCount" Property="FontWeight" Value="Bold" />
@@ -90,7 +94,10 @@
                     <Setter TargetName="txtBlockName" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
                     <Setter TargetName="txtBlockId" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />-->
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ChangeType}" Value="Removed">
+                <!--<Trigger Property="ChangeType" Value="Removed">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
+                </Trigger>-->
+                <DataTrigger Binding="{Binding ChangeHistory.ChangeType}" Value="Removed">
                     <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
 
                     <!--<Setter TargetName="txtChunkCount" Property="FontWeight" Value="Bold" />
@@ -101,9 +108,12 @@
                     <Setter TargetName="txtBlockName" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
                     <Setter TargetName="txtBlockId" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />-->
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ChunksChanged}" Value="True">
-                    <Setter TargetName="txtBlockName" Property="Foreground" Value="#FFFF5F5F" />
+                <DataTrigger Binding="{Binding ChangeHistory.ChangeType}" Value="Modified">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ModifiedColor}" />
                 </DataTrigger>
+                <!--<DataTrigger Binding="{Binding ChunksChanged}" Value="True">
+                    <Setter TargetName="txtBlockName" Property="Foreground" Value="#FFFF5F5F" />
+                </DataTrigger>-->
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </ctrls:BlockListViewItem.Template>

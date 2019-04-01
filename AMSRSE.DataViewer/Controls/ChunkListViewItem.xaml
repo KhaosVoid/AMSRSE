@@ -34,6 +34,7 @@
             </ControlTemplate.Resources>
             <Grid Margin="2,2,2,6">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="4" />
                     <ColumnDefinition Width="*" />
@@ -46,7 +47,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
+                <Rectangle x:Name="rChangeType" Grid.RowSpan="3" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
                         VerticalAlignment="Center"
                         FontFamily="Consolas"
@@ -65,20 +67,20 @@
                         Text="]" />
                 </StackPanel>
                 <TextBlock
-                    Grid.Column="2"
+                    Grid.Column="3"
                     VerticalAlignment="Center"
                     FontFamily="Consolas"
                     FontSize="12"
                     Text="{Binding ChunkName}" />
                 <TextBlock
-                    Grid.Column="4"
+                    Grid.Column="5"
                     VerticalAlignment="Center"
                     FontFamily="Consolas"
                     FontSize="12"
                     Foreground="#FF00FF00"
                     Text="{Binding DataType}" />
-                <Rectangle Grid.Row="1" Grid.ColumnSpan="5" Margin="0,2" Height="1" Fill="#FF3E60FD" />
-                <ContentControl x:Name="chunkValueContent" Grid.Row="2" Grid.ColumnSpan="5" Margin="8,0,0,0" />
+                <Rectangle Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,2" Height="1" Fill="#FF3E60FD" />
+                <ContentControl x:Name="chunkValueContent" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Margin="8,0,0,0" />
             </Grid>
             <ControlTemplate.Triggers>
                 <DataTrigger Binding="{Binding DataType}" Value="Float32">
@@ -98,6 +100,16 @@
                 </Trigger>
                 <DataTrigger Binding="{Binding DataType}" Value="UInt8Array">
                     <Setter TargetName="chunkValueContent" Property="Template" Value="{StaticResource UInt8ArrayChunkValueTemplate}" />
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding ChangeHistory.ChangeType}" Value="Removed">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RemovedColor}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeHistory.ChangeType}" Value="Added">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddedColor}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeHistory.ChangeType}" Value="Modified">
+                    <Setter TargetName="rChangeType" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ModifiedColor}" />
                 </DataTrigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

@@ -16,7 +16,7 @@
                 <dm:ChunkModel DataType="UInt32" ChunkId="0xDED6C283" ChunkName="Area 8" Value="14" />
             </dm:BlockModel.Chunks>
         </dm:BlockModel>
-        <dm:BlockModel BlockName="Unknown" BlockId="0xCB17C79F" ChangeType="Added" />
+        <dm:BlockModel BlockName="Unknown" BlockId="0xCB17C79F" />
         <dm:BlockModel BlockName="Misc Data" BlockId="0xC72341EA">
             <dm:BlockModel.Chunks>
                 <dm:ChunkModel DataType="Float32" ChunkId="0xA58344FD" Value="99" />
@@ -57,7 +57,7 @@
                 <dm:ChunkModel DataType="UInt8" ChunkId="0x7F95E465" ChunkName="Area 4: Alpha Metroid 1 Killed" Value="1" />
             </dm:BlockModel.Chunks>
         </dm:BlockModel>
-        <dm:BlockModel BlockName="Unknown" BlockId="0x68E39AC0" ChangeType="Added" />
+        <dm:BlockModel BlockName="Unknown" BlockId="0x68E39AC0" />
         <dm:BlockModel BlockName="Save and Spawn Location" BlockId="0x1C421E97">
             <dm:BlockModel.Chunks>
                 <dm:ChunkModel DataType="String" ChunkId="0xBAF0ACD2" Value="c10_samus" />
@@ -66,20 +66,20 @@
                 <dm:ChunkModel DataType="String" ChunkId="0x7A9F1793" Value="LE_SaveStation_004" />
             </dm:BlockModel.Chunks>
         </dm:BlockModel>
-        <dm:BlockModel BlockName="Cutscenes / Tutorial Messages?" BlockId="0x6F49393E" ChangeType="Removed" />
-        <dm:BlockModel BlockName="Unknown" BlockId="0xC1BED709" ChangeType="Added" />
-        <dm:BlockModel BlockName="Unknown" BlockId="0xBDBE58A1" ChangeType="Added" />
+        <dm:BlockModel BlockName="Cutscenes / Tutorial Messages?" BlockId="0x6F49393E" />
+        <dm:BlockModel BlockName="Unknown" BlockId="0xC1BED709" />
+        <dm:BlockModel BlockName="Unknown" BlockId="0xBDBE58A1" />
         <dm:BlockModel BlockName="Metroids Killed (By Type)" BlockId="0x3814CFC7">
             <dm:BlockModel.Chunks>
-                <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Alpha Metroids Killed" Value="17" />
-                <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Gamma Metroids Killed" Value="14" />
-                <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Zeta Metroids Killed" Value="4" />
-                <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Omega Metroids Killed" Value="4" />
-                <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Normal Metroids Killed" Value="10" />
-                <dm:ChunkModel DataType="UInt32" ChunkId="0x2FB3829B" ChunkName="Metroid Queen Killed" Value="1" />
+                <dm:ChunkModel DataType="UInt32" ChunkId="0x91E9DEEE" ChunkName="Alpha Metroids Killed" Value="17" />
+                <dm:ChunkModel DataType="UInt32" ChunkId="0x8A007DFA" ChunkName="Gamma Metroids Killed" Value="14" />
+                <dm:ChunkModel DataType="UInt32" ChunkId="0xD22BF145" ChunkName="Zeta Metroids Killed" Value="4" />
+                <dm:ChunkModel DataType="UInt32" ChunkId="0xC14D2774" ChunkName="Omega Metroids Killed" Value="4" />
+                <dm:ChunkModel DataType="UInt32" ChunkId="0x7B7D796F" ChunkName="Normal Metroids Killed" Value="10" />
+                <dm:ChunkModel DataType="UInt32" ChunkId="0x4164D39C" ChunkName="Metroid Queen Killed" Value="1" />
             </dm:BlockModel.Chunks>
         </dm:BlockModel>
-        <dm:BlockModel BlockName="Teleport Stations Visited or Unlocked" BlockId="0xBC6C23CE" ChangeType="Removed">
+        <dm:BlockModel BlockName="Teleport Stations Visited or Unlocked" BlockId="0xBC6C23CE">
             <dm:BlockModel.Chunks>
                 <dm:ChunkModel DataType="String" ChunkId="0x2CF2329C" Value="s000_surface" />
                 <dm:ChunkModel DataType="String" ChunkId="0x49958E24" Value="s010_area1" />
@@ -106,7 +106,7 @@
                 <dm:ChunkModel DataType="String" ChunkId="0x0BC34B3B" Value="s000_surface" />
             </dm:BlockModel.Chunks>
         </dm:BlockModel>
-        <dm:BlockModel BlockName="Unknown" BlockId="0x63580F44" ChangeType="Added" />
+        <dm:BlockModel BlockName="Unknown" BlockId="0x63580F44" />
         <dm:BlockModel BlockName="Inventory" BlockId="0xFEBC51D5">
             <dm:BlockModel.Chunks>
                 <dm:ChunkModel DataType="Float32" ChunkId="0x09E50EEE" ChunkName="Total Metroids" Value="50" />

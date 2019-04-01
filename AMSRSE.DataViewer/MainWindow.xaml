@@ -24,5 +24,17 @@
             </dm:TestDataModel>
         </views:TestView.DataContext>
     </views:TestView>-->
-    <views:BMSSVExplorerView CanEdit="True" x:Name="bmssvExplorerView" d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}" />
+    <Grid Background="#FF202020">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <!--<RowDefinition Height="*" />-->
+        </Grid.RowDefinitions>
+        <!--<Button x:Name="btnCompare" Content="Compare" HorizontalAlignment="Left" Click="btnCompare_Click" />-->
+        
+        <!--<views:BMSSVExplorerView Grid.Row="1" CanEdit="True" x:Name="bmssvExplorerView" d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}" FileComparisonSide="SideA" />-->
+        <!--<views:BMSSVExplorerView Grid.Row="2" CanEdit="True" x:Name="bmssvExplorerView2" d:DataContext="{d:DesignData Source=/AMSRSE.DataViewer;component/Designer/Mocks/BMSSVExplorerViewMock.xaml, IsDesignTimeCreatable=True}" FileComparisonSide="SideB" />-->
+
+        <views:BMSSVComparisonView Grid.Row="1" />
+    </Grid>
 </Window>

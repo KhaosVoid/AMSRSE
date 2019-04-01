@@ -1,4 +1,5 @@
 ﻿using Magatama.Core.DataModels;
+using Magatama.Core.DataModels.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
+    [IdProperty("BlockId")]
     public class BlockModel : EditableModel
     {
         #region Dependency Properties
@@ -23,13 +25,7 @@ namespace AMSRSE.DataViewer.DataModels
             RegisterTracked("BlockName", typeof(string), typeof(BlockModel));
 
         public static readonly DependencyProperty ChunksProperty =
-            RegisterTracked("Chunks", typeof(IList), typeof(BlockModel)/*, new PropertyMetadata(ChunksPropertyChangedCallback)*/);
-
-        public static readonly DependencyProperty ChangeTypeProperty =
-            DependencyProperty.Register("ChangeType", typeof(FileModel.ChangeTypes), typeof(BlockModel));
-
-        public static readonly DependencyProperty ChunksChangedProperty =
-            DependencyProperty.Register("ChunksChanged", typeof(bool), typeof(BlockModel));
+            RegisterTracked("Chunks", typeof(IList), typeof(BlockModel));
 
         #endregion Dependency Properties
 
@@ -53,18 +49,6 @@ namespace AMSRSE.DataViewer.DataModels
             set { SetValue(ChunksProperty, value); }
         }
 
-        public FileModel.ChangeTypes ChangeType
-        {
-            get { return (FileModel.ChangeTypes)GetValue(ChangeTypeProperty); }
-            set { SetValue(ChangeTypeProperty, value); }
-        }
-
-        public bool ChunksChanged
-        {
-            get { return (bool)GetValue(ChunksChangedProperty); }
-            set { SetValue(ChunksChangedProperty, value); }
-        }
-
         #endregion Properties
 
         #region Ctor
@@ -72,87 +56,13 @@ namespace AMSRSE.DataViewer.DataModels
         public BlockModel()
         {
             Chunks = new ObservableCollection<ChunkModel>();
-
-            //if (!DesignerProperties.GetIsInDesignMode(this))
-            //    ((ObservableCollection<ChunkModel>)Chunks).CollectionChanged += Chunks_CollectionChanged;
         }
 
         public BlockModel(ObservableCollection<ChunkModel> chunks)
         {
             Chunks = chunks;
-
-            //if (!DesignerProperties.GetIsInDesignMode(this))
-            //{
-            //    ((ObservableCollection<ChunkModel>)Chunks).CollectionChanged += Chunks_CollectionChanged;
-
-            //    for (int c = 0; c < Chunks.Count; c++)
-            //        ((ObservableCollection<ChunkModel>)Chunks)[c].ModelPropertyChanged += ChunkModel_PropertyChanged;
-            //}
         }
-
-        //private void Chunks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    var chunks = Chunks as ObservableCollection<ChunkModel>;
-        //    var originalChunks = _originalPropertyValues[ChunksProperty] as ObservableCollection<ChunkModel>;
-
-        //    if (e.Action == NotifyCollectionChangedAction.Add ||
-        //        e.Action == NotifyCollectionChangedAction.Replace)
-        //    {
-        //        for (int i = 0; i < e.NewItems.Count; i++)
-        //        {
-        //            ((ChunkModel)e.NewItems[i]).ModelPropertyChanged -= ChunkModel_PropertyChanged;
-        //            ((ChunkModel)e.NewItems[i]).ModelPropertyChanged += ChunkModel_PropertyChanged;
-        //        }
-        //    }
-
-        //    if (e.Action == NotifyCollectionChangedAction.Remove ||
-        //        e.Action == NotifyCollectionChangedAction.Replace ||
-        //        e.Action == NotifyCollectionChangedAction.Reset)
-        //    {
-        //        for (int i = 0; i < e.OldItems.Count; i++)
-        //            ((ChunkModel)e.OldItems[i]).ModelPropertyChanged -= ChunkModel_PropertyChanged;
-        //    }
-
-        //    if (chunks.Count != originalChunks.Count ||
-        //        chunks.Where(c => c.HasChanges).Count() > 0)
-        //        HasChanges = true;
-        //}
-
-        //private void ChunkModel_PropertyChanged(DependencyProperty p, object newValue)
-        //{
-        //    HasChanges = true;
-        //    RaiseModelPropertyChanged(p, newValue);
-        //}
-
-        //protected override void OnRevertChanges()
-        //{
-        //    ((ObservableCollection<ChunkModel>)Chunks).CollectionChanged += Chunks_CollectionChanged;
-        //}
 
         #endregion Ctor
-
-        #region Dependency Property Callbacks
-
-        //private static void ChunksPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if (d is BlockModel blockModel &&
-        //        !DesignerProperties.GetIsInDesignMode(blockModel))
-        //    {
-        //        var chunks = blockModel.Chunks as ObservableCollection<ChunkModel>;
-        //        chunks.CollectionChanged -= blockModel.Chunks_CollectionChanged;
-        //        chunks.CollectionChanged += blockModel.Chunks_CollectionChanged;
-        //    }
-        //}
-
-        #endregion Dependency Property Callbacks
-
-        #region Methods
-
-        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-        {
-            base.OnPropertyChanged(e);
-        }
-
-        #endregion Methods
     }
 }

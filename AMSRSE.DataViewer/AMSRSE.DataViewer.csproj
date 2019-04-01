@@ -94,6 +94,10 @@
     <Compile Include="DataModels\Validation\PropertyValidator.cs" />
     <Compile Include="DataModels\Validation\RegexValidator.cs" />
     <Compile Include="DataModels\Validation\TypeValidator.cs" />
+    <Compile Include="Designer\Mocks\Views\BMSSVComparisonViewMock.cs" />
+    <Compile Include="Views\BMSSVComparisonView.xaml.cs">
+      <DependentUpon>BMSSVComparisonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BMSSVExplorerView.xaml.cs">
       <DependentUpon>BMSSVExplorerView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -155,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Theme\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BMSSVComparisonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

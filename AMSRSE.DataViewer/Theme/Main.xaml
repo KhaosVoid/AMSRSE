@@ -24,6 +24,7 @@
     <Style TargetType="ctrls:BlockListViewItem">
         <Setter Property="Foreground" Value="#FFFFFFFF" />
         <Setter Property="AddedColor" Value="#FF00CF00" />
+        <Setter Property="ModifiedColor" Value="#FFDF00CF" />
         <Setter Property="RemovedColor" Value="#FFDF0000" />
     </Style>
     <Style TargetType="ctrls:ChunkListView">
@@ -31,5 +32,8 @@
     </Style>
     <Style TargetType="ctrls:ChunkListViewItem">
         <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="AddedColor" Value="#FF00CF00" />
+        <Setter Property="ModifiedColor" Value="#FFDF00CF" />
+        <Setter Property="RemovedColor" Value="#FFDF0000" />
     </Style>
 </ResourceDictionary>

@@ -1,5 +1,6 @@
 ﻿using AMSRSE.DataViewer.DataModels;
 using Magatama.Core.Controls;
+using Magatama.Core.DataModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,16 @@ namespace AMSRSE.DataViewer.Controls
 {
     public class BlockListView : ControlBase
     {
+        #region Enums
+
+        public enum BlockChangeVisibilityTypes
+        {
+            Remove,
+            Add
+        }
+
+        #endregion Enums
+
         #region Dependency Properties
 
         public static readonly DependencyProperty ItemsProperty =

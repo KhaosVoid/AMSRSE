@@ -2,6 +2,7 @@
 using AMSRSE.DataViewer.Commands;
 using AMSRSE.DataViewer.Controls;
 using AMSRSE.DataViewer.DataModels;
+using Magatama.Core.DataModels;
 using Magatama.Core.Views;
 using Microsoft.Win32;
 using System;
@@ -16,6 +17,16 @@ namespace AMSRSE.DataViewer.Views
 {
     public class BMSSVExplorerView : ViewBase
     {
+        #region Enums
+
+        public enum FileComparisonSides
+        {
+            SideA,
+            SideB
+        }
+
+        #endregion Enums
+
         #region Dependency Properties
 
         public static readonly DependencyProperty LoadedFileProperty =
@@ -32,6 +43,12 @@ namespace AMSRSE.DataViewer.Views
 
         public static readonly DependencyProperty CanEditProperty =
             DependencyProperty.Register("CanEdit", typeof(bool), typeof(BMSSVExplorerView));
+
+        public static readonly DependencyProperty FileComparisonResultsProperty =
+            DependencyProperty.Register("FileComparisonResults", typeof(EditableModelChangeHistoryEntry), typeof(BMSSVExplorerView));
+
+        public static readonly DependencyProperty FileComparisonSideProperty =
+            DependencyProperty.Register("FileComparisonSide", typeof(FileComparisonSides), typeof(BMSSVExplorerView));
 
         #endregion Dependency Properties
 
@@ -59,6 +76,18 @@ namespace AMSRSE.DataViewer.Views
         {
             get { return (bool)GetValue(CanEditProperty); }
             set { SetValue(CanEditProperty, value); }
+        }
+
+        public EditableModelChangeHistoryEntry FileComparisonResults
+        {
+            get { return (EditableModelChangeHistoryEntry)GetValue(FileComparisonResultsProperty); }
+            set { SetValue(FileComparisonResultsProperty, value); }
+        }
+
+        public FileComparisonSides FileComparisonSide
+        {
+            get { return (FileComparisonSides)GetValue(FileComparisonSideProperty); }
+            set { SetValue(FileComparisonSideProperty, value); }
         }
 
         #endregion Properties

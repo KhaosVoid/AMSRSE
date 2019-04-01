@@ -1,4 +1,5 @@
 ﻿using Magatama.Core.DataModels;
+using Magatama.Core.DataModels.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Windows;
 
 namespace AMSRSE.DataViewer.DataModels
 {
+    [IdProperty("ChunkId")]
     public class ChunkModel : EditableModel
     {
         #region Enums
@@ -37,9 +39,6 @@ namespace AMSRSE.DataViewer.DataModels
         public static readonly DependencyProperty ValueProperty =
             RegisterTracked("Value", typeof(object), typeof(ChunkModel));
 
-        public static readonly DependencyProperty ChangeTypeProperty =
-            DependencyProperty.Register("ChangeType", typeof(FileModel.ChangeTypes), typeof(ChunkModel));
-
         #endregion Dependency Properties
 
         #region Properties
@@ -66,12 +65,6 @@ namespace AMSRSE.DataViewer.DataModels
         {
             get { return GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
-        }
-
-        public FileModel.ChangeTypes ChangeType
-        {
-            get { return (FileModel.ChangeTypes)GetValue(ChangeTypeProperty); }
-            set { SetValue(ChangeTypeProperty, value); }
         }
 
         #endregion Properties
