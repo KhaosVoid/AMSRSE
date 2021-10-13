@@ -2,6 +2,11 @@
 ---
 ![MSRAU](https://github.com/KhaosVoid/AMSRSE/blob/master/Screenshots/sdrp-screenshot-v0.4.png?raw=true)
 
+### NOTE
+A save editor is currently being developed for Metroid: Dread. This readme will be updated when the GitHub project has been made available. For information regarding the save format for Metroid: Dread, click [HERE](https://github.com/KhaosVoid/BMSSV/wiki).
+
+***
+
 ## About:
 This project aims to create the most feature complete save editor for Metroid: Samus Returns. My research and discussion thread on gbatemp can be found [here](https://gbatemp.net/threads/another-metroid-samus-returns-save-editor.488164/).
 
