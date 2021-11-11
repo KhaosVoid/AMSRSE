@@ -3,7 +3,9 @@
 ![MSRAU](https://github.com/KhaosVoid/AMSRSE/blob/master/Screenshots/sdrp-screenshot-v0.4.png?raw=true)
 
 ### NOTE
-A save editor is currently being developed for Metroid: Dread. This readme will be updated when the GitHub project has been made available. For information regarding the save format for Metroid: Dread, click [HERE](https://github.com/KhaosVoid/BMSSV/wiki).
+The first release for the Metroid: Dread save editor is now available! Click [HERE](https://github.com/KhaosVoid/MDSaveEditor/releases).
+
+For information regarding the save format for Metroid: Dread, click [HERE](https://github.com/KhaosVoid/BMSSV/wiki).
 
 ***
 
